@@ -12,6 +12,8 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 
+import org.lwjgl.opengl.GL11;
+
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleInteger;
 import forestry.api.genetics.IAlleleSpecies;
@@ -29,8 +31,6 @@ import forestry.core.gui.elements.GuiElementFactory;
 import forestry.core.gui.widgets.IScrollable;
 import forestry.core.render.ColourProperties;
 import forestry.core.utils.Translator;
-
-import org.lwjgl.opengl.GL11;
 
 public class ScrollableElement extends VerticalLayout implements IScrollable, IElementGenetic {
 	private final List<IGuiElement> visibleElements = new ArrayList<>();

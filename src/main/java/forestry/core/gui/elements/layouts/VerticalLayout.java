@@ -30,9 +30,9 @@ public class VerticalLayout extends AbstractElementLayout {
 		return element;
 	}
 
-	public void layout(){
+	public void layout() {
 		height = 0;
-		for(IGuiElement element : elements){
+		for (IGuiElement element : elements) {
 			element.setYPosition(height);
 			height += element.getHeight() + distance;
 		}

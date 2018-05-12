@@ -92,7 +92,7 @@ public abstract class TileAlveary extends MultiblockTileEntityForestry<Multibloc
 	@Override
 	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
 		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ||
-			super.hasCapability(capability, facing);
+				super.hasCapability(capability, facing);
 	}
 
 	@Override

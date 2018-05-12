@@ -41,9 +41,9 @@ public class ButterflyDatabaseTab implements IDatabaseTab<IButterfly> {
 
 		container.addAlleleRow(Translator.translateToLocal("for.gui.lifespan"), butterfly, EnumButterflyChromosome.LIFESPAN, active);
 
-		container.addAlleleRow(Translator.translateToLocal("for.gui.speed"), butterfly,EnumButterflyChromosome.SPEED, active);
+		container.addAlleleRow(Translator.translateToLocal("for.gui.speed"), butterfly, EnumButterflyChromosome.SPEED, active);
 
-		container.addAlleleRow(Translator.translateToLocal("for.gui.metabolism"), (IAlleleInteger a)-> GenericRatings.rateMetabolism(a.getValue()), butterfly, EnumButterflyChromosome.METABOLISM, active);
+		container.addAlleleRow(Translator.translateToLocal("for.gui.metabolism"), (IAlleleInteger a) -> GenericRatings.rateMetabolism(a.getValue()), butterfly, EnumButterflyChromosome.METABOLISM, active);
 
 		IAlleleInteger fertility = (IAlleleInteger) (active ? butterfly.getGenome().getActiveAllele(EnumButterflyChromosome.FERTILITY) : butterfly.getGenome().getInactiveAllele(EnumButterflyChromosome.FERTILITY));
 		container.addFertilityInfo(Translator.translateToLocal("for.gui.fertility"), fertility, 8);
@@ -63,14 +63,14 @@ public class ButterflyDatabaseTab implements IDatabaseTab<IButterfly> {
 		String no = Translator.translateToLocal("for.no");
 
 		String diurnal, nocturnal;
-		if(active) {
+		if (active) {
 			if (butterfly.getGenome().getNocturnal()) {
 				nocturnal = diurnal = yes;
 			} else {
 				nocturnal = butterfly.getGenome().getPrimary().isNocturnal() ? yes : no;
 				diurnal = !butterfly.getGenome().getPrimary().isNocturnal() ? yes : no;
 			}
-		}else {
+		} else {
 			if (((AlleleBoolean) butterfly.getGenome().getInactiveAllele(EnumButterflyChromosome.NOCTURNAL)).getValue()) {
 				nocturnal = diurnal = yes;
 			} else {

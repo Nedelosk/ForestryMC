@@ -12,6 +12,9 @@ package forestry.apiculture.network.packets;
 
 import java.io.IOException;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayerMP;
+
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeekeepingLogic;
 import forestry.core.network.ForestryPacket;
@@ -19,8 +22,6 @@ import forestry.core.network.IForestryPacketHandlerServer;
 import forestry.core.network.IForestryPacketServer;
 import forestry.core.network.PacketBufferForestry;
 import forestry.core.network.PacketIdServer;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayerMP;
 
 public class PacketBeeLogicEntityRequest extends ForestryPacket implements IForestryPacketServer {
 	private final Entity entity;

@@ -10,13 +10,15 @@
  ******************************************************************************/
 package forestry.farming.proxy;
 
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import forestry.core.models.BlockModelEntry;
 import forestry.core.models.ModelManager;
 import forestry.farming.ModuleFarming;
 import forestry.farming.models.ModelFarmBlock;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SuppressWarnings("unused")
 @SideOnly(Side.CLIENT)

@@ -16,6 +16,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import net.minecraft.client.gui.GuiTextField;
 
+import org.lwjgl.input.Keyboard;
+
 import forestry.core.config.Constants;
 import forestry.core.gui.GuiForestry;
 import forestry.core.render.ColourProperties;
@@ -23,8 +25,6 @@ import forestry.core.utils.NetworkUtil;
 import forestry.core.utils.Translator;
 import forestry.mail.network.packets.PacketTraderAddressRequest;
 import forestry.mail.tiles.TileTrader;
-
-import org.lwjgl.input.Keyboard;
 
 public class GuiTradeName extends GuiForestry<ContainerTradeName> {
 	private final TileTrader tile;
@@ -35,14 +35,14 @@ public class GuiTradeName extends GuiForestry<ContainerTradeName> {
 		this.tile = tile;
 		this.xSize = 176;
 		this.ySize = 90;
-		
+
 		addressNameField = new GuiTextField(0, this.fontRenderer, guiLeft + 44, guiTop + 39, 90, 14);
 	}
 
 	@Override
 	public void initGui() {
 		super.initGui();
-		
+
 		addressNameField = new GuiTextField(0, this.fontRenderer, guiLeft + 44, guiTop + 39, 90, 14);
 		addressNameField.setText(container.getAddress().getName());
 		addressNameField.setFocused(true);

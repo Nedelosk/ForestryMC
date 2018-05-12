@@ -88,7 +88,7 @@ public abstract class GuiForestry<C extends Container> extends GuiContainer impl
 
 		addLedgers();
 	}
-	
+
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		this.drawDefaultBackground();
 		super.drawScreen(mouseX, mouseY, partialTicks);
@@ -177,7 +177,7 @@ public abstract class GuiForestry<C extends Container> extends GuiContainer impl
 
 	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException {
-		if(elementManager.keyTyped(typedChar, keyCode)){
+		if (elementManager.keyTyped(typedChar, keyCode)) {
 			return;
 		}
 		super.keyTyped(typedChar, keyCode);
@@ -251,7 +251,7 @@ public abstract class GuiForestry<C extends Container> extends GuiContainer impl
 		bindTexture(textureFile);
 	}
 
-	protected void drawBackground(){
+	protected void drawBackground() {
 		bindTexture(textureFile);
 
 		//int x = (width - xSize) / 2;

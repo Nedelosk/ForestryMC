@@ -30,31 +30,31 @@ public interface IAlyzerPlugin {
 	/**
 	 * Creates the first page of the alyzer.
 	 *
-	 * @param gui A instance of the alyzer gui.
-	 * @param container A helper to create the gui elements.
+	 * @param gui        A instance of the alyzer gui.
+	 * @param container  A helper to create the gui elements.
 	 * @param individual The individual that is currently in the alyzer slot.
 	 */
-	default void createFirstPage(GuiScreen gui, IElementGenetic container, IIndividual individual){
+	default void createFirstPage(GuiScreen gui, IElementGenetic container, IIndividual individual) {
 	}
 
 	/**
 	 * Creates the second page of the alyzer.
 	 *
-	 * @param gui A instance of the alyzer gui.
-	 * @param container A helper to create the gui elements.
+	 * @param gui        A instance of the alyzer gui.
+	 * @param container  A helper to create the gui elements.
 	 * @param individual The individual that is currently in the alyzer slot.
 	 */
-	default void createSecondPage(GuiScreen gui, IElementGenetic container, IIndividual individual){
+	default void createSecondPage(GuiScreen gui, IElementGenetic container, IIndividual individual) {
 	}
 
 	/**
 	 * Creates the third page of the alyzer. This page is usually used to display the products of the individual.
 	 *
-	 * @param gui A instance of the alyzer gui.
-	 * @param container A helper to create the gui elements.
+	 * @param gui        A instance of the alyzer gui.
+	 * @param container  A helper to create the gui elements.
 	 * @param individual The individual that is currently in the alyzer slot.
 	 */
-	default void createThirdPage(GuiScreen gui, IElementGenetic container, IIndividual individual){
+	default void createThirdPage(GuiScreen gui, IElementGenetic container, IIndividual individual) {
 	}
 
 	Map<String, ItemStack> getIconStacks();

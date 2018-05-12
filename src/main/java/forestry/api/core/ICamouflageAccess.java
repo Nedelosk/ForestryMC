@@ -5,9 +5,8 @@
  ******************************************************************************/
 package forestry.api.core;
 
-import java.util.List;
-
 import javax.annotation.Nullable;
+import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
@@ -30,7 +29,7 @@ public interface ICamouflageAccess {
 	void addModIdToBlackList(String modID);
 
 	boolean isItemBlackListed(ItemStack camouflageBlock);
-	
+
 	@Nullable
 	ICamouflageItemHandler getHandler(ItemStack stack);
 

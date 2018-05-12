@@ -56,12 +56,12 @@ import forestry.modules.ModuleHelper;
 @SideOnly(Side.CLIENT)
 public class BookLoader implements IResourceManagerReloadListener, IBookLoader {
 	public static final Gson GSON = new GsonBuilder()
-		.registerTypeAdapter(BookContent.class, new BookContentDeserializer())
-		.registerTypeAdapter(BookCategory.class, new BookCategoryDeserializer())
-		.registerTypeAdapter(ResourceLocation.class, (JsonDeserializer<ResourceLocation>) (json, typeOfT, context) -> new ResourceLocation(JsonUtils.getString(json, "location")))
-		.registerTypeAdapter(ItemStack.class, (JsonDeserializer<ItemStack>) (json, typeOfT, context) -> JsonUtil.deserializeItemStack(json.getAsJsonObject(), ItemStack.EMPTY))
-		.registerTypeAdapter(Entries.class, new EntriesDeserializer())
-		.create();
+			.registerTypeAdapter(BookContent.class, new BookContentDeserializer())
+			.registerTypeAdapter(BookCategory.class, new BookCategoryDeserializer())
+			.registerTypeAdapter(ResourceLocation.class, (JsonDeserializer<ResourceLocation>) (json, typeOfT, context) -> new ResourceLocation(JsonUtils.getString(json, "location")))
+			.registerTypeAdapter(ItemStack.class, (JsonDeserializer<ItemStack>) (json, typeOfT, context) -> JsonUtil.deserializeItemStack(json.getAsJsonObject(), ItemStack.EMPTY))
+			.registerTypeAdapter(Entries.class, new EntriesDeserializer())
+			.create();
 	public static final BookLoader INSTANCE = new BookLoader();
 	private static final String BOOK_LOCATION = "forestry:manual/";
 	private static final String BOOK_LOCATION_LANG = BOOK_LOCATION + "%s/%s";
@@ -123,7 +123,7 @@ public class BookLoader implements IResourceManagerReloadListener, IBookLoader {
 	}
 
 	@Nullable
-	public static IResource getResource(String path){
+	public static IResource getResource(String path) {
 		IResource resource;
 		if (!path.contains(":")) {
 			Language currentLanguage = Minecraft.getMinecraft().getLanguageManager().getCurrentLanguage();
@@ -169,7 +169,7 @@ public class BookLoader implements IResourceManagerReloadListener, IBookLoader {
 		entryNames.forEach(entry -> createEntry(entries, category, entry));
 	}
 
-	private void createEntry(Map<String, EntryData> entries, BookCategory category, String entry){
+	private void createEntry(Map<String, EntryData> entries, BookCategory category, String entry) {
 		EntryData data = entries.get(entry);
 		if (data != null) {
 			IBookEntryBuilder builder = category.createEntry(entry);
@@ -201,7 +201,7 @@ public class BookLoader implements IResourceManagerReloadListener, IBookLoader {
 	}
 
 	@Nullable
-	private <T> T fromJson( String location, Class<T> classOfT, @Nullable T fallback) {
+	private <T> T fromJson(String location, Class<T> classOfT, @Nullable T fallback) {
 		IResource resource = getResource(location);
 		if (resource == null) {
 			return fallback;

@@ -3,14 +3,15 @@ package forestry.apiculture;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-import forestry.api.apiculture.EnumBeeType;
-import forestry.apiculture.genetics.BeeDefinition;
-import forestry.apiculture.items.ItemHoneyComb;
 import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
+
+import forestry.api.apiculture.EnumBeeType;
+import forestry.apiculture.genetics.BeeDefinition;
+import forestry.apiculture.items.ItemHoneyComb;
 
 public class VillagerApiaristTrades {
 

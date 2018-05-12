@@ -163,7 +163,7 @@ public class BlockEngine extends BlockBase<BlockTypeEngine> {
 	@Override
 	public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos) {
 		TileEngine tileEngine = TileUtil.getTile(worldIn, pos, TileEngine.class);
-		if(tileEngine != null){
+		if (tileEngine != null) {
 			EnergyManager energyManager = tileEngine.getEnergyManager();
 			return energyManager.calculateRedstone();
 		}

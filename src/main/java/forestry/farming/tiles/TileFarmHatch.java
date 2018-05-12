@@ -12,18 +12,20 @@ package forestry.farming.tiles;
 
 import javax.annotation.Nullable;
 
-import forestry.api.multiblock.IFarmComponent;
-import forestry.core.inventory.AdjacentInventoryCache;
-import forestry.core.tiles.AdjacentTileCache;
-import forestry.core.utils.InventoryUtil;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.util.EnumFacing;
+
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
+
+import forestry.api.multiblock.IFarmComponent;
+import forestry.core.inventory.AdjacentInventoryCache;
+import forestry.core.tiles.AdjacentTileCache;
+import forestry.core.utils.InventoryUtil;
 
 // TODO: Buildcraft for 1.9
 //@Optional.Interface(iface = "buildcraft.api.statements.ITriggerProvider", modid = "BuildCraftAPI|statements")
@@ -77,21 +79,21 @@ public class TileFarmHatch extends TileFarm implements ISidedInventory, IFarmCom
 	}
 
 	// TODO: Buildcraft for 1.9
-//	@Optional.Method(modid = "BuildCraftAPI|statements")
-//	@Override
-//	public Collection<ITriggerInternal> getInternalTriggers(IStatementContainer container) {
-//		return Collections.emptyList();
-//	}
-//
-//	/* ITRIGGERPROVIDER */
-//	@Optional.Method(modid = "BuildCraftAPI|statements")
-//	@Override
-//	public Collection<ITriggerExternal> getExternalTriggers(EnumFacing side, TileEntity tile) {
-//		if (!getMultiblockLogic().isConnected()) {
-//			return Collections.emptyList();
-//		}
-//
-//		return FarmingTriggers.allExternalTriggers;
-//	}
+	//	@Optional.Method(modid = "BuildCraftAPI|statements")
+	//	@Override
+	//	public Collection<ITriggerInternal> getInternalTriggers(IStatementContainer container) {
+	//		return Collections.emptyList();
+	//	}
+	//
+	//	/* ITRIGGERPROVIDER */
+	//	@Optional.Method(modid = "BuildCraftAPI|statements")
+	//	@Override
+	//	public Collection<ITriggerExternal> getExternalTriggers(EnumFacing side, TileEntity tile) {
+	//		if (!getMultiblockLogic().isConnected()) {
+	//			return Collections.emptyList();
+	//		}
+	//
+	//		return FarmingTriggers.allExternalTriggers;
+	//	}
 
 }

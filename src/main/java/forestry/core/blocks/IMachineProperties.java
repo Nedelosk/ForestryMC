@@ -12,8 +12,6 @@ package forestry.core.blocks;
 
 import javax.annotation.Nullable;
 
-import forestry.api.core.IModelManager;
-import forestry.core.tiles.TileForestry;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -24,8 +22,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.core.IModelManager;
+import forestry.core.tiles.TileForestry;
 
 public interface IMachineProperties<T extends TileForestry> extends IStringSerializable {
 	Class<T> getTeClass();

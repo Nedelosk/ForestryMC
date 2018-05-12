@@ -184,10 +184,10 @@ public abstract class Mutation implements IMutation, IMutationBuilder {
 	@Override
 	public String toString() {
 		MoreObjects.ToStringHelper stringHelper = MoreObjects.toStringHelper(this)
-			.add("first", species0)
-			.add("second", species1)
-			.add("result", template[0]);
-		if(!specialConditions.isEmpty()){
+				.add("first", species0)
+				.add("second", species1)
+				.add("result", template[0]);
+		if (!specialConditions.isEmpty()) {
 			stringHelper.add("conditions", getSpecialConditions());
 		}
 		return stringHelper.toString();

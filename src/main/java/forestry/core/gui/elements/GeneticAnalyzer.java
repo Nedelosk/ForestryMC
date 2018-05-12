@@ -8,6 +8,8 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import org.lwjgl.input.Keyboard;
+
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IDatabasePlugin;
 import forestry.api.genetics.IDatabaseTab;
@@ -25,8 +27,6 @@ import forestry.core.gui.widgets.IScrollable;
 import forestry.core.network.packets.PacketGuiSelectRequest;
 import forestry.core.utils.NetworkUtil;
 import forestry.core.utils.Translator;
-
-import org.lwjgl.input.Keyboard;
 
 public class GeneticAnalyzer extends ElementGroup implements IGeneticAnalyzer, IScrollable {
 	/* Textures */

@@ -63,11 +63,11 @@ public class AIAvoidPlayers extends EntityAIBase {
 		if (randomTarget == null) {
 			return false;
 		}
-		
+
 		if (player.getDistanceSq(randomTarget.x, randomTarget.y, randomTarget.z) < player.getDistance(mob)) {
 			return false;
 		}
-		
+
 		path = pathNavigator.getPathToXYZ(randomTarget.x, randomTarget.y, randomTarget.z);
 		return path != null;
 	}

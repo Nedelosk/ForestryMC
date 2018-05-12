@@ -310,7 +310,7 @@ public class TileLeaves extends TileTreeContainer implements IPollinatable, IFru
 			ITree tree = getTree();
 			return tree != null &&
 					tree.getMate() == null &&
-					(ModuleApiculture.doSelfPollination ||!tree.isGeneticEqual(individual));
+					(ModuleApiculture.doSelfPollination || !tree.isGeneticEqual(individual));
 		}
 		return false;
 	}
@@ -365,7 +365,7 @@ public class TileLeaves extends TileTreeContainer implements IPollinatable, IFru
 	@Override
 	public void writeData(PacketBufferForestry data) {
 		super.writeData(data);
-		
+
 		byte leafState = 0;
 		boolean hasFruit = hasFruit();
 

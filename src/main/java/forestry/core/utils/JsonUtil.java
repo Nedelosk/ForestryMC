@@ -14,15 +14,15 @@ public class JsonUtil {
 	private JsonUtil() {
 	}
 
-	public static ItemStack deserializeItemStack(JsonObject object){
+	public static ItemStack deserializeItemStack(JsonObject object) {
 		return deserializeItemStack(object, null);
 	}
 
 	public static ItemStack deserializeItemStack(JsonObject object, @Nullable ItemStack fallback) {
 		if (!object.has("item")) {
-			if(fallback == null) {
+			if (fallback == null) {
 				throw new JsonSyntaxException("Unsupported icon type, currently only items are supported (add 'item' key)");
-			}else{
+			} else {
 				return fallback;
 			}
 		}

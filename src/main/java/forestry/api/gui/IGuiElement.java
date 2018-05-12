@@ -15,6 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public interface IGuiElement {
 	/* Position and Size*/
+
 	/**
 	 * @return the x position of this element relative to the position of the top widget.
 	 */
@@ -60,6 +61,7 @@ public interface IGuiElement {
 	void setYPosition(int yPos);
 
 	/* Parent */
+
 	/**
 	 * @return the element that contains this element and handles all events.
 	 */
@@ -69,6 +71,7 @@ public interface IGuiElement {
 	void setParent(@Nullable IGuiElement parent);
 
 	/* Rendering */
+
 	/**
 	 * Draws the element and his children.
 	 *
@@ -83,16 +86,17 @@ public interface IGuiElement {
 	void drawElement(int mouseX, int mouseY);
 
 	/* Events */
+
 	/**
-	 * @param mouseX The x position of the mouse relative to the parent of the element.
-	 * @param mouseY The y position of the mouse relative to the parent of the element.
+	 * @param mouseX      The x position of the mouse relative to the parent of the element.
+	 * @param mouseY      The y position of the mouse relative to the parent of the element.
 	 * @param mouseButton The pressed mouse button.
 	 */
 	void mouseClicked(int mouseX, int mouseY, int mouseButton);
 
 	/**
-	 * @param mouseX The x position of the mouse relative to the parent of the element.
-	 * @param mouseY The y position of the mouse relative to the parent of the element.
+	 * @param mouseX      The x position of the mouse relative to the parent of the element.
+	 * @param mouseY      The y position of the mouse relative to the parent of the element.
 	 * @param mouseButton The pressed mouse button.
 	 */
 	void mouseReleased(int mouseX, int mouseY, int mouseButton);

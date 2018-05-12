@@ -9,12 +9,12 @@ public class GuiElementUtil {
 	private GuiElementUtil() {
 	}
 
-	public static void preRender(IGuiElement element, GuiElementAlignment align){
+	public static void preRender(IGuiElement element, GuiElementAlignment align) {
 		IGuiElement parent = element.getParent();
 		int xPos = element.getX();
 		int yPos = element.getY();
-		if(parent != null){
-			if(parent.getWidth() > element.getWidth()){
+		if (parent != null) {
+			if (parent.getWidth() > element.getWidth()) {
 				xPos += (parent.getWidth() - element.getWidth()) * align.getXOffset();
 			}
 			if (parent.getHeight() > element.getHeight()) {
@@ -27,7 +27,7 @@ public class GuiElementUtil {
 
 	}
 
-	public static void posRender(IGuiElement element){
+	public static void posRender(IGuiElement element) {
 		GlStateManager.popMatrix();
 	}
 

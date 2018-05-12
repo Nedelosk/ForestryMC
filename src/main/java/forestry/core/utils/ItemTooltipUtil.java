@@ -29,18 +29,18 @@ public class ItemTooltipUtil {
 
 	@SideOnly(Side.CLIENT)
 	public static void addShiftInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flag) {
-		tooltip.add(TextFormatting.ITALIC .toString() + '<' + Translator.translateToLocal("for.gui.tooltip.tmi") + '>');
+		tooltip.add(TextFormatting.ITALIC.toString() + '<' + Translator.translateToLocal("for.gui.tooltip.tmi") + '>');
 	}
 
 	@SideOnly(Side.CLIENT)
-	public static List<String> getInformation(ItemStack stack){
+	public static List<String> getInformation(ItemStack stack) {
 		Minecraft minecraft = Minecraft.getMinecraft();
 		boolean advancedTooltips = minecraft.gameSettings.advancedItemTooltips;
 		return getInformation(stack, minecraft.player, advancedTooltips ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL);
 	}
 
 	@SideOnly(Side.CLIENT)
-	public static List<String> getInformation(ItemStack stack, EntityPlayer player, ITooltipFlag flag){
+	public static List<String> getInformation(ItemStack stack, EntityPlayer player, ITooltipFlag flag) {
 		if (stack.isEmpty()) {
 			return Collections.emptyList();
 		}

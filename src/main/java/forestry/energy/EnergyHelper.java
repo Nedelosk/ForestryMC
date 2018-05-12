@@ -2,13 +2,15 @@ package forestry.energy;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
+
 import forestry.api.core.ForestryAPI;
 import forestry.core.tiles.TileEngine;
 import forestry.energy.compat.tesla.TeslaHelper;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.energy.IEnergyStorage;
 
 public class EnergyHelper {
 	public static int scaleForDifficulty(int energyValue) {

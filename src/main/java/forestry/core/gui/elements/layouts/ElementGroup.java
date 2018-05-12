@@ -55,8 +55,8 @@ public abstract class ElementGroup extends GuiElement implements IElementGroup {
 		int mX = mouseX - getX();
 		int mY = mouseY - getY();
 		elements.stream()
-			.filter(element -> element.isMouseOver(mX, mY))
-			.forEach(element -> element.mouseClicked(mX, mY, mouseButton));
+				.filter(element -> element.isMouseOver(mX, mY))
+				.forEach(element -> element.mouseClicked(mX, mY, mouseButton));
 	}
 
 	@Override
@@ -64,8 +64,8 @@ public abstract class ElementGroup extends GuiElement implements IElementGroup {
 		int mX = mouseX - getX();
 		int mY = mouseY - getY();
 		elements.stream()
-			.filter(element -> element.isMouseOver(mX, mY))
-			.forEach(element -> element.mouseReleased(mX, mY, mouseButton));
+				.filter(element -> element.isMouseOver(mX, mY))
+				.forEach(element -> element.mouseReleased(mX, mY, mouseButton));
 	}
 
 	@Override
@@ -73,8 +73,8 @@ public abstract class ElementGroup extends GuiElement implements IElementGroup {
 		int mX = mouseX - getX();
 		int mY = mouseY - getY();
 		elements.stream()
-			.filter(element -> element.isMouseOver(mX, mY))
-			.forEach(element -> element.mouseClickMove(mX, mY, mouseButton));
+				.filter(element -> element.isMouseOver(mX, mY))
+				.forEach(element -> element.mouseClickMove(mX, mY, mouseButton));
 	}
 
 	@Override

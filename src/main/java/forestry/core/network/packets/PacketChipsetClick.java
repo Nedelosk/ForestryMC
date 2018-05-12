@@ -12,6 +12,9 @@ package forestry.core.network.packets;
 
 import java.io.IOException;
 
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
+
 import forestry.core.circuits.ItemCircuitBoard;
 import forestry.core.gui.IContainerSocketed;
 import forestry.core.network.ForestryPacket;
@@ -19,8 +22,6 @@ import forestry.core.network.IForestryPacketHandlerServer;
 import forestry.core.network.IForestryPacketServer;
 import forestry.core.network.PacketBufferForestry;
 import forestry.core.network.PacketIdServer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
 
 public class PacketChipsetClick extends ForestryPacket implements IForestryPacketServer {
 	private final int slot;

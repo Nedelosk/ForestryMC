@@ -16,7 +16,6 @@ import net.minecraftforge.event.RegistryEvent;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 @Mod.EventBusSubscriber
@@ -25,6 +24,7 @@ public class MigrationHelper {
 	private static Map<String, String> itemRemappings = new HashMap<>();
 
 	private static Set<String> ignoredMappings = new HashSet<>();
+
 	static {
 		ignoredMappings.add("greenhouse.sprinkler");
 
@@ -108,5 +108,6 @@ public class MigrationHelper {
 		}
 	}
 
-	private MigrationHelper() {}
+	private MigrationHelper() {
+	}
 }

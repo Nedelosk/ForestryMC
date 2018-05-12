@@ -5,13 +5,15 @@
  ******************************************************************************/
 package forestry.api.core;
 
-import forestry.api.climate.IClimateState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.climate.IClimateState;
 
 /**
  * Many things Forestry use temperature and humidity of a biome to determine whether they can or how they can work or spawn at a given location.
@@ -23,7 +25,7 @@ public enum EnumTemperature {
 	NORMAL("Normal", "habitats/plains"), WARM("Warm", "habitats/jungle"), HOT("Hot", "habitats/desert"), HELLISH("Hellish", "habitats/nether");
 
 	public static EnumTemperature[] VALUES = values();
-	
+
 	public final String name;
 	public final String iconIndex;
 

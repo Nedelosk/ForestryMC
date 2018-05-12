@@ -129,7 +129,7 @@ public class ModuleFarming extends BlankForestryModule {
 
 		MinecraftForge.EVENT_BUS.register(this);
 		IFarmRegistry registry = ForestryAPI.farmRegistry;
-		
+
 		registry.registerFarmables(ForestryFarmIdentifier.ARBOREAL, new FarmableVanillaSapling());
 		if (ModuleHelper.isEnabled(ForestryModuleUids.ARBORICULTURE)) {
 			registry.registerFarmables(ForestryFarmIdentifier.ARBOREAL, new FarmableGE());

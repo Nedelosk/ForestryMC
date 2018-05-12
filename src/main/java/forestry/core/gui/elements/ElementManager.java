@@ -24,7 +24,7 @@ public class ElementManager<G extends GuiScreen & IGuiSizable> {
 		this.container.setGuiState(state);
 	}
 
-	public ElementGroup group(){
+	public ElementGroup group() {
 		return container;
 	}
 

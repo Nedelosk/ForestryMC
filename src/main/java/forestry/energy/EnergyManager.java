@@ -127,8 +127,8 @@ public class EnergyManager extends EnergyStorage implements IStreamable, INbtRea
 		}
 	}
 
-	public int calculateRedstone(){
-		return MathHelper.floor(((float)energy / (float)capacity) * 14.0F) + (energy > 0 ? 1 : 0);
+	public int calculateRedstone() {
+		return MathHelper.floor(((float) energy / (float) capacity) * 14.0F) + (energy > 0 ? 1 : 0);
 	}
 
 }
