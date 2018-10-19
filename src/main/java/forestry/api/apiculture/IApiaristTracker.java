@@ -6,10 +6,11 @@
 package forestry.api.apiculture;
 
 import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.IIndividualRootForestry;
 
 /**
- * Can be used to garner information on bee breeding. See {@link forestry.api.genetics.ISpeciesRoot} for retrieval functions.
+ * Can be used to garner information on bee breeding. See {@link IIndividualRootForestry} for retrieval functions.
  *
  * @author SirSengir
  */
@@ -20,7 +21,7 @@ public interface IApiaristTracker extends IBreedingTracker {
 	 *
 	 * @param queen Created queen.
 	 */
-	void registerQueen(IIndividual queen);
+	void registerQueen(IIndividualForestry queen);
 
 	/**
 	 * @return Amount of queens bred with this tracker.
@@ -32,7 +33,7 @@ public interface IApiaristTracker extends IBreedingTracker {
 	 *
 	 * @param princess Created princess.
 	 */
-	void registerPrincess(IIndividual princess);
+	void registerPrincess(IIndividualForestry princess);
 
 	/**
 	 * @return Amount of princesses bred with this tracker.
@@ -44,7 +45,7 @@ public interface IApiaristTracker extends IBreedingTracker {
 	 *
 	 * @param drone Created drone.
 	 */
-	void registerDrone(IIndividual drone);
+	void registerDrone(IIndividualForestry drone);
 
 	/**
 	 * @return Amount of drones bred with this tracker.

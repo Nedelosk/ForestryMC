@@ -7,6 +7,8 @@ package forestry.api.apiculture;
 
 import javax.annotation.Nullable;
 
+import forestry.api.apiculture.genetics.IBeeGenome;
+
 public interface IBeeModifier {
 	/**
 	 * @param genome          Genome of the bee this modifier is called for.

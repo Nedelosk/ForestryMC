@@ -12,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
 import forestry.api.apiculture.IBeekeepingMode;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 
 /**
  * Keeps track of who bred, discovered, and researched which species in a world.
@@ -38,17 +39,17 @@ public interface IBreedingTracker {
 	/**
 	 * Register the birth of an individual. Will mark it as discovered.
 	 */
-	void registerBirth(IIndividual individual);
+	void registerBirth(IIndividualForestry individual);
 
 	/**
 	 * Register the pickup of an individual.
 	 */
-	void registerPickup(IIndividual individual);
+	void registerPickup(IIndividualForestry individual);
 
 	/**
 	 * Marks a species as discovered. Should only be called from registerIndividual normally.
 	 */
-	void registerSpecies(IAlleleSpecies species);
+	void registerSpecies(IAlleleSpeciesForestry species);
 
 	/**
 	 * Register a successful mutation. Will mark it as discovered.
@@ -69,7 +70,7 @@ public interface IBreedingTracker {
 	 * @param species Species to check.
 	 * @return true if the species has been bred.
 	 */
-	boolean isDiscovered(IAlleleSpecies species);
+	boolean isDiscovered(IAlleleSpeciesForestry species);
 
 	/**
 	 * @return A collection that contains the {@link IAllele#getUID()}s of all discovered species.

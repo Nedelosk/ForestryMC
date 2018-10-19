@@ -11,7 +11,7 @@ import java.util.Map;
 
 import com.mojang.authlib.GameProfile;
 import forestry.api.genetics.IEffectData;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
 import forestry.api.world.ITreeGenData;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -22,7 +22,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public interface ITree extends IIndividual, ITreeGenData {
+public interface ITree extends IIndividualForestry, ITreeGenData {
 
 	void mate(ITree other);
 

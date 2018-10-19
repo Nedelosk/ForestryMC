@@ -12,19 +12,19 @@ import com.mojang.authlib.GameProfile;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 
-import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 import forestry.api.genetics.IBreedingTracker;
+import forestry.api.genetics.IIndividualRootForestry;
 import forestry.api.genetics.IMutation;
-import forestry.api.genetics.ISpeciesRoot;
 
 public abstract class ForestryEvent extends Event {
 
 	private static abstract class BreedingEvent extends ForestryEvent {
-		public final ISpeciesRoot root;
+		public final IIndividualRootForestry root;
 		public final IBreedingTracker tracker;
 		public final GameProfile username;
 
-		private BreedingEvent(ISpeciesRoot root, GameProfile username, IBreedingTracker tracker) {
+		private BreedingEvent(IIndividualRootForestry root, GameProfile username, IBreedingTracker tracker) {
 			this.root = root;
 			this.username = username;
 			this.tracker = tracker;
@@ -32,9 +32,9 @@ public abstract class ForestryEvent extends Event {
 	}
 
 	public static class SpeciesDiscovered extends BreedingEvent {
-		public final IAlleleSpecies species;
+		public final IAlleleSpeciesForestry species;
 
-		public SpeciesDiscovered(ISpeciesRoot root, GameProfile username, IAlleleSpecies species, IBreedingTracker tracker) {
+		public SpeciesDiscovered(IIndividualRootForestry root, GameProfile username, IAlleleSpeciesForestry species, IBreedingTracker tracker) {
 			super(root, username, tracker);
 			this.species = species;
 		}
@@ -43,7 +43,7 @@ public abstract class ForestryEvent extends Event {
 	public static class MutationDiscovered extends BreedingEvent {
 		public final IMutation allele;
 
-		public MutationDiscovered(ISpeciesRoot root, GameProfile username, IMutation allele, IBreedingTracker tracker) {
+		public MutationDiscovered(IIndividualRootForestry root, GameProfile username, IMutation allele, IBreedingTracker tracker) {
 			super(root, username, tracker);
 			this.allele = allele;
 		}

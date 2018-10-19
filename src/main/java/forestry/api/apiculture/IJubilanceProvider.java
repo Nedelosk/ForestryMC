@@ -5,6 +5,9 @@
  ******************************************************************************/
 package forestry.api.apiculture;
 
+import forestry.api.apiculture.genetics.IAlleleBeeSpecies;
+import forestry.api.apiculture.genetics.IBeeGenome;
+
 public interface IJubilanceProvider {
 
 	/**

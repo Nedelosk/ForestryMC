@@ -10,6 +10,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
+import forestry.api.apiculture.genetics.IBee;
+
 /**
  * Bees can be seeded either as hive drops or as mutation results.
  * <p>

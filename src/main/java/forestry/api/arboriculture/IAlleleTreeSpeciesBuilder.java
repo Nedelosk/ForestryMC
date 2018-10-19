@@ -5,7 +5,7 @@
  ******************************************************************************/
 package forestry.api.arboriculture;
 
-import forestry.api.genetics.IAlleleSpeciesBuilder;
+import forestry.api.genetics.alleles.IAlleleSpeciesBuilder;
 import forestry.api.genetics.IFruitFamily;
 import net.minecraftforge.common.EnumPlantType;
 

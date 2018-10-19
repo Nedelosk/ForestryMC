@@ -7,6 +7,8 @@ package forestry.api.apiculture;
 
 import net.minecraft.item.ItemStack;
 
+import forestry.api.apiculture.genetics.IBee;
+
 public interface IHiveFrame {
 
 	/**

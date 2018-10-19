@@ -5,7 +5,11 @@
  ******************************************************************************/
 package forestry.api.apiculture;
 
-import forestry.api.genetics.IMutation;
+import genetics.api.mutation.IMutation;
+
+import forestry.api.apiculture.genetics.IAlleleBeeSpecies;
+import forestry.api.apiculture.genetics.IBeeGenome;
+import forestry.api.apiculture.genetics.IBeeRoot;
 
 public interface IBeeMutation extends IMutation {
 

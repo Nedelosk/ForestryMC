@@ -19,7 +19,7 @@ import com.mojang.authlib.GameProfile;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosome;
 import forestry.api.genetics.IFruitFamily;
-import forestry.api.genetics.ISpeciesRootPollinatable;
+import forestry.api.genetics.alleles.ISpeciesRootPollinatable;
 
 public interface ITreeRoot extends ISpeciesRootPollinatable {
 

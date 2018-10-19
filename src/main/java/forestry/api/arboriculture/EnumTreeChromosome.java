@@ -13,7 +13,8 @@ import forestry.api.genetics.IAlleleFloat;
 import forestry.api.genetics.IAlleleInteger;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IFruitFamily;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IIndividualRootForestry;
+
 import net.minecraftforge.common.EnumPlantType;
 
 public enum EnumTreeChromosome implements IChromosomeType {
@@ -75,7 +76,7 @@ public enum EnumTreeChromosome implements IChromosomeType {
 	}
 
 	@Override
-	public ISpeciesRoot getSpeciesRoot() {
+	public IIndividualRootForestry getSpeciesRoot() {
 		return TreeManager.treeRoot;
 	}
 

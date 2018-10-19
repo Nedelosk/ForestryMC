@@ -5,15 +5,16 @@
  ******************************************************************************/
 package forestry.api.arboriculture;
 
+import forestry.api.genetics.IIndividualRootForestry;
 import forestry.api.genetics.IMutation;
-import forestry.api.genetics.ISpeciesRoot;
+
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public interface ITreeMutation extends IMutation {
 
 	/**
-	 * @return {@link ISpeciesRoot} this mutation is associated with.
+	 * @return {@link IIndividualRootForestry} this mutation is associated with.
 	 */
 	@Override
 	ITreeRoot getRoot();

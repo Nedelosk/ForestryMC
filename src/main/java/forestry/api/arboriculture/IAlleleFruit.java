@@ -7,7 +7,7 @@ package forestry.api.arboriculture;
 
 import javax.annotation.Nullable;
 
-import forestry.api.genetics.IAlleleProperty;
+import forestry.api.genetics.alleles.IAlleleProperty;
 
 /**
  * Simple allele encapsulating an {@link IFruitProvider}.
