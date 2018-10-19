@@ -7,8 +7,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
 
-import forestry.api.genetics.IDatabasePlugin;
-import forestry.api.genetics.IDatabaseTab;
+import forestry.api.genetics.gaget.IDatabasePlugin;
+import forestry.api.genetics.gaget.IDatabaseTab;
 import forestry.api.gui.IGuiElement;
 import forestry.api.gui.events.GuiEvent;
 import forestry.core.genetics.analyzer.AnalyzerTab;

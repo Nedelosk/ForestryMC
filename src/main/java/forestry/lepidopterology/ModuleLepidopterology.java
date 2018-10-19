@@ -46,9 +46,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.Forestry;
 import forestry.api.arboriculture.TreeManager;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
 import forestry.api.genetics.IAllele;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.IAlleleButterflyCocoon;
 import forestry.api.lepidopterology.IAlleleButterflySpecies;

@@ -26,16 +26,16 @@ import net.minecraft.item.ItemStack;
 import com.mojang.authlib.GameProfile;
 
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleHandler;
-import forestry.api.genetics.IAlleleRegistry;
-import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IClassification;
 import forestry.api.genetics.IClassification.EnumClassLevel;
 import forestry.api.genetics.IFruitFamily;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.IIndividualRootForestry;
 import forestry.api.genetics.IMutation;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.alleles.IAlleleHandler;
+import forestry.api.genetics.alleles.IAlleleRegistry;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 import forestry.core.ModuleCore;
 import forestry.core.genetics.Classification;
 import forestry.core.genetics.ItemResearchNote.EnumNoteType;
@@ -58,32 +58,32 @@ public class AlleleRegistry implements IAlleleRegistry {
 	private final Set<IAlleleHandler> alleleHandlers = new HashSet<>();
 
 	/* SPECIES ROOT */
-	private final LinkedHashMap<String, ISpeciesRoot> rootMap = new LinkedHashMap<>(16);
+	private final LinkedHashMap<String, IIndividualRootForestry> rootMap = new LinkedHashMap<>(16);
 
 	@Override
-	public void registerSpeciesRoot(ISpeciesRoot root) {
+	public void registerSpeciesRoot(IIndividualRootForestry root) {
 		rootMap.put(root.getUID(), root);
 	}
 
 	@Override
-	public Map<String, ISpeciesRoot> getSpeciesRoot() {
+	public Map<String, IIndividualRootForestry> getSpeciesRoot() {
 		return Collections.unmodifiableMap(rootMap);
 	}
 
 	@Override
 	@Nullable
-	public ISpeciesRoot getSpeciesRoot(String uid) {
+	public IIndividualRootForestry getSpeciesRoot(String uid) {
 		return rootMap.get(uid);
 	}
 
 	@Override
 	@Nullable
-	public ISpeciesRoot getSpeciesRoot(ItemStack stack) {
+	public IIndividualRootForestry getSpeciesRoot(ItemStack stack) {
 		if (stack.isEmpty()) {
 			return null;
 		}
 
-		for (ISpeciesRoot root : rootMap.values()) {
+		for (IIndividualRootForestry root : rootMap.values()) {
 			if (root.isMember(stack)) {
 				return root;
 			}
@@ -93,8 +93,8 @@ public class AlleleRegistry implements IAlleleRegistry {
 
 	@Override
 	@Nullable
-	public ISpeciesRoot getSpeciesRoot(Class<? extends IIndividual> individualClass) {
-		for (ISpeciesRoot root : rootMap.values()) {
+	public IIndividualRootForestry getSpeciesRoot(Class<? extends IIndividualForestry> individualClass) {
+		for (IIndividualRootForestry root : rootMap.values()) {
 			if (root.getMemberClass().isAssignableFrom(individualClass)) {
 				return root;
 			}
@@ -103,7 +103,7 @@ public class AlleleRegistry implements IAlleleRegistry {
 	}
 
 	@Override
-	public ISpeciesRoot getSpeciesRoot(IIndividual individual) {
+	public IIndividualRootForestry getSpeciesRoot(IIndividualForestry individual) {
 		return individual.getGenome().getSpeciesRoot();
 	}
 
@@ -115,8 +115,8 @@ public class AlleleRegistry implements IAlleleRegistry {
 
 	@Override
 	@Nullable
-	public IIndividual getIndividual(ItemStack stack) {
-		ISpeciesRoot root = getSpeciesRoot(stack);
+	public IIndividualForestry getIndividual(ItemStack stack) {
+		IIndividualRootForestry root = getSpeciesRoot(stack);
 		if (root == null) {
 			return null;
 		}
@@ -157,9 +157,9 @@ public class AlleleRegistry implements IAlleleRegistry {
 		addValidAlleleTypes(allele, chromosomeTypes);
 
 		alleleMap.put(allele.getUID(), allele);
-		if (allele instanceof IAlleleSpecies) {
-			IClassification branch = ((IAlleleSpecies) allele).getBranch();
-			branch.addMemberSpecies((IAlleleSpecies) allele);
+		if (allele instanceof IAlleleSpeciesForestry) {
+			IClassification branch = ((IAlleleSpeciesForestry) allele).getBranch();
+			branch.addMemberSpecies((IAlleleSpeciesForestry) allele);
 		}
 
 		for (IAlleleHandler handler : this.alleleHandlers) {
@@ -293,7 +293,7 @@ public class AlleleRegistry implements IAlleleRegistry {
 
 	/* RESEARCH */
 	@Override
-	public ItemStack getSpeciesNoteStack(GameProfile researcher, IAlleleSpecies species) {
+	public ItemStack getSpeciesNoteStack(GameProfile researcher, IAlleleSpeciesForestry species) {
 		return EnumNoteType.createSpeciesNoteStack(ModuleCore.getItems().researchNote, researcher, species);
 	}
 

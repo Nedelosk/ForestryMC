@@ -15,7 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import forestry.api.arboriculture.IArboristTracker;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
 import forestry.arboriculture.ModuleArboriculture;
 import forestry.core.genetics.BreedingTracker;
 
@@ -39,7 +39,7 @@ public class ArboristTracker extends BreedingTracker implements IArboristTracker
 	}
 
 	@Override
-	public void registerPickup(IIndividual individual) {
+	public void registerPickup(IIndividualForestry individual) {
 	}
 
 }

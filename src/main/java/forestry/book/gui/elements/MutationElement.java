@@ -5,8 +5,8 @@ import java.util.Collection;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import forestry.api.genetics.IIndividualRootForestry;
 import forestry.api.genetics.IMutation;
-import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.gui.GuiConstants;
 import forestry.api.gui.GuiElementAlignment;
 import forestry.book.gui.GuiForesterBook;
@@ -33,7 +33,7 @@ public class MutationElement extends SelectionElement<IMutation> {
 
 	@Override
 	protected void onIndexUpdate(int index, IMutation mutation) {
-		ISpeciesRoot root = mutation.getRoot();
+		IIndividualRootForestry root = mutation.getRoot();
 		//
 		Collection<String> conditions = mutation.getSpecialConditions();
 		String conditionText;

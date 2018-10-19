@@ -20,7 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.Biome;
 
 import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.IBee;
+import forestry.api.apiculture.genetics.IBee;
 import forestry.api.core.IErrorSource;
 import forestry.api.core.IErrorState;
 import forestry.apiculture.ModuleApiculture;

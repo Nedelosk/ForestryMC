@@ -11,11 +11,12 @@ import java.util.function.Predicate;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
-import forestry.api.genetics.ISpeciesRoot;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import forestry.api.genetics.IIndividualRootForestry;
 
 /**
  * The Backpack Interface allows you to add items to Forestry backpacks or create your own backpacks.
@@ -28,7 +29,7 @@ import forestry.api.genetics.ISpeciesRoot;
  * <p>
  * After you've registered your backpack definition, create the item with
  * {@link #createBackpack(String, EnumBackpackType)}
- * or {@link #createNaturalistBackpack(String, ISpeciesRoot)}
+ * or {@link #createNaturalistBackpack(String, IIndividualRootForestry)}
  * and then register the returned item with {@link GameRegistry#register(IForgeRegistryEntry)} like any other item.
  */
 public interface IBackpackInterface {
@@ -63,14 +64,14 @@ public interface IBackpackInterface {
 	Item createBackpack(String backpackUid, EnumBackpackType type);
 
 	/**
-	 * Create a backpack that can hold items from a specific {@link ISpeciesRoot}.
+	 * Create a backpack that can hold items from a specific {@link IIndividualRootForestry}.
 	 * The backpack's definition must first be registered with {@link #registerBackpackDefinition(String, IBackpackDefinition)}.
 	 *
 	 * @param backpackUid The unique ID of the backpack.
 	 * @param speciesRoot The species root.
 	 * @return Created backpack item.
 	 */
-	Item createNaturalistBackpack(String backpackUid, ISpeciesRoot speciesRoot);
+	Item createNaturalistBackpack(String backpackUid, IIndividualRootForestry speciesRoot);
 
 	/**
 	 * Makes a new configurable backpack filter. Useful for implementing {@link IBackpackDefinition}.
@@ -78,12 +79,12 @@ public interface IBackpackInterface {
 	IBackpackFilterConfigurable createBackpackFilter();
 
 	/**
-	 * Makes a new naturalist backpack filter. Only accepts items from a specific {@link ISpeciesRoot}.
+	 * Makes a new naturalist backpack filter. Only accepts items from a specific {@link IIndividualRootForestry}.
 	 * Useful for implementing {@link IBackpackDefinition} for naturalist's backpacks.
 	 *
-	 * @param speciesRootUid The species root's unique ID. See {@link ISpeciesRoot#getUID()}.
+	 * @param speciesRootUid The species root's unique ID. See {@link IIndividualRootForestry#getUID()}.
 	 * @return a new backpack filter for the specified species root
-	 * @see #createNaturalistBackpack(String, ISpeciesRoot)
+	 * @see #createNaturalistBackpack(String, IIndividualRootForestry)
 	 */
 	Predicate<ItemStack> createNaturalistBackpackFilter(String speciesRootUid);
 }

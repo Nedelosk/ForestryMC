@@ -5,27 +5,27 @@ import com.google.common.collect.Table;
 
 import net.minecraft.item.ItemStack;
 
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesDisplayHelper;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.IIndividualRootForestry;
 import forestry.api.genetics.ISpeciesType;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
+import forestry.api.genetics.alleles.ISpeciesDisplayHelper;
 
 public class SpeciesDisplayHelper implements ISpeciesDisplayHelper {
 	private final Table<ISpeciesType, String, ItemStack> iconStacks = HashBasedTable.create();
-	private final ISpeciesRoot root;
+	private final IIndividualRootForestry root;
 
-	public SpeciesDisplayHelper(ISpeciesRoot root) {
+	public SpeciesDisplayHelper(IIndividualRootForestry root) {
 		this.root = root;
 		ISpeciesType type = root.getIconType();
-		for (IIndividual individual : root.getIndividualTemplates()) {
+		for (IIndividualForestry individual : root.getIndividualTemplates()) {
 			ItemStack itemStack = root.getMemberStack(individual, type);
 			iconStacks.put(type, individual.getGenome().getPrimary().getUID(), itemStack);
 		}
 	}
 
 	@Override
-	public ItemStack getDisplayStack(IAlleleSpecies species, ISpeciesType type) {
+	public ItemStack getDisplayStack(IAlleleSpeciesForestry species, ISpeciesType type) {
 		ItemStack stack = iconStacks.get(type, species.getUID());
 		if(stack == null){
 			stack = root.getMemberStack(species, type);
@@ -35,7 +35,7 @@ public class SpeciesDisplayHelper implements ISpeciesDisplayHelper {
 	}
 
 	@Override
-	public ItemStack getDisplayStack(IAlleleSpecies species) {
+	public ItemStack getDisplayStack(IAlleleSpeciesForestry species) {
 		return getDisplayStack(species, root.getIconType());
 	}
 }

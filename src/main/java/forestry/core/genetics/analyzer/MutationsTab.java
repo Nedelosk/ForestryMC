@@ -8,12 +8,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IGenome;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.IIndividualRootForestry;
 import forestry.api.genetics.IMutation;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 import forestry.api.gui.GuiConstants;
 import forestry.api.gui.GuiElementAlignment;
 import forestry.api.gui.IDatabaseElement;
@@ -27,10 +27,10 @@ public class MutationsTab extends DatabaseTab {
 	}
 
 	@Override
-	public void createElements(IDatabaseElement container, IIndividual individual, ItemStack itemStack) {
+	public void createElements(IDatabaseElement container, IIndividualForestry individual, ItemStack itemStack) {
 		IGenome genome = individual.getGenome();
-		ISpeciesRoot speciesRoot = genome.getSpeciesRoot();
-		IAlleleSpecies species = genome.getPrimary();
+		IIndividualRootForestry speciesRoot = genome.getSpeciesRoot();
+		IAlleleSpeciesForestry species = genome.getPrimary();
 
 		EntityPlayer player = Minecraft.getMinecraft().player;
 		IBreedingTracker breedingTracker = speciesRoot.getBreedingTracker(player.world, player.getGameProfile());

@@ -13,10 +13,10 @@ package forestry.lepidopterology.genetics;
 import javax.annotation.Nullable;
 import java.util.Arrays;
 
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleRegistry;
 import forestry.api.genetics.IClassification;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.alleles.IAlleleRegistry;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 import forestry.core.genetics.IBranchDefinition;
 import forestry.core.genetics.alleles.AlleleHelper;

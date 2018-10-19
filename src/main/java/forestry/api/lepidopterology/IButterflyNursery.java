@@ -7,17 +7,18 @@ package forestry.api.lepidopterology;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.world.World;
+
 import forestry.api.climate.IClimateProvider;
 import forestry.api.genetics.IHousing;
-import forestry.api.genetics.IIndividual;
-import net.minecraft.world.World;
+import forestry.api.genetics.IIndividualForestry;
 
 public interface IButterflyNursery extends IHousing, IClimateProvider {
 	@Nullable
 	IButterfly getCaterpillar();
 
 	@Nullable
-	IIndividual getNanny();
+	IIndividualForestry getNanny();
 
 	void setCaterpillar(@Nullable IButterfly caterpillar);
 

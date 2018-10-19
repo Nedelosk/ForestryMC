@@ -18,8 +18,8 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.core.config.Constants;
 
 public class SpeciesDiscoveredTrigger implements ICriterionTrigger<SpeciesDiscoveredTrigger.Instance> {

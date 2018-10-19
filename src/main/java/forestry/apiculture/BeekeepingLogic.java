@@ -37,19 +37,19 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IApiaristTracker;
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeHousingInventory;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.apiculture.IBeekeepingLogic;
+import forestry.api.apiculture.genetics.EnumBeeType;
+import forestry.api.apiculture.genetics.IBee;
+import forestry.api.apiculture.genetics.IBeeGenome;
 import forestry.api.core.IErrorLogic;
 import forestry.api.core.IErrorState;
 import forestry.api.genetics.IEffectData;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
 import forestry.apiculture.network.packets.PacketBeeLogicActive;
 import forestry.apiculture.network.packets.PacketBeeLogicActiveEntity;
 import forestry.core.config.Constants;
@@ -550,7 +550,7 @@ public class BeekeepingLogic implements IBeekeepingLogic {
 		private static final int MAX_POLLINATION_ATTEMPTS = 20;
 
 		@Nullable
-		private IIndividual pollen;
+		private IIndividualForestry pollen;
 		private int attemptedPollinations = 0;
 
 		public void doPollination(IBee queen, IBeeHousing beeHousing, IBeeListener beeListener) {

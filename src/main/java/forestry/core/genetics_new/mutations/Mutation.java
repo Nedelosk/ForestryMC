@@ -8,7 +8,7 @@
  * Various Contributors including, but not limited to:
  * SirSengir (original work), CovertJaguar, Player, Binnie, MysteriousAges
  ******************************************************************************/
-package forestry.core.genetics.mutations;
+package forestry.core.genetics_new.mutations;
 
 import com.google.common.base.MoreObjects;
 
@@ -22,13 +22,14 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.common.BiomeDictionary;
 
+import genetics.api.alleles.IAllele;
+import genetics.api.alleles.IAlleleSpecies;
+import genetics.api.mutation.IMutation;
+
 import forestry.api.climate.IClimateProvider;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IGenome;
-import forestry.api.genetics.IMutation;
 import forestry.api.genetics.IMutationBuilder;
 import forestry.api.genetics.IMutationCondition;
 
@@ -36,8 +37,8 @@ public abstract class Mutation implements IMutation, IMutationBuilder {
 
 	private final int chance;
 
-	private final IAlleleSpecies species0;
-	private final IAlleleSpecies species1;
+	private final IAlleleSpecies firstParent;
+	private final IAlleleSpecies secondParent;
 
 	private final IAllele[] template;
 
@@ -46,9 +47,9 @@ public abstract class Mutation implements IMutation, IMutationBuilder {
 
 	private boolean isSecret = false;
 
-	protected Mutation(IAlleleSpecies species0, IAlleleSpecies species1, IAllele[] template, int chance) {
-		this.species0 = species0;
-		this.species1 = species1;
+	protected Mutation(IAlleleSpecies firstParent, IAlleleSpecies secondParent, IAllele[] template, int chance) {
+		this.firstParent = firstParent;
+		this.secondParent = secondParent;
 		this.template = template;
 		this.chance = chance;
 	}
@@ -141,13 +142,18 @@ public abstract class Mutation implements IMutation, IMutationBuilder {
 	}
 
 	@Override
-	public IAlleleSpecies getAllele0() {
-		return species0;
+	public IAlleleSpecies getFirstParent() {
+		return firstParent;
 	}
 
 	@Override
-	public IAlleleSpecies getAllele1() {
-		return species1;
+	public IAlleleSpecies getSecondParent() {
+		return secondParent;
+	}
+
+	@Override
+	public IAlleleSpecies getResultingSpecies() {
+		return (IAlleleSpecies) template[getRoot().getKaryotype().getSpeciesType().getIndex()];
 	}
 
 	@Override
@@ -161,16 +167,16 @@ public abstract class Mutation implements IMutation, IMutationBuilder {
 	}
 
 	@Override
-	public boolean isPartner(IAllele allele) {
-		return species0.getUID().equals(allele.getUID()) || species1.getUID().equals(allele.getUID());
+	public boolean isPartner(IAlleleSpecies allele) {
+		return firstParent.getRegistryName().equals(allele.getRegistryName()) || secondParent.getRegistryName().equals(allele.getRegistryName());
 	}
 
 	@Override
-	public IAllele getPartner(IAllele allele) {
-		if (species0.getUID().equals(allele.getUID())) {
-			return species1;
-		} else if (species1.getUID().equals(allele.getUID())) {
-			return species0;
+	public IAllele getPartner(IAlleleSpecies allele) {
+		if (firstParent.getRegistryName().equals(allele.getRegistryName())) {
+			return secondParent;
+		} else if (secondParent.getRegistryName().equals(allele.getRegistryName())) {
+			return firstParent;
 		} else {
 			throw new IllegalArgumentException("Tried to get partner for allele that is not part of this mutation.");
 		}
@@ -184,8 +190,8 @@ public abstract class Mutation implements IMutation, IMutationBuilder {
 	@Override
 	public String toString() {
 		MoreObjects.ToStringHelper stringHelper = MoreObjects.toStringHelper(this)
-			.add("first", species0)
-			.add("second", species1)
+			.add("first", firstParent)
+			.add("second", secondParent)
 			.add("result", template[0]);
 		if(!specialConditions.isEmpty()){
 			stringHelper.add("conditions", getSpecialConditions());

@@ -33,7 +33,7 @@ import forestry.api.core.EnumTemperature;
 import forestry.api.core.ISpriteRegister;
 import forestry.api.core.ITextureManager;
 import forestry.api.core.Tabs;
-import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.apiculture.gui.ContainerHabitatLocator;
 import forestry.apiculture.gui.GuiHabitatLocator;
 import forestry.apiculture.inventory.ItemInventoryHabitatLocator;

@@ -23,9 +23,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.climate.IClimateTransformer;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 import forestry.api.gui.events.GuiEvent;
 import forestry.core.climate.ClimateStateHelper;
 import forestry.core.config.Constants;
@@ -41,11 +41,11 @@ public class SpeciesSelectionElement extends GuiElement {
 			if (itemstack.isEmpty()) {
 				return;
 			}
-			IIndividual individual = AlleleManager.alleleRegistry.getIndividual(itemstack);
+			IIndividualForestry individual = AlleleManager.alleleRegistry.getIndividual(itemstack);
 			if (individual == null) {
 				return;
 			}
-			IAlleleSpecies primary = individual.getGenome().getPrimary();
+			IAlleleSpeciesForestry primary = individual.getGenome().getPrimary();
 			EnumTemperature temperature = primary.getTemperature();
 			EnumHumidity humidity = primary.getHumidity();
 			float temp;

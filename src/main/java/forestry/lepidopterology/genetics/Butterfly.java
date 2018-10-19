@@ -32,13 +32,13 @@ import net.minecraftforge.common.BiomeDictionary;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.IErrorState;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleTolerance;
 import forestry.api.genetics.IChromosome;
 import forestry.api.genetics.IGenome;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 import forestry.api.lepidopterology.EnumFlutterType;
@@ -316,7 +316,7 @@ public class Butterfly extends IndividualLiving implements IButterfly {
 	}
 
 	@Override
-	public void mate(IIndividual individual) {
+	public void mate(IIndividualForestry individual) {
 		if (!(individual instanceof IButterfly)) {
 			return;
 		}

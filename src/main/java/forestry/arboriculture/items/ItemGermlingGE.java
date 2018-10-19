@@ -36,12 +36,12 @@ import forestry.api.arboriculture.ITree;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.ICheckPollinatable;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
 import forestry.api.genetics.IPollinatable;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 import forestry.api.recipes.IVariableFermentable;
 import forestry.arboriculture.genetics.TreeDefinition;
 import forestry.arboriculture.genetics.TreeGenome;
@@ -78,7 +78,7 @@ public class ItemGermlingGE extends ItemGE implements IVariableFermentable, ICol
 		if (itemstack.getTagCompound() == null) {
 			return "Unknown";
 		}
-		IAlleleSpecies species = getSpecies(itemstack);
+		IAlleleSpeciesForestry species = getSpecies(itemstack);
 
 		String customTreeKey = "for.trees.custom." + type.getName() + "." + species.getUnlocalizedName().replace("trees.species.", "");
 		if (Translator.canTranslateToLocal(customTreeKey)) {
@@ -96,7 +96,7 @@ public class ItemGermlingGE extends ItemGE implements IVariableFermentable, ICol
 	}
 
 	public void addCreativeItems(NonNullList<ItemStack> subItems, boolean hideSecrets) {
-		for (IIndividual individual : TreeManager.treeRoot.getIndividualTemplates()) {
+		for (IIndividualForestry individual : TreeManager.treeRoot.getIndividualTemplates()) {
 			// Don't show secrets unless ordered to.
 			if (hideSecrets && individual.isSecret() && !Config.isDebug) {
 				continue;

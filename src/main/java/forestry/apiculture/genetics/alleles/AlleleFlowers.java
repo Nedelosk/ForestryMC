@@ -11,7 +11,7 @@
 package forestry.apiculture.genetics.alleles;
 
 import forestry.api.genetics.IAlleleFlowers;
-import forestry.api.genetics.IFlowerProvider;
+import forestry.api.genetics.flowers.IFlowerProvider;
 import forestry.core.genetics.alleles.AlleleCategorized;
 
 public class AlleleFlowers extends AlleleCategorized implements IAlleleFlowers {

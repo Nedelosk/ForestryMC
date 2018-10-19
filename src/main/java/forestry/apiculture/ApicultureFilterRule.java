@@ -3,12 +3,12 @@ package forestry.apiculture;
 import net.minecraft.item.ItemStack;
 
 import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.apiculture.IBee;
-import forestry.api.genetics.IFilterData;
-import forestry.api.genetics.IFilterRule;
-import forestry.api.genetics.IFilterRuleType;
-import forestry.api.genetics.IIndividual;
+import forestry.api.apiculture.genetics.EnumBeeChromosome;
+import forestry.api.apiculture.genetics.IBee;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.filters.IFilterData;
+import forestry.api.genetics.filters.IFilterRule;
+import forestry.api.genetics.filters.IFilterRuleType;
 import forestry.sorting.DefaultFilterRuleType;
 
 public enum ApicultureFilterRule implements IFilterRule {
@@ -67,7 +67,7 @@ public enum ApicultureFilterRule implements IFilterRule {
 		if(!data.isPresent()){
 			return false;
 		}
-		IIndividual individual = data.getIndividual();
+		IIndividualForestry individual = data.getIndividual();
 		if(!(individual instanceof IBee)){
 			return false;
 		}

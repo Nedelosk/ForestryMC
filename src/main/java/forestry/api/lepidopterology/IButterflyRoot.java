@@ -8,16 +8,18 @@ package forestry.api.lepidopterology;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import com.mojang.authlib.GameProfile;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public interface IButterflyRoot extends ISpeciesRoot {
+import com.mojang.authlib.GameProfile;
+
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IIndividualRootForestry;
+
+public interface IButterflyRoot extends IIndividualRootForestry {
 
 	@Override
 	boolean isMember(ItemStack stack);

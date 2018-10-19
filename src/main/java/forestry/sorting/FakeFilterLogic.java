@@ -10,9 +10,9 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumFacing;
 
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IFilterData;
-import forestry.api.genetics.IFilterLogic;
-import forestry.api.genetics.IFilterRuleType;
+import forestry.api.genetics.filters.IFilterData;
+import forestry.api.genetics.filters.IFilterLogic;
+import forestry.api.genetics.filters.IFilterRuleType;
 
 public final class FakeFilterLogic implements IFilterLogic {
 	public static final FakeFilterLogic INSTANCE = new FakeFilterLogic();

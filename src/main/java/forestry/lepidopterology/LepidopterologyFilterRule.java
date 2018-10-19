@@ -2,10 +2,10 @@ package forestry.lepidopterology;
 
 import net.minecraft.item.ItemStack;
 
-import forestry.api.genetics.IFilterData;
-import forestry.api.genetics.IFilterRule;
-import forestry.api.genetics.IFilterRuleType;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.filters.IFilterData;
+import forestry.api.genetics.filters.IFilterRule;
+import forestry.api.genetics.filters.IFilterRuleType;
 import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 import forestry.api.lepidopterology.IButterfly;
@@ -55,7 +55,7 @@ public enum LepidopterologyFilterRule implements IFilterRule {
 		if(!data.isPresent()){
 			return false;
 		}
-		IIndividual individual = data.getIndividual();
+		IIndividualForestry individual = data.getIndividual();
 		if(!(individual instanceof IButterfly)){
 			return false;
 		}

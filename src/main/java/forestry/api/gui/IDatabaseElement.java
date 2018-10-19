@@ -4,13 +4,13 @@ import javax.annotation.Nullable;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import forestry.api.genetics.DatabaseMode;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IGenome;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
 import forestry.api.genetics.IMutation;
+import forestry.api.genetics.gaget.DatabaseMode;
 import forestry.api.gui.style.ITextStyle;
 
 public interface IDatabaseElement extends IElementLayout {
@@ -52,10 +52,10 @@ public interface IDatabaseElement extends IElementLayout {
 
 	void addSpeciesLine(String firstText, @Nullable String secondText, IChromosomeType chromosome);
 
-	void init(DatabaseMode mode, IIndividual individual, int secondColumn, int thirdColumn);
+	void init(DatabaseMode mode, IIndividualForestry individual, int secondColumn, int thirdColumn);
 
 	@Nullable
-	IIndividual getIndividual();
+	IIndividualForestry getIndividual();
 
 	IGenome getGenome();
 

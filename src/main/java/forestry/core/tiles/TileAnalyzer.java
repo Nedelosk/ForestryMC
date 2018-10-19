@@ -30,8 +30,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.arboriculture.TreeManager;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.core.config.Config;
 import forestry.core.config.Constants;
 import forestry.core.errors.EnumErrorCode;
@@ -61,7 +61,7 @@ public class TileAnalyzer extends TilePowered implements ISidedInventory, ILiqui
 	private final IInventory invOutput;
 
 	@Nullable
-	private IIndividual specimenToAnalyze;
+	private IIndividualForestry specimenToAnalyze;
 	private ItemStack individualOnDisplayClient = ItemStack.EMPTY;
 
 	/* CONSTRUCTOR */

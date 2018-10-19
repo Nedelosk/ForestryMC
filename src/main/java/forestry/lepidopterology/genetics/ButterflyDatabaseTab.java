@@ -7,11 +7,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.DatabaseMode;
 import forestry.api.genetics.IAlleleInteger;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IDatabaseTab;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
+import forestry.api.genetics.gaget.DatabaseMode;
+import forestry.api.genetics.gaget.IDatabaseTab;
 import forestry.api.gui.GuiElementAlignment;
 import forestry.api.gui.IDatabaseElement;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
@@ -60,7 +60,7 @@ public class ButterflyDatabaseTab implements IDatabaseTab<IButterfly> {
 		database.addLine(Translator.translateToLocal("for.gui.effect"), EnumButterflyChromosome.EFFECT);
 
 		Function<Boolean, String> toleranceText = a ->{
-			IAlleleSpecies species = a ? primarySpecies : secondarySpecies;
+			IAlleleSpeciesForestry species = a ? primarySpecies : secondarySpecies;
 			return AlleleManager.climateHelper.toDisplay(species.getTemperature());
 		};
 		database.addLine(Translator.translateToLocal("for.gui.climate"), toleranceText, EnumButterflyChromosome.TEMPERATURE_TOLERANCE);

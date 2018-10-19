@@ -6,9 +6,9 @@ import java.util.function.Supplier;
 
 import net.minecraft.item.ItemStack;
 
-import forestry.api.apiculture.IBee;
+import forestry.api.apiculture.genetics.IBee;
 import forestry.api.arboriculture.ITree;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
 import forestry.api.gui.GuiElementAlignment;
 import forestry.api.gui.IDatabaseElement;
 import forestry.api.gui.IElementLayoutHelper;
@@ -22,7 +22,7 @@ public class ProductsTab extends DatabaseTab {
 	}
 
 	@Override
-	public void createElements(IDatabaseElement container, IIndividual individual, ItemStack itemStack) {
+	public void createElements(IDatabaseElement container, IIndividualForestry individual, ItemStack itemStack) {
 		IElementLayoutHelper groupHelper = container.layoutHelper((x, y) -> GuiElementFactory.INSTANCE.createHorizontal(x + 4, y, 18).setDistance(2), 90, 0);
 		Collection<ItemStack> products = getProducts(individual);
 		if(!products.isEmpty()) {
@@ -41,7 +41,7 @@ public class ProductsTab extends DatabaseTab {
 		groupHelper.finish();
 	}
 
-	private Collection<ItemStack> getSpecialties(IIndividual individual){
+	private Collection<ItemStack> getSpecialties(IIndividualForestry individual) {
 		if(individual instanceof IBee){
 			IBee bee = (IBee) individual;
 			return bee.getSpecialtyList();
@@ -52,7 +52,7 @@ public class ProductsTab extends DatabaseTab {
 		return Collections.emptyList();
 	}
 
-	private Collection<ItemStack> getProducts(IIndividual individual){
+	private Collection<ItemStack> getProducts(IIndividualForestry individual) {
 		if(individual instanceof IBee){
 			IBee bee = (IBee) individual;
 			return bee.getProduceList();

@@ -19,15 +19,16 @@ import java.util.Map;
 
 import net.minecraft.util.math.Vec3i;
 
-import forestry.api.apiculture.EnumBeeChromosome;
+import genetics.api.alleles.IAllele;
+import genetics.api.individual.IChromosomeType;
+
+import forestry.api.apiculture.genetics.EnumBeeChromosome;
 import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.EnumTolerance;
-import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleBoolean;
 import forestry.api.genetics.IAlleleInteger;
 import forestry.api.genetics.IAlleleTolerance;
-import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 import forestry.apiculture.flowers.FlowerProvider;
 import forestry.core.config.Constants;
@@ -148,7 +149,7 @@ public class AlleleHelper implements IAlleleHelper {
 	}
 
 	@Override
-	public <T extends Enum<T> & IChromosomeType> void set(IAllele[] alleles, T chromosomeType, IAlleleValue value) {
+	public <T extends Enum<T> & IChromosomeType> void set(IAllele[] alleles, T chromosomeType, IAlleleEnum value) {
 		set(alleles, chromosomeType, get(value));
 	}
 
@@ -162,7 +163,7 @@ public class AlleleHelper implements IAlleleHelper {
 		set(alleles, chromosomeType, get(value));
 	}
 
-	private <K extends Enum<K> & IAlleleValue<V>, V> void createAlleles(Class<K> enumClass, IChromosomeType... types) {
+	private <K extends Enum<K> & IAlleleEnum<V>, V> void createAlleles(Class<K> enumClass, IChromosomeType... types) {
 		String category = enumClass.getSimpleName().toLowerCase(Locale.ENGLISH);
 		EnumMap<K, IAllele> map = new EnumMap<>(enumClass);
 		for (K enumValue : enumClass.getEnumConstants()) {
@@ -172,7 +173,7 @@ public class AlleleHelper implements IAlleleHelper {
 		alleleMaps.put(enumClass, map);
 	}
 
-	private static <K extends IAlleleValue<V>, V> IAllele createAllele(String category, K enumValue, IChromosomeType... types) {
+	private static <K extends IAlleleEnum<V>, V> IAllele createAllele(String category, K enumValue, IChromosomeType... types) {
 		V value = enumValue.getValue();
 		boolean isDominant = enumValue.isDominant();
 		String name = enumValue.toString().toLowerCase(Locale.ENGLISH);
@@ -195,5 +196,9 @@ public class AlleleHelper implements IAlleleHelper {
 			return AlleleManager.alleleFactory.createFlowers(modId, category, name, (FlowerProvider) value, isDominant, types);
 		}
 		throw new RuntimeException("could not create allele for category: " + category + " and value " + valueClass);
+	}
+
+	public <V> IAllele getAllele(IAlleleEnum<V> value) {
+		return get(value);
 	}
 }

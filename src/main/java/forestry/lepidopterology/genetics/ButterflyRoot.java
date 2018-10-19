@@ -31,14 +31,14 @@ import com.mojang.authlib.GameProfile;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlyzerPlugin;
 import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IDatabasePlugin;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.ISpeciesType;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.gaget.IAlyzerPlugin;
+import forestry.api.genetics.gaget.IDatabasePlugin;
 import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 import forestry.api.lepidopterology.EnumFlutterType;
@@ -49,7 +49,7 @@ import forestry.api.lepidopterology.IButterflyMutation;
 import forestry.api.lepidopterology.IButterflyNursery;
 import forestry.api.lepidopterology.IButterflyRoot;
 import forestry.api.lepidopterology.ILepidopteristTracker;
-import forestry.core.genetics.SpeciesRoot;
+import forestry.core.genetics.IndividualRootForestry;
 import forestry.core.tiles.TileUtil;
 import forestry.core.utils.BlockUtil;
 import forestry.core.utils.EntityUtil;
@@ -61,7 +61,7 @@ import forestry.lepidopterology.items.ItemButterflyGE;
 import forestry.lepidopterology.items.ItemRegistryLepidopterology;
 import forestry.lepidopterology.tiles.TileCocoon;
 
-public class ButterflyRoot extends SpeciesRoot implements IButterflyRoot {
+public class ButterflyRoot extends IndividualRootForestry implements IButterflyRoot {
 
 	private static int butterflySpeciesCount = -1;
 	public static final String UID = "rootButterflies";
@@ -75,7 +75,7 @@ public class ButterflyRoot extends SpeciesRoot implements IButterflyRoot {
 
 
 	@Override
-	public Class<? extends IIndividual> getMemberClass() {
+	public Class<? extends IIndividualForestry> getMemberClass() {
 		return IButterfly.class;
 	}
 
@@ -140,7 +140,7 @@ public class ButterflyRoot extends SpeciesRoot implements IButterflyRoot {
 	}
 
 	@Override
-	public boolean isMember(IIndividual individual) {
+	public boolean isMember(IIndividualForestry individual) {
 		return individual instanceof IButterfly;
 	}
 
@@ -159,7 +159,7 @@ public class ButterflyRoot extends SpeciesRoot implements IButterflyRoot {
 	}
 
 	@Override
-	public ItemStack getMemberStack(IIndividual butterfly, ISpeciesType type) {
+	public ItemStack getMemberStack(IIndividualForestry butterfly, ISpeciesType type) {
 		Preconditions.checkArgument(type instanceof EnumFlutterType);
 		ItemRegistryLepidopterology items = ModuleLepidopterology.getItems();
 		Preconditions.checkNotNull(items);

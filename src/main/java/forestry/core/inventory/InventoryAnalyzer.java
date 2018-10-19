@@ -17,7 +17,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 
 import forestry.api.arboriculture.TreeManager;
-import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.core.tiles.TileAnalyzer;
 import forestry.core.utils.GeneticsUtil;
 import forestry.core.utils.SlotUtil;

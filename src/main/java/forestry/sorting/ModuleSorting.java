@@ -8,8 +8,8 @@ import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IFilterLogic;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.filters.IFilterLogic;
 import forestry.api.modules.ForestryModule;
 import forestry.apiculture.ModuleApiculture;
 import forestry.core.capabilities.NullStorage;

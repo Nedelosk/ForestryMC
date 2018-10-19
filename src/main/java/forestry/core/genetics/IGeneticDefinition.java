@@ -2,7 +2,7 @@ package forestry.core.genetics;
 
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IGenome;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
 
 public interface IGeneticDefinition {
 
@@ -10,6 +10,6 @@ public interface IGeneticDefinition {
 
 	IGenome getGenome();
 
-	IIndividual getIndividual();
+	IIndividualForestry getIndividual();
 
 }

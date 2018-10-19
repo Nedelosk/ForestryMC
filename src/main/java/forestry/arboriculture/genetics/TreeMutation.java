@@ -21,7 +21,7 @@ import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.core.ForestryAPI;
 import forestry.api.genetics.IAllele;
-import forestry.core.genetics.mutations.Mutation;
+import forestry.core.genetics_new.mutations.Mutation;
 
 public class TreeMutation extends Mutation implements ITreeMutation, ITreeMutationBuilder {
 

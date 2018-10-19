@@ -35,11 +35,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.EnumBeeType;
-import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IHiveDrop;
-import forestry.api.apiculture.IHiveTile;
+import forestry.api.apiculture.genetics.EnumBeeType;
+import forestry.api.apiculture.genetics.IBee;
 import forestry.api.apiculture.hives.IHiveRegistry.HiveType;
+import forestry.api.apiculture.hives.IHiveTile;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;

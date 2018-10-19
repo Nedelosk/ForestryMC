@@ -9,15 +9,15 @@ import net.minecraft.util.ResourceLocation;
 import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleInteger;
-import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IAlleleTolerance;
-import forestry.api.genetics.IAlyzerPlugin;
 import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IDatabasePlugin;
-import forestry.api.genetics.IGeneticAnalyzer;
-import forestry.api.genetics.IGeneticAnalyzerProvider;
+import forestry.api.genetics.IIndividualRootForestry;
 import forestry.api.genetics.IMutation;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
+import forestry.api.genetics.gaget.IAlyzerPlugin;
+import forestry.api.genetics.gaget.IDatabasePlugin;
+import forestry.api.genetics.gaget.IGeneticAnalyzer;
+import forestry.api.genetics.gaget.IGeneticAnalyzerProvider;
 import forestry.api.gui.GuiConstants;
 import forestry.api.gui.GuiElementAlignment;
 import forestry.api.gui.IElementGroup;
@@ -28,7 +28,7 @@ import forestry.api.gui.IWindowElement;
 import forestry.api.gui.style.ITextStyle;
 import forestry.api.gui.style.TextStyleBuilder;
 import forestry.core.config.Constants;
-import forestry.core.genetics.mutations.EnumMutateChance;
+import forestry.core.genetics_new.mutations.EnumMutateChance;
 import forestry.core.gui.Drawable;
 import forestry.core.gui.elements.layouts.AbstractElementLayout;
 import forestry.core.gui.elements.layouts.ElementGroup;
@@ -104,7 +104,7 @@ public class GuiElementFactory implements IGuiElementFactory {
 		return layout;
 	}
 
-	public IGuiElement createToleranceInfo(IAlleleTolerance toleranceAllele, IAlleleSpecies species, String text) {
+	public IGuiElement createToleranceInfo(IAlleleTolerance toleranceAllele, IAlleleSpeciesForestry species, String text) {
 		IElementLayout layout = createHorizontal(0, 0, 0).setDistance(0);
 		layout.label(text, getStateStyle(species.isDominant()));
 		layout.add(createToleranceInfo(toleranceAllele));
@@ -175,7 +175,7 @@ public class GuiElementFactory implements IGuiElementFactory {
 	public IElementGroup createMutation(int x, int y, int width, int height, IMutation mutation, IAllele species, IBreedingTracker breedingTracker) {
 		if (breedingTracker.isDiscovered(mutation)) {
 			PaneLayout element = new PaneLayout(x, y, width, height);
-			ISpeciesRoot speciesRoot = mutation.getRoot();
+			IIndividualRootForestry speciesRoot = mutation.getRoot();
 			int speciesIndex = speciesRoot.getSpeciesChromosomeType().ordinal();
 			IDatabasePlugin plugin = mutation.getRoot().getSpeciesPlugin();
 			Map<String, ItemStack> iconStacks = plugin.getIndividualStacks();

@@ -16,6 +16,8 @@ import java.util.Locale;
 
 import net.minecraft.item.ItemStack;
 
+import genetics.api.alleles.IAlleleTemplateBuilder;
+
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IClassification;
 import forestry.api.lepidopterology.ButterflyManager;
@@ -27,7 +29,6 @@ import forestry.api.lepidopterology.IButterfly;
 import forestry.api.lepidopterology.IButterflyGenome;
 import forestry.api.lepidopterology.IButterflyMutationBuilder;
 import forestry.core.config.Constants;
-import forestry.core.genetics.alleles.AlleleHelper;
 import forestry.core.genetics.alleles.EnumAllele;
 import forestry.core.utils.StringUtil;
 import forestry.lepidopterology.genetics.alleles.ButterflyAlleles;
@@ -36,23 +37,23 @@ public enum MothDefinition implements IButterflyDefinition {
 	Brimstone(ButterflyBranchDefinition.Opisthograptis, "brimstone", "luteolata", new Color(0xffea40), true, 1.0f),
 	LatticedHeath(ButterflyBranchDefinition.Chiasmia, "latticedHeath", "clathrata", new Color(0xf2f0be), true, 0.5f) {
 		@Override
-		protected void setAlleles(IAllele[] alleles) {
-			AlleleHelper.getInstance().set(alleles, EnumButterflyChromosome.SIZE, EnumAllele.Size.SMALLEST);
+		protected void setAlleles(IAlleleTemplateBuilder template) {
+			template.set(EnumButterflyChromosome.SIZE, EnumAllele.Size.SMALLEST);
 		}
 	},
 	Atlas(ButterflyBranchDefinition.Attacus, "atlas", "atlas", new Color(0xd96e3d), false, 0.1f) {
 		@Override
-		protected void setAlleles(IAllele[] alleles) {
-			AlleleHelper.getInstance().set(alleles, EnumButterflyChromosome.SIZE, EnumAllele.Size.LARGEST);
+		protected void setAlleles(IAlleleTemplateBuilder template) {
+			template.set(EnumButterflyChromosome.SIZE, EnumAllele.Size.LARGEST);
 		}
 	},
 	BombyxMori(ButterflyBranchDefinition.Bombyx, "bombyxMori", "bombyxMori", new Color(0xDADADA), false, 0.0f) {
 		@Override
-		protected void setAlleles(IAllele[] alleles) {
-			AlleleHelper.getInstance().set(alleles, EnumButterflyChromosome.SIZE, EnumAllele.Size.SMALLEST);
-			AlleleHelper.getInstance().set(alleles, EnumButterflyChromosome.SPEED, EnumAllele.Speed.SLOWER);
-			AlleleHelper.getInstance().set(alleles, EnumButterflyChromosome.METABOLISM, 4);
-			AlleleHelper.getInstance().set(alleles, EnumButterflyChromosome.COCOON, ButterflyAlleles.cocoonSilk);
+		protected void setAlleles(IAlleleTemplateBuilder template) {
+			template.set(EnumButterflyChromosome.SIZE, EnumAllele.Size.SMALLEST);
+			template.set(EnumButterflyChromosome.SPEED, EnumAllele.Speed.SLOWER);
+			template.set(EnumButterflyChromosome.METABOLISM, 4);
+			template.set(EnumButterflyChromosome.COCOON, ButterflyAlleles.cocoonSilk);
 		}
 
 		@Override
@@ -98,7 +99,7 @@ public enum MothDefinition implements IButterflyDefinition {
 
 	private void init() {
 		template = branch.getTemplate();
-		AlleleHelper.getInstance().set(template, EnumButterflyChromosome.SPECIES, species);
+		template.set(EnumButterflyChromosome.SPECIES, species);
 		setAlleles(template);
 
 		genome = ButterflyManager.butterflyRoot.templateAsGenome(template);
@@ -110,7 +111,7 @@ public enum MothDefinition implements IButterflyDefinition {
 
 	}
 
-	protected void setAlleles(IAllele[] alleles) {
+	protected void setAlleles(IAlleleTemplateBuilder template) {
 
 	}
 

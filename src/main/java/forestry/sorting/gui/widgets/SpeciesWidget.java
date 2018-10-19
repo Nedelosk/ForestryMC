@@ -10,14 +10,14 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IFilterLogic;
 import forestry.api.genetics.IGenome;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.IIndividualRootForestry;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
+import forestry.api.genetics.filters.IFilterLogic;
 import forestry.core.gui.GuiForestry;
 import forestry.core.gui.GuiUtil;
 import forestry.core.gui.tooltips.ToolTip;
@@ -27,9 +27,9 @@ import forestry.core.utils.SoundUtil;
 import forestry.sorting.gui.GuiGeneticFilter;
 import forestry.sorting.gui.ISelectableProvider;
 
-public class SpeciesWidget extends Widget implements ISelectableProvider<IAlleleSpecies> {
-	private final static ImmutableMap<IAlleleSpecies, ItemStack> ITEMS = createEntries();
-	private final ImmutableSet<IAlleleSpecies> entries;
+public class SpeciesWidget extends Widget implements ISelectableProvider<IAlleleSpeciesForestry> {
+	private final static ImmutableMap<IAlleleSpeciesForestry, ItemStack> ITEMS = createEntries();
+	private final ImmutableSet<IAlleleSpeciesForestry> entries;
 
 	private final EnumFacing facing;
 	private final int index;
@@ -42,13 +42,13 @@ public class SpeciesWidget extends Widget implements ISelectableProvider<IAllele
 		this.index = index;
 		this.active = active;
 		this.gui = gui;
-		ImmutableSet.Builder<IAlleleSpecies> entries = ImmutableSet.builder();
-		for (ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
+		ImmutableSet.Builder<IAlleleSpeciesForestry> entries = ImmutableSet.builder();
+		for (IIndividualRootForestry root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
 			IBreedingTracker tracker = root.getBreedingTracker(manager.minecraft.world, manager.minecraft.player.getGameProfile());
 			for (String uid : tracker.getDiscoveredSpecies()) {
 				IAllele allele = AlleleManager.alleleRegistry.getAllele(uid);
-				if (allele instanceof IAlleleSpecies) {
-					IAlleleSpecies species = (IAlleleSpecies) allele;
+				if (allele instanceof IAlleleSpeciesForestry) {
+					IAlleleSpeciesForestry species = (IAlleleSpeciesForestry) allele;
 					entries.add(species);
 				}
 			}
@@ -61,7 +61,7 @@ public class SpeciesWidget extends Widget implements ISelectableProvider<IAllele
 		int x = xPos + startX;
 		int y = yPos + startY;
 		IFilterLogic logic = gui.getLogic();
-		IAlleleSpecies allele = (IAlleleSpecies) logic.getGenomeFilter(facing, index, active);
+		IAlleleSpeciesForestry allele = (IAlleleSpeciesForestry) logic.getGenomeFilter(facing, index, active);
 		if (allele != null) {
 			GuiUtil.drawItemStack(manager.gui, ITEMS.getOrDefault(allele, ItemStack.EMPTY), x, y);
 		}
@@ -73,12 +73,12 @@ public class SpeciesWidget extends Widget implements ISelectableProvider<IAllele
 	}
 
 	@Override
-	public ImmutableSet<IAlleleSpecies> getEntries() {
+	public ImmutableSet<IAlleleSpeciesForestry> getEntries() {
 		return entries;
 	}
 
 	@Override
-	public void onSelect(@Nullable IAlleleSpecies selectable) {
+	public void onSelect(@Nullable IAlleleSpeciesForestry selectable) {
 		IFilterLogic logic = gui.getLogic();
 		if (logic.setGenomeFilter(facing, index, active, selectable)) {
 			logic.sendToServer(facing, (short) index, active, selectable);
@@ -90,12 +90,12 @@ public class SpeciesWidget extends Widget implements ISelectableProvider<IAllele
 	}
 
 	@Override
-	public void draw(GuiForestry gui, IAlleleSpecies selectable, int x, int y) {
+	public void draw(GuiForestry gui, IAlleleSpeciesForestry selectable, int x, int y) {
 		GuiUtil.drawItemStack(gui, ITEMS.getOrDefault(selectable, ItemStack.EMPTY), x, y);
 	}
 
 	@Override
-	public String getName(IAlleleSpecies selectable) {
+	public String getName(IAlleleSpeciesForestry selectable) {
 		return selectable.getAlleleName();
 	}
 
@@ -103,7 +103,7 @@ public class SpeciesWidget extends Widget implements ISelectableProvider<IAllele
 	@Override
 	public ToolTip getToolTip(int mouseX, int mouseY) {
 		IFilterLogic logic = gui.getLogic();
-		IAlleleSpecies allele = (IAlleleSpecies) logic.getGenomeFilter(facing, index, active);
+		IAlleleSpeciesForestry allele = (IAlleleSpeciesForestry) logic.getGenomeFilter(facing, index, active);
 		if (allele == null) {
 			return null;
 		}
@@ -116,7 +116,7 @@ public class SpeciesWidget extends Widget implements ISelectableProvider<IAllele
 	public void handleMouseClick(int mouseX, int mouseY, int mouseButton) {
 		ItemStack stack = gui.mc.player.inventory.getItemStack();
 		if (!stack.isEmpty()) {
-			IIndividual individual = AlleleManager.alleleRegistry.getIndividual(stack);
+			IIndividualForestry individual = AlleleManager.alleleRegistry.getIndividual(stack);
 			if (individual != null) {
 				IGenome genome = individual.getGenome();
 				onSelect(mouseButton == 0 ? genome.getPrimary() : genome.getSecondary());
@@ -131,11 +131,11 @@ public class SpeciesWidget extends Widget implements ISelectableProvider<IAllele
 		}
 	}
 
-	private static ImmutableMap<IAlleleSpecies, ItemStack> createEntries() {
-		ImmutableMap.Builder<IAlleleSpecies, ItemStack> entries = ImmutableMap.builder();
-		for (ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
-			for (IIndividual individual : root.getIndividualTemplates()) {
-				IAlleleSpecies species = individual.getGenome().getPrimary();
+	private static ImmutableMap<IAlleleSpeciesForestry, ItemStack> createEntries() {
+		ImmutableMap.Builder<IAlleleSpeciesForestry, ItemStack> entries = ImmutableMap.builder();
+		for (IIndividualRootForestry root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
+			for (IIndividualForestry individual : root.getIndividualTemplates()) {
+				IAlleleSpeciesForestry species = individual.getGenome().getPrimary();
 				ItemStack itemStack = root.getMemberStack(root.templateAsIndividual(root.getTemplate(species)), root.getIconType());
 				entries.put(species, itemStack);
 			}

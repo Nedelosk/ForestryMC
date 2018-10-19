@@ -14,18 +14,19 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.Locale;
 
+import org.apache.commons.lang3.text.WordUtils;
+
 import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleRegistry;
 import forestry.api.genetics.IClassification;
 import forestry.api.genetics.IClassification.EnumClassLevel;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.alleles.IAlleleRegistry;
 import forestry.arboriculture.genetics.alleles.AlleleFruits;
 import forestry.arboriculture.genetics.alleles.AlleleLeafEffects;
 import forestry.core.genetics.IBranchDefinition;
 import forestry.core.genetics.alleles.AlleleHelper;
 import forestry.core.genetics.alleles.EnumAllele;
-import org.apache.commons.lang3.text.WordUtils;
 
 public enum TreeBranchDefinition implements IBranchDefinition {
 	ACACIA,

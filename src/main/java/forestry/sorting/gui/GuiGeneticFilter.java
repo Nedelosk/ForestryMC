@@ -10,7 +10,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 
-import forestry.api.genetics.IFilterLogic;
+import forestry.api.genetics.filters.IFilterLogic;
 import forestry.core.config.Constants;
 import forestry.core.gui.Drawable;
 import forestry.core.gui.GuiForestryTitled;

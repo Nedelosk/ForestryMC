@@ -2,13 +2,14 @@ package forestry.core.genetics.alleles;
 
 import java.util.Locale;
 
+import net.minecraft.util.math.Vec3i;
+
 import forestry.api.apiculture.FlowerManager;
 import forestry.api.genetics.EnumTolerance;
 import forestry.apiculture.flowers.FlowerProvider;
-import net.minecraft.util.math.Vec3i;
 
 public class EnumAllele {
-	public enum Fertility implements IAlleleValue<Integer> {
+	public enum Fertility implements IAlleleEnum<Integer> {
 		LOW(1, true),
 		NORMAL(2, true),
 		HIGH(3),
@@ -37,7 +38,7 @@ public class EnumAllele {
 		}
 	}
 
-	public enum Fireproof implements IAlleleValue<Boolean> {
+	public enum Fireproof implements IAlleleEnum<Boolean> {
 		TRUE(true),
 		FALSE(false);
 
@@ -64,7 +65,7 @@ public class EnumAllele {
 		}
 	}
 
-	public enum Flowering implements IAlleleValue<Integer> {
+	public enum Flowering implements IAlleleEnum<Integer> {
 		SLOWEST(5, true),
 		SLOWER(10),
 		SLOW(15),
@@ -97,7 +98,7 @@ public class EnumAllele {
 		}
 	}
 
-	public enum Flowers implements IAlleleValue<FlowerProvider> {
+	public enum Flowers implements IAlleleEnum<FlowerProvider> {
 		VANILLA(FlowerManager.FlowerTypeVanilla, true),
 		NETHER(FlowerManager.FlowerTypeNether),
 		CACTI(FlowerManager.FlowerTypeCacti),
@@ -132,7 +133,7 @@ public class EnumAllele {
 		}
 	}
 
-	public enum Height implements IAlleleValue<Float> {
+	public enum Height implements IAlleleEnum<Float> {
 		SMALLEST(0.25f),
 		SMALLER(0.5f),
 		SMALL(0.75f),
@@ -165,7 +166,7 @@ public class EnumAllele {
 		}
 	}
 
-	public enum Lifespan implements IAlleleValue<Integer> {
+	public enum Lifespan implements IAlleleEnum<Integer> {
 		SHORTEST(10),
 		SHORTER(20, true),
 		SHORT(30, true),
@@ -199,7 +200,7 @@ public class EnumAllele {
 		}
 	}
 
-	public enum Maturation implements IAlleleValue<Integer> {
+	public enum Maturation implements IAlleleEnum<Integer> {
 		SLOWEST(10, true),
 		SLOWER(7),
 		SLOW(5, true),
@@ -231,7 +232,7 @@ public class EnumAllele {
 		}
 	}
 
-	public enum Saplings implements IAlleleValue<Float> {
+	public enum Saplings implements IAlleleEnum<Float> {
 		LOWEST(0.01f, true),
 		LOWER(0.025f, true),
 		LOW(0.035f, true),
@@ -263,7 +264,7 @@ public class EnumAllele {
 		}
 	}
 
-	public enum Sappiness implements IAlleleValue<Float> {
+	public enum Sappiness implements IAlleleEnum<Float> {
 		LOWEST(0.1f, true),
 		LOWER(0.2f, true),
 		LOW(0.3f, true),
@@ -295,7 +296,7 @@ public class EnumAllele {
 		}
 	}
 
-	public enum Size implements IAlleleValue<Float> {
+	public enum Size implements IAlleleEnum<Float> {
 		SMALLEST(0.3f),
 		SMALLER(0.4f),
 		SMALL(0.5f),
@@ -327,7 +328,7 @@ public class EnumAllele {
 		}
 	}
 
-	public enum Speed implements IAlleleValue<Float> {
+	public enum Speed implements IAlleleEnum<Float> {
 		SLOWEST(0.3f, true),
 		SLOWER(0.6f, true),
 		SLOW(0.8f, true),
@@ -357,9 +358,10 @@ public class EnumAllele {
 		public boolean isDominant() {
 			return dominant;
 		}
+
 	}
 
-	public enum Territory implements IAlleleValue<Vec3i> {
+	public enum Territory implements IAlleleEnum<Vec3i> {
 		AVERAGE(9, 6, 9),
 		LARGE(11, 8, 11),
 		LARGER(13, 12, 13),
@@ -388,7 +390,7 @@ public class EnumAllele {
 		}
 	}
 
-	public enum Tolerance implements IAlleleValue<EnumTolerance> {
+	public enum Tolerance implements IAlleleEnum<EnumTolerance> {
 		NONE,
 		BOTH_1(true), BOTH_2, BOTH_3, BOTH_4, BOTH_5,
 		UP_1(true), UP_2, UP_3, UP_4, UP_5,
@@ -422,7 +424,7 @@ public class EnumAllele {
 		}
 	}
 
-	public enum Yield implements IAlleleValue<Float> {
+	public enum Yield implements IAlleleEnum<Float> {
 		LOWEST(0.025f, true),
 		LOWER(0.05f, true),
 		LOW(0.1f, true),

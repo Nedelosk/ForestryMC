@@ -13,15 +13,6 @@ package forestry.apiculture.genetics.alleles;
 import java.util.List;
 import java.util.Random;
 
-import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeHousing;
-import forestry.api.genetics.IEffectData;
-import forestry.apiculture.blocks.BlockAlveary;
-import forestry.core.tiles.TileUtil;
-import forestry.core.utils.BlockUtil;
-import forestry.core.utils.DamageSourceForestry;
-import forestry.core.utils.VectUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -30,6 +21,16 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
+
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.genetics.IBeeGenome;
+import forestry.api.genetics.IEffectData;
+import forestry.apiculture.blocks.BlockAlveary;
+import forestry.core.tiles.TileUtil;
+import forestry.core.utils.BlockUtil;
+import forestry.core.utils.DamageSourceForestry;
+import forestry.core.utils.VectUtil;
 
 public class AlleleEffectRadioactive extends AlleleEffectThrottled {
 

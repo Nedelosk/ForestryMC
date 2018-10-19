@@ -24,7 +24,7 @@ import net.minecraft.world.biome.Biome;
 
 import net.minecraftforge.common.BiomeDictionary;
 
-import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.genetics.IBeeGenome;
 import forestry.api.apiculture.hives.HiveManager;
 import forestry.api.apiculture.hives.IHiveDescription;
 import forestry.api.apiculture.hives.IHiveGen;
@@ -32,11 +32,11 @@ import forestry.api.apiculture.hives.IHiveRegistry;
 import forestry.api.core.BiomeHelper;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.apiculture.HiveConfig;
 import forestry.apiculture.ModuleApiculture;
-import forestry.apiculture.genetics.BeeDefinition;
+import forestry.apiculture.genetics_new.BeeDefinition;
 import forestry.core.config.Constants;
 
 public enum HiveDescription implements IHiveDescription {

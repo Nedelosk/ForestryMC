@@ -3,15 +3,15 @@ package forestry.core.genetics.analyzer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
 
-import forestry.api.genetics.IDatabaseTab;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.gaget.IDatabaseTab;
 import forestry.api.gui.IDatabaseElement;
 import forestry.core.ModuleCore;
 
 public enum AnalyzerTab implements IDatabaseTab {
 	ANALYZE {
 		@Override
-		public void createElements(IDatabaseElement container, IIndividual individual, ItemStack itemStack) {
+		public void createElements(IDatabaseElement container, IIndividualForestry individual, ItemStack itemStack) {
 
 		}
 
@@ -21,7 +21,7 @@ public enum AnalyzerTab implements IDatabaseTab {
 		}
 	};
 
-	public String getTooltip(IIndividual individual){
+	public String getTooltip(IIndividualForestry individual) {
 		return I18n.translateToLocal("for.gui.database.tab." + name().toLowerCase() + ".name");
 	}
 }

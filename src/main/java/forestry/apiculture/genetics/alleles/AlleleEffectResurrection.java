@@ -32,8 +32,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.genetics.IBeeGenome;
 import forestry.api.genetics.IEffectData;
 import forestry.core.utils.EntityUtil;
 import forestry.core.utils.ItemStackUtil;

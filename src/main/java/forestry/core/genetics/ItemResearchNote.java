@@ -32,13 +32,13 @@ import com.mojang.authlib.GameProfile;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IBreedingTracker;
+import forestry.api.genetics.IIndividualRootForestry;
 import forestry.api.genetics.IMutation;
-import forestry.api.genetics.ISpeciesRoot;
-import forestry.core.genetics.mutations.EnumMutateChance;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
+import forestry.core.genetics_new.mutations.EnumMutateChance;
 import forestry.core.items.ItemForestry;
 import forestry.core.utils.NetworkUtil;
 import forestry.core.utils.PlayerUtil;
@@ -52,7 +52,7 @@ public class ItemResearchNote extends ItemForestry {
 		public static final EnumNoteType[] VALUES = values();
 
 		@Nullable
-		private static IMutation getEncodedMutation(ISpeciesRoot root, NBTTagCompound compound) {
+		private static IMutation getEncodedMutation(IIndividualRootForestry root, NBTTagCompound compound) {
 			IAllele allele0 = AlleleManager.alleleRegistry.getAllele(compound.getString("AL0"));
 			IAllele allele1 = AlleleManager.alleleRegistry.getAllele(compound.getString("AL1"));
 			if (allele0 == null || allele1 == null) {
@@ -86,7 +86,7 @@ public class ItemResearchNote extends ItemForestry {
 			}
 
 			if (this == MUTATION) {
-				ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(compound.getString("ROT"));
+				IIndividualRootForestry root = AlleleManager.alleleRegistry.getSpeciesRoot(compound.getString("ROT"));
 				if (root == null) {
 					return tooltips;
 				}
@@ -113,11 +113,11 @@ public class ItemResearchNote extends ItemForestry {
 					}
 				}
 			} else if (this == SPECIES) {
-				IAlleleSpecies allele0 = (IAlleleSpecies) AlleleManager.alleleRegistry.getAllele(compound.getString("AL0"));
+				IAlleleSpeciesForestry allele0 = (IAlleleSpeciesForestry) AlleleManager.alleleRegistry.getAllele(compound.getString("AL0"));
 				if (allele0 == null) {
 					return tooltips;
 				}
-				ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(compound.getString("ROT"));
+				IIndividualRootForestry root = AlleleManager.alleleRegistry.getSpeciesRoot(compound.getString("ROT"));
 				if (root == null) {
 					return tooltips;
 				}
@@ -135,7 +135,7 @@ public class ItemResearchNote extends ItemForestry {
 			}
 
 			if (this == MUTATION) {
-				ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(compound.getString("ROT"));
+				IIndividualRootForestry root = AlleleManager.alleleRegistry.getSpeciesRoot(compound.getString("ROT"));
 				if (root == null) {
 					return false;
 				}
@@ -151,9 +151,9 @@ public class ItemResearchNote extends ItemForestry {
 					return false;
 				}
 
-				IAlleleSpecies species0 = encoded.getAllele0();
-				IAlleleSpecies species1 = encoded.getAllele1();
-				IAlleleSpecies speciesResult = (IAlleleSpecies) encoded.getTemplate()[root.getSpeciesChromosomeType().ordinal()];
+				IAlleleSpeciesForestry species0 = encoded.getAllele0();
+				IAlleleSpeciesForestry species1 = encoded.getAllele1();
+				IAlleleSpeciesForestry speciesResult = (IAlleleSpeciesForestry) encoded.getTemplate()[root.getSpeciesChromosomeType().ordinal()];
 
 				tracker.registerSpecies(species0);
 				tracker.registerSpecies(species1);
@@ -192,14 +192,14 @@ public class ItemResearchNote extends ItemForestry {
 			return created;
 		}
 
-		public static ResearchNote createSpeciesNote(GameProfile researcher, IAlleleSpecies species) {
+		public static ResearchNote createSpeciesNote(GameProfile researcher, IAlleleSpeciesForestry species) {
 			NBTTagCompound compound = new NBTTagCompound();
 			compound.setString("ROT", species.getRoot().getUID());
 			compound.setString("AL0", species.getUID());
 			return new ResearchNote(researcher, SPECIES, compound);
 		}
 
-		public static ItemStack createSpeciesNoteStack(Item item, GameProfile researcher, IAlleleSpecies species) {
+		public static ItemStack createSpeciesNoteStack(Item item, GameProfile researcher, IAlleleSpeciesForestry species) {
 			ResearchNote note = createSpeciesNote(researcher, species);
 			NBTTagCompound compound = new NBTTagCompound();
 			note.writeToNBT(compound);

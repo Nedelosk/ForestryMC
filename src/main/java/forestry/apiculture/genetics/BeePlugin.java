@@ -10,9 +10,9 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.apiculture.IBee;
-import forestry.api.genetics.DatabaseMode;
+import forestry.api.apiculture.genetics.IAlleleBeeSpecies;
+import forestry.api.apiculture.genetics.IBee;
+import forestry.api.genetics.gaget.DatabaseMode;
 import forestry.apiculture.ModuleApiculture;
 import forestry.apiculture.items.EnumHoneyComb;
 import forestry.core.config.Config;

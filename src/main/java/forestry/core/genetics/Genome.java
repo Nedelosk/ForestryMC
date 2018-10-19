@@ -20,11 +20,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IChromosome;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IGenome;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IIndividualRootForestry;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 import forestry.core.utils.Log;
 
 public abstract class Genome implements IGenome {
@@ -109,7 +109,7 @@ public abstract class Genome implements IGenome {
 	 * We need this because the client uses the species for rendering.
 	 */
 	@Nullable
-	public static IAlleleSpecies getSpeciesDirectly(ISpeciesRoot speciesRoot, ItemStack itemStack) {
+	public static IAlleleSpeciesForestry getSpeciesDirectly(IIndividualRootForestry speciesRoot, ItemStack itemStack) {
 		NBTTagCompound nbtTagCompound = itemStack.getTagCompound();
 		if (nbtTagCompound == null) {
 			return null;
@@ -129,11 +129,11 @@ public abstract class Genome implements IGenome {
 		Chromosome chromosome = Chromosome.create(null, null, speciesRoot.getSpeciesChromosomeType(), chromosomeNBT);
 
 		IAllele activeAllele = chromosome.getActiveAllele();
-		if (!(activeAllele instanceof IAlleleSpecies)) {
+		if (!(activeAllele instanceof IAlleleSpeciesForestry)) {
 			return null;
 		}
 
-		return (IAlleleSpecies) activeAllele;
+		return (IAlleleSpeciesForestry) activeAllele;
 	}
 
 	/**
@@ -162,7 +162,7 @@ public abstract class Genome implements IGenome {
 		return active ? chromosome.getActiveAllele() : chromosome.getInactiveAllele();
 	}
 
-	private static IChromosome getChromosome(ItemStack itemStack, IChromosomeType chromosomeType, ISpeciesRoot speciesRoot) {
+	private static IChromosome getChromosome(ItemStack itemStack, IChromosomeType chromosomeType, IIndividualRootForestry speciesRoot) {
 		NBTTagCompound nbtTagCompound = itemStack.getTagCompound();
 		if (nbtTagCompound == null) {
 			nbtTagCompound = new NBTTagCompound();
@@ -187,7 +187,7 @@ public abstract class Genome implements IGenome {
 	}
 
 
-	private static IChromosome[] getChromosomes(NBTTagCompound genomeNBT, ISpeciesRoot speciesRoot) {
+	private static IChromosome[] getChromosomes(NBTTagCompound genomeNBT, IIndividualRootForestry speciesRoot) {
 		NBTTagList chromosomesNBT = genomeNBT.getTagList("Chromosomes", 10);
 		IChromosome[] chromosomes = new IChromosome[speciesRoot.getDefaultTemplate().length];
 
@@ -230,7 +230,7 @@ public abstract class Genome implements IGenome {
 		return null;
 	}
 
-	protected static IAllele getActiveAllele(ItemStack itemStack, IChromosomeType chromosomeType, ISpeciesRoot speciesRoot) {
+	protected static IAllele getActiveAllele(ItemStack itemStack, IChromosomeType chromosomeType, IIndividualRootForestry speciesRoot) {
 		IChromosome chromosome = getChromosome(itemStack, chromosomeType, speciesRoot);
 		return chromosome.getActiveAllele();
 	}

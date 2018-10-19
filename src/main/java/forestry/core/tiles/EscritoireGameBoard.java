@@ -17,18 +17,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import forestry.api.core.INbtWritable;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IGenome;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
-import forestry.core.network.IStreamable;
-import forestry.core.network.PacketBufferForestry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+
+import forestry.api.core.INbtWritable;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IGenome;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.IIndividualRootForestry;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
+import forestry.core.network.IStreamable;
+import forestry.core.network.PacketBufferForestry;
 
 public class EscritoireGameBoard implements INbtWritable, IStreamable {
 	private static final Random rand = new Random();
@@ -60,13 +61,13 @@ public class EscritoireGameBoard implements INbtWritable, IStreamable {
 	}
 
 	public boolean initialize(ItemStack specimen) {
-		IIndividual individual = AlleleManager.alleleRegistry.getIndividual(specimen);
+		IIndividualForestry individual = AlleleManager.alleleRegistry.getIndividual(specimen);
 		if (individual == null) {
 			return false;
 		}
 
 		IGenome genome = individual.getGenome();
-		ISpeciesRoot root = genome.getPrimary().getRoot();
+		IIndividualRootForestry root = genome.getPrimary().getRoot();
 
 		tokenCount = getTokenCount(genome);
 
@@ -172,8 +173,8 @@ public class EscritoireGameBoard implements INbtWritable, IStreamable {
 	}
 
 	private static int getTokenCount(IGenome genome) {
-		IAlleleSpecies species1 = genome.getPrimary();
-		IAlleleSpecies species2 = genome.getSecondary();
+		IAlleleSpeciesForestry species1 = genome.getPrimary();
+		IAlleleSpeciesForestry species2 = genome.getSecondary();
 
 		int tokenCount = species1.getComplexity() + species2.getComplexity();
 

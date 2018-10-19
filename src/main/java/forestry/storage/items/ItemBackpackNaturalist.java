@@ -18,7 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IIndividualRootForestry;
 import forestry.api.storage.EnumBackpackType;
 import forestry.api.storage.IBackpackDefinition;
 import forestry.core.config.Constants;
@@ -28,9 +28,9 @@ import forestry.storage.gui.ContainerNaturalistBackpack;
 import forestry.storage.inventory.ItemInventoryBackpackPaged;
 
 public class ItemBackpackNaturalist extends ItemBackpack {
-	private final ISpeciesRoot speciesRoot;
+	private final IIndividualRootForestry speciesRoot;
 
-	public ItemBackpackNaturalist(ISpeciesRoot speciesRoot, IBackpackDefinition definition) {
+	public ItemBackpackNaturalist(IIndividualRootForestry speciesRoot, IBackpackDefinition definition) {
 		super(definition, EnumBackpackType.NATURALIST);
 		this.speciesRoot = speciesRoot;
 	}

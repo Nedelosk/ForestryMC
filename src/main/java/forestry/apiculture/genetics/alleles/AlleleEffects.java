@@ -3,10 +3,11 @@ package forestry.apiculture.genetics.alleles;
 import java.util.Arrays;
 import java.util.List;
 
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.apiculture.IAlleleBeeEffect;
-import forestry.api.genetics.AlleleManager;
 import net.minecraft.init.MobEffects;
+
+import forestry.api.apiculture.genetics.EnumBeeChromosome;
+import forestry.api.apiculture.genetics.IAlleleBeeEffect;
+import forestry.api.genetics.alleles.AlleleManager;
 
 public class AlleleEffects {
 	public static final IAlleleBeeEffect effectNone;

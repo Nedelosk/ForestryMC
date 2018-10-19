@@ -12,12 +12,13 @@ package forestry.apiculture.genetics.alleles;
 
 import java.util.List;
 
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeHousing;
-import forestry.api.genetics.IEffectData;
-import forestry.apiculture.entities.AIAvoidPlayers;
 import net.minecraft.entity.ai.EntityAITasks.EntityAITaskEntry;
 import net.minecraft.entity.monster.EntityMob;
+
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.genetics.IBeeGenome;
+import forestry.api.genetics.IEffectData;
+import forestry.apiculture.entities.AIAvoidPlayers;
 
 public class AlleleEffectRepulsion extends AlleleEffectThrottled {
 

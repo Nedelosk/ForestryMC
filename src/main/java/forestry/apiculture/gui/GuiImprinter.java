@@ -18,7 +18,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
-import forestry.api.apiculture.IAlleleBeeSpecies;
+import forestry.api.apiculture.genetics.IAlleleBeeSpecies;
 import forestry.apiculture.ModuleApiculture;
 import forestry.apiculture.genetics.BeeGenome;
 import forestry.apiculture.inventory.ItemInventoryImprinter;

@@ -10,12 +10,20 @@
  ******************************************************************************/
 package forestry.apiculture.multiblock;
 
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import forestry.api.apiculture.DefaultBeeListener;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.arboriculture.EnumGermlingType;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.IIndividualRootForestry;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.api.multiblock.IAlvearyComponent;
 import forestry.apiculture.blocks.BlockAlvearyType;
 import forestry.apiculture.gui.ContainerAlvearySieve;
@@ -23,12 +31,6 @@ import forestry.apiculture.gui.GuiAlvearySieve;
 import forestry.apiculture.inventory.InventoryAlvearySieve;
 import forestry.core.inventory.IInventoryAdapter;
 import forestry.core.inventory.watchers.ISlotPickupWatcher;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileAlvearySieve extends TileAlveary implements IAlvearyComponent.BeeListener {
 
@@ -74,12 +76,12 @@ public class TileAlvearySieve extends TileAlveary implements IAlvearyComponent.B
 		}
 
 		@Override
-		public boolean onPollenRetrieved(IIndividual pollen) {
+		public boolean onPollenRetrieved(IIndividualForestry pollen) {
 			if (!inventory.canStorePollen()) {
 				return false;
 			}
 
-			ISpeciesRoot speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(pollen);
+			IIndividualRootForestry speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(pollen);
 
 			ItemStack pollenStack = speciesRoot.getMemberStack(pollen, EnumGermlingType.POLLEN);
 			if (!pollenStack.isEmpty()) {

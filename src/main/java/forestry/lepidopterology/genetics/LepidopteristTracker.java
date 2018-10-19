@@ -13,7 +13,7 @@ package forestry.lepidopterology.genetics;
 import net.minecraft.entity.player.EntityPlayer;
 
 import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
 import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.IButterfly;
 import forestry.api.lepidopterology.ILepidopteristTracker;
@@ -39,7 +39,7 @@ public class LepidopteristTracker extends BreedingTracker implements ILepidopter
 	}
 
 	@Override
-	public void registerPickup(IIndividual individual) {
+	public void registerPickup(IIndividualForestry individual) {
 	}
 
 	@Override

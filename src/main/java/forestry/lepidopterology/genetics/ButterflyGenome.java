@@ -20,10 +20,10 @@ import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAlleleFloat;
 import forestry.api.genetics.IAlleleFlowers;
 import forestry.api.genetics.IAlleleInteger;
-import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IChromosome;
-import forestry.api.genetics.IFlowerProvider;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IIndividualRootForestry;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
+import forestry.api.genetics.flowers.IFlowerProvider;
 import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 import forestry.api.lepidopterology.IAlleleButterflyCocoon;
@@ -49,7 +49,7 @@ public class ButterflyGenome extends Genome implements IButterflyGenome {
 	public static IAlleleButterflySpecies getSpecies(ItemStack itemStack) {
 		Preconditions.checkArgument(ButterflyManager.butterflyRoot.isMember(itemStack), "Must be a butterfly");
 
-		IAlleleSpecies species = getSpeciesDirectly(ButterflyManager.butterflyRoot, itemStack);
+		IAlleleSpeciesForestry species = getSpeciesDirectly(ButterflyManager.butterflyRoot, itemStack);
 		if (species instanceof IAlleleButterflySpecies) {
 			return (IAlleleButterflySpecies) species;
 		}
@@ -134,7 +134,7 @@ public class ButterflyGenome extends Genome implements IButterflyGenome {
 	}
 
 	@Override
-	public ISpeciesRoot getSpeciesRoot() {
+	public IIndividualRootForestry getSpeciesRoot() {
 		return ButterflyManager.butterflyRoot;
 	}
 

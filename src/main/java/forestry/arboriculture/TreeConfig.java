@@ -15,8 +15,8 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.core.config.LocalizedConfiguration;
 import forestry.core.utils.Log;
 

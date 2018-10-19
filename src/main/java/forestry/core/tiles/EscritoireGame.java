@@ -14,16 +14,17 @@ import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.Random;
 
-import forestry.api.core.INbtReadable;
-import forestry.api.core.INbtWritable;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IIndividual;
-import forestry.core.network.IStreamable;
-import forestry.core.network.PacketBufferForestry;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+
+import forestry.api.core.INbtReadable;
+import forestry.api.core.INbtWritable;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
+import forestry.core.network.IStreamable;
+import forestry.core.network.PacketBufferForestry;
 
 public class EscritoireGame implements INbtWritable, INbtReadable, IStreamable {
 	private static final Random rand = new Random();
@@ -110,7 +111,7 @@ public class EscritoireGame implements INbtWritable, INbtReadable, IStreamable {
 			return;
 		}
 
-		IIndividual individual = AlleleManager.alleleRegistry.getIndividual(specimen);
+		IIndividualForestry individual = AlleleManager.alleleRegistry.getIndividual(specimen);
 		if (individual == null) {
 			return;
 		}
@@ -119,7 +120,7 @@ public class EscritoireGame implements INbtWritable, INbtReadable, IStreamable {
 			bountyLevel--;
 		}
 
-		IAlleleSpecies species = individual.getGenome().getPrimary();
+		IAlleleSpeciesForestry species = individual.getGenome().getPrimary();
 		gameBoard.hideProbedTokens();
 
 		int revealCount = getSampleSize(slotCount);

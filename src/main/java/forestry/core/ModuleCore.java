@@ -39,7 +39,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.core.ForestryAPI;
-import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.api.modules.ForestryModule;
 import forestry.api.multiblock.MultiblockManager;
 import forestry.api.recipes.IHygroregulatorManager;

@@ -13,16 +13,16 @@ package forestry.core.genetics;
 import net.minecraft.nbt.NBTTagCompound;
 
 import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
 
-public abstract class Individual implements IIndividual {
+public abstract class IndividualForestry implements IIndividualForestry {
 	protected boolean isAnalyzed;
 
-	protected Individual() {
+	protected IndividualForestry() {
 		isAnalyzed = false;
 	}
 
-	protected Individual(NBTTagCompound nbt) {
+	protected IndividualForestry(NBTTagCompound nbt) {
 		isAnalyzed = nbt.getBoolean("IsAnalyzed");
 	}
 
@@ -70,7 +70,7 @@ public abstract class Individual implements IIndividual {
 	}
 
 	@Override
-	public boolean isGeneticEqual(IIndividual other) {
+	public boolean isGeneticEqual(IIndividualForestry other) {
 		return getGenome().isGeneticEqual(other.getGenome());
 	}
 

@@ -10,10 +10,10 @@
  ******************************************************************************/
 package forestry.apiculture.genetics;
 
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IJubilanceProvider;
+import forestry.api.apiculture.genetics.IAlleleBeeSpecies;
+import forestry.api.apiculture.genetics.IBeeGenome;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 

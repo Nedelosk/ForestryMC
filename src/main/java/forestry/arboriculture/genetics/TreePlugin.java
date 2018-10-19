@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.ITree;
-import forestry.api.genetics.DatabaseMode;
+import forestry.api.genetics.gaget.DatabaseMode;
 import forestry.arboriculture.ModuleArboriculture;
 import forestry.core.config.Config;
 import forestry.core.genetics.analyzer.DatabasePlugin;

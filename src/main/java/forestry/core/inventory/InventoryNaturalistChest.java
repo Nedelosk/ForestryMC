@@ -10,15 +10,16 @@
  ******************************************************************************/
 package forestry.core.inventory;
 
-import forestry.api.genetics.ISpeciesRoot;
-import forestry.core.tiles.TileNaturalistChest;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 
-public class InventoryNaturalistChest extends InventoryAdapterTile<TileNaturalistChest> {
-	private final ISpeciesRoot speciesRoot;
+import forestry.api.genetics.IIndividualRootForestry;
+import forestry.core.tiles.TileNaturalistChest;
 
-	public InventoryNaturalistChest(TileNaturalistChest tile, ISpeciesRoot speciesRoot) {
+public class InventoryNaturalistChest extends InventoryAdapterTile<TileNaturalistChest> {
+	private final IIndividualRootForestry speciesRoot;
+
+	public InventoryNaturalistChest(TileNaturalistChest tile, IIndividualRootForestry speciesRoot) {
 		super(tile, 125, "Items");
 		this.speciesRoot = speciesRoot;
 	}

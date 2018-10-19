@@ -28,17 +28,17 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.EnumBeeType;
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.apiculture.IBee;
+import forestry.api.apiculture.genetics.EnumBeeType;
+import forestry.api.apiculture.genetics.IAlleleBeeSpecies;
+import forestry.api.apiculture.genetics.IBee;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.apiculture.genetics.BeeDefinition;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 import forestry.apiculture.genetics.BeeGenome;
 import forestry.apiculture.genetics.DefaultBeeModelProvider;
+import forestry.apiculture.genetics_new.BeeDefinition;
 import forestry.core.config.Config;
 import forestry.core.genetics.ItemGE;
 import forestry.core.items.IColoredItem;
@@ -61,13 +61,13 @@ public class ItemBeeGE extends ItemGE implements IColoredItem {
 	public IBee getIndividual(ItemStack itemstack) {
 		IBee individual = BeeManager.beeRoot.getMember(itemstack);
 		if(individual == null){
-			individual = BeeDefinition.FOREST.getIndividual();
+			individual = BeeDefinition.FOREST.createIndividual();
 		}
 		return individual;
 	}
 
 	@Override
-	protected IAlleleSpecies getSpecies(ItemStack itemStack) {
+	protected IAlleleSpeciesForestry getSpecies(ItemStack itemStack) {
 		return BeeGenome.getSpecies(itemStack);
 	}
 

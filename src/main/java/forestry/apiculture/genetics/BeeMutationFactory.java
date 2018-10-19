@@ -10,18 +10,16 @@
  ******************************************************************************/
 package forestry.apiculture.genetics;
 
-import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.IAlleleBeeSpecies;
+import genetics.api.alleles.IAllele;
+
 import forestry.api.apiculture.IBeeMutationBuilder;
 import forestry.api.apiculture.IBeeMutationFactory;
-import forestry.api.genetics.IAllele;
+import forestry.api.apiculture.genetics.IAlleleBeeSpecies;
 
 public class BeeMutationFactory implements IBeeMutationFactory {
 
 	@Override
 	public IBeeMutationBuilder createMutation(IAlleleBeeSpecies parentBee0, IAlleleBeeSpecies parentBee1, IAllele[] result, int chance) {
-		BeeMutation beeMutation = new BeeMutation(parentBee0, parentBee1, result, chance);
-		BeeManager.beeRoot.registerMutation(beeMutation);
-		return beeMutation;
+		return new BeeMutation(parentBee0, parentBee1, result, chance);
 	}
 }

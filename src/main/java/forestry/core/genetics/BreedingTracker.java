@@ -29,12 +29,12 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayer;
 
 import forestry.api.core.ForestryEvent;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.IIndividualRootForestry;
 import forestry.api.genetics.IMutation;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 import forestry.core.advancements.SpeciesDiscoveredTrigger;
 import forestry.core.network.packets.PacketGenomeTrackerSync;
 import forestry.core.utils.NetworkUtil;
@@ -216,7 +216,7 @@ public abstract class BreedingTracker extends WorldSavedData implements IBreedin
 			discoveredMutations.add(mutationString);
 			markDirty();
 
-			ISpeciesRoot speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(speciesRootUID());
+			IIndividualRootForestry speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(speciesRootUID());
 			ForestryEvent event = new ForestryEvent.MutationDiscovered(speciesRoot, username, mutation, this);
 			MinecraftForge.EVENT_BUS.post(event);
 
@@ -231,7 +231,7 @@ public abstract class BreedingTracker extends WorldSavedData implements IBreedin
 	}
 
 	@Override
-	public boolean isDiscovered(IAlleleSpecies species) {
+	public boolean isDiscovered(IAlleleSpeciesForestry species) {
 		return discoveredSpecies.contains(species.getUID());
 	}
 
@@ -246,17 +246,17 @@ public abstract class BreedingTracker extends WorldSavedData implements IBreedin
 	}
 
 	@Override
-	public void registerBirth(IIndividual individual) {
+	public void registerBirth(IIndividualForestry individual) {
 		registerSpecies(individual.getGenome().getPrimary());
 		registerSpecies(individual.getGenome().getSecondary());
 	}
 
 	@Override
-	public void registerSpecies(IAlleleSpecies species) {
+	public void registerSpecies(IAlleleSpeciesForestry species) {
 		if (!discoveredSpecies.contains(species.getUID())) {
 			discoveredSpecies.add(species.getUID());
 
-			ISpeciesRoot speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(speciesRootUID());
+			IIndividualRootForestry speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(speciesRootUID());
 			ForestryEvent event = new ForestryEvent.SpeciesDiscovered(speciesRoot, username, species, this);
 			MinecraftForge.EVENT_BUS.post(event);
 

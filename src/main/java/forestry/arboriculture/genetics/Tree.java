@@ -33,6 +33,7 @@ import com.mojang.authlib.GameProfile;
 
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -54,10 +55,10 @@ import forestry.api.genetics.IMutation;
 import forestry.arboriculture.genetics.alleles.AlleleFruits;
 import forestry.core.config.Config;
 import forestry.core.genetics.Chromosome;
-import forestry.core.genetics.Individual;
+import forestry.core.genetics.IndividualForestry;
 import forestry.core.utils.Translator;
 
-public class Tree extends Individual implements ITree, IPlantable {
+public class Tree extends IndividualForestry implements ITree, IPlantable {
 	private final ITreeGenome genome;
 	@Nullable
 	private ITreeGenome mate;

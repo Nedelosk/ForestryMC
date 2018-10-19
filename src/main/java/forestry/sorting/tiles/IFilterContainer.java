@@ -6,7 +6,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 
 import forestry.api.core.ILocatable;
-import forestry.api.genetics.IFilterLogic;
+import forestry.api.genetics.filters.IFilterLogic;
 import forestry.core.tiles.ITitled;
 
 public interface IFilterContainer extends ILocatable, ITitled {

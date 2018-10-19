@@ -8,9 +8,12 @@
  * Various Contributors including, but not limited to:
  * SirSengir (original work), CovertJaguar, Player, Binnie, MysteriousAges
  ******************************************************************************/
-package forestry.core.genetics.mutations;
+package forestry.core.genetics_new.mutations;
 
 import java.util.Calendar;
+
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import forestry.api.climate.IClimateProvider;
 import forestry.api.genetics.IAllele;
@@ -18,8 +21,6 @@ import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IMutationCondition;
 import forestry.core.utils.DayMonth;
 import forestry.core.utils.Translator;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 public class MutationConditionTimeLimited implements IMutationCondition {
 

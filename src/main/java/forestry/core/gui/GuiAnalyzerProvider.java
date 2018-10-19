@@ -9,8 +9,8 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 
-import forestry.api.genetics.IGeneticAnalyzer;
-import forestry.api.genetics.IGeneticAnalyzerProvider;
+import forestry.api.genetics.gaget.IGeneticAnalyzer;
+import forestry.api.genetics.gaget.IGeneticAnalyzerProvider;
 import forestry.api.gui.IGuiElement;
 import forestry.core.gui.buttons.GuiToggleButton;
 import forestry.core.gui.elements.GeneticAnalyzer;

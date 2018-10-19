@@ -12,12 +12,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleInteger;
-import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IAlleleTolerance;
 import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IGeneticAnalyzer;
-import forestry.api.genetics.IGeneticAnalyzerProvider;
 import forestry.api.genetics.IMutation;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
+import forestry.api.genetics.gaget.IGeneticAnalyzer;
+import forestry.api.genetics.gaget.IGeneticAnalyzerProvider;
 import forestry.api.gui.style.ITextStyle;
 
 /**
@@ -54,7 +54,7 @@ public interface IGuiElementFactory {
 
 	IGuiElement createFertilityInfo(IAlleleInteger fertilityAllele, int texOffset);
 
-	IGuiElement createToleranceInfo(IAlleleTolerance toleranceAllele, IAlleleSpecies species, String text);
+	IGuiElement createToleranceInfo(IAlleleTolerance toleranceAllele, IAlleleSpeciesForestry species, String text);
 
 	IGuiElement createToleranceInfo(IAlleleTolerance toleranceAllele);
 

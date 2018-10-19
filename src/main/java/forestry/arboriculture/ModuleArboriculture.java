@@ -66,10 +66,10 @@ import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
 import forestry.api.core.ForestryAPI;
 import forestry.api.core.IArmorNaturalist;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IBlockTranslator;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
 import forestry.api.genetics.IItemTranslator;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.RecipeManagers;
 import forestry.api.storage.ICrateRegistry;
@@ -540,7 +540,7 @@ public class ModuleArboriculture extends BlankForestryModule {
 		});
 
 		for (BlockDefaultLeaves leaves : getBlocks().leavesDefault) {
-			TreeManager.treeRoot.registerTranslator(leaves, (IBlockTranslator<IIndividual>) blockState -> {
+			TreeManager.treeRoot.registerTranslator(leaves, (IBlockTranslator<IIndividualForestry>) blockState -> {
 				TreeDefinition treeDefinition = leaves.getTreeDefinition(blockState);
 				if (treeDefinition != null) {
 					return treeDefinition.getIndividual();

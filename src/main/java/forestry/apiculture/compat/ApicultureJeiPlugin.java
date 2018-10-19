@@ -3,7 +3,7 @@ package forestry.apiculture.compat;
 import com.google.common.base.Preconditions;
 
 import forestry.api.apiculture.BeeManager;
-import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 import forestry.apiculture.ModuleApiculture;
 import forestry.apiculture.items.ItemRegistryApiculture;
 import forestry.core.genetics.Genome;
@@ -28,7 +28,7 @@ public class ApicultureJeiPlugin implements IModPlugin {
 		Preconditions.checkNotNull(items);
 
 		ISubtypeRegistry.ISubtypeInterpreter beeSubtypeInterpreter = itemStack -> {
-			IAlleleSpecies species = Genome.getSpeciesDirectly(BeeManager.beeRoot, itemStack);
+			IAlleleSpeciesForestry species = Genome.getSpeciesDirectly(BeeManager.beeRoot, itemStack);
 			return species == null ? ISubtypeRegistry.ISubtypeInterpreter.NONE : species.getUID();
 		};
 

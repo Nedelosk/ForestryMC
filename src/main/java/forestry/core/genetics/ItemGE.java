@@ -23,8 +23,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 import forestry.core.items.ItemForestry;
 import forestry.core.utils.Translator;
 
@@ -35,9 +35,9 @@ public abstract class ItemGE extends ItemForestry {
 	}
 
 	@Nullable
-	public abstract IIndividual getIndividual(ItemStack itemstack);
+	public abstract IIndividualForestry getIndividual(ItemStack itemstack);
 
-	protected abstract IAlleleSpecies getSpecies(ItemStack itemStack);
+	protected abstract IAlleleSpeciesForestry getSpecies(ItemStack itemStack);
 
 	@Override
 	public boolean isDamageable() {
@@ -59,7 +59,7 @@ public abstract class ItemGE extends ItemForestry {
 		if (!stack.hasTagCompound()) { // villager trade wildcard bees
 			return false;
 		}
-		IAlleleSpecies species = getSpecies(stack);
+		IAlleleSpeciesForestry species = getSpecies(stack);
 		return species.hasEffect();
 	}
 
@@ -70,7 +70,7 @@ public abstract class ItemGE extends ItemForestry {
 			return;
 		}
 
-		IIndividual individual = getIndividual(itemstack);
+		IIndividualForestry individual = getIndividual(itemstack);
 
 		if (individual != null && individual.isAnalyzed()) {
 			if (GuiScreen.isShiftKeyDown()) {
@@ -86,7 +86,7 @@ public abstract class ItemGE extends ItemForestry {
 	@Nullable
 	@Override
 	public String getCreatorModId(ItemStack itemStack) {
-		IAlleleSpecies species = getSpecies(itemStack);
+		IAlleleSpeciesForestry species = getSpecies(itemStack);
 		return species.getModID();
 	}
 }

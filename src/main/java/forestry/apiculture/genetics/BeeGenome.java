@@ -22,18 +22,18 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.Vec3i;
 
 import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.apiculture.IAlleleBeeEffect;
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.genetics.EnumBeeChromosome;
+import forestry.api.apiculture.genetics.IAlleleBeeEffect;
+import forestry.api.apiculture.genetics.IAlleleBeeSpecies;
+import forestry.api.apiculture.genetics.IBeeGenome;
 import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAlleleFloat;
 import forestry.api.genetics.IAlleleFlowers;
 import forestry.api.genetics.IAlleleInteger;
-import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IChromosome;
-import forestry.api.genetics.IFlowerProvider;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IIndividualRootForestry;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
+import forestry.api.genetics.flowers.IFlowerProvider;
 import forestry.core.genetics.Genome;
 import forestry.core.genetics.alleles.AlleleArea;
 import forestry.core.genetics.alleles.AlleleBoolean;
@@ -84,7 +84,7 @@ public class BeeGenome extends Genome implements IBeeGenome {
 	public static IAlleleBeeSpecies getSpecies(ItemStack itemStack) {
 		Preconditions.checkArgument(BeeManager.beeRoot.isMember(itemStack), "itemStack must be a bee");
 
-		IAlleleSpecies species = getSpeciesDirectly(BeeManager.beeRoot, itemStack);
+		IAlleleSpeciesForestry species = getSpeciesDirectly(BeeManager.beeRoot, itemStack);
 		if (species instanceof IAlleleBeeSpecies) {
 			return (IAlleleBeeSpecies) species;
 		}
@@ -164,7 +164,7 @@ public class BeeGenome extends Genome implements IBeeGenome {
 	}
 
 	@Override
-	public ISpeciesRoot getSpeciesRoot() {
+	public IIndividualRootForestry getSpeciesRoot() {
 		return BeeManager.beeRoot;
 	}
 }

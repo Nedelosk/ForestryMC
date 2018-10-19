@@ -8,7 +8,7 @@
  * Various Contributors including, but not limited to:
  * SirSengir (original work), CovertJaguar, Player, Binnie, MysteriousAges
  ******************************************************************************/
-package forestry.core.genetics.mutations;
+package forestry.core.genetics_new.mutations;
 
 public enum EnumMutateChance {
 	NONE(0xffffff), LOWEST(0xffba77), LOW(0xfffd77), NORMAL(0xfffd77), HIGH(0xfffd77), HIGHER(0xbeff77), HIGHEST(0x7bff77);

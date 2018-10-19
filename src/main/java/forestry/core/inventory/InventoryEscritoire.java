@@ -14,8 +14,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.core.tiles.EscritoireGame;
 import forestry.core.tiles.TileEscritoire;
 import forestry.core.utils.GeneticsUtil;
@@ -39,7 +39,7 @@ public class InventoryEscritoire extends InventoryAdapterTile<TileEscritoire> {
 			if (specimen.isEmpty()) {
 				return false;
 			}
-			IIndividual individual = AlleleManager.alleleRegistry.getIndividual(specimen);
+			IIndividualForestry individual = AlleleManager.alleleRegistry.getIndividual(specimen);
 			return individual != null && individual.getGenome().getPrimary().getResearchSuitability(itemStack) > 0;
 		}
 

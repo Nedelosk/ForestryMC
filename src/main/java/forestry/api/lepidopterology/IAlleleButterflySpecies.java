@@ -15,9 +15,9 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 
-public interface IAlleleButterflySpecies extends IAlleleSpecies {
+public interface IAlleleButterflySpecies extends IAlleleSpeciesForestry {
 
 	/**
 	 * @return the IButterflyRoot

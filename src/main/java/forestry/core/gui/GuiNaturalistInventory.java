@@ -23,13 +23,13 @@ import net.minecraft.item.ItemStack;
 
 import forestry.api.apiculture.IApiaristTracker;
 import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.IIndividualRootForestry;
 import forestry.api.genetics.IMutation;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 import forestry.core.config.Constants;
-import forestry.core.genetics.mutations.EnumMutateChance;
+import forestry.core.genetics_new.mutations.EnumMutateChance;
 import forestry.core.gui.buttons.GuiBetterButton;
 import forestry.core.gui.buttons.StandardButtonTextureSets;
 import forestry.core.network.packets.PacketGuiSelectRequest;
@@ -38,12 +38,12 @@ import forestry.core.utils.NetworkUtil;
 import forestry.core.utils.Translator;
 
 public class GuiNaturalistInventory extends GuiForestry<Container> {
-	private final ISpeciesRoot speciesRoot;
+	private final IIndividualRootForestry speciesRoot;
 	private final IBreedingTracker breedingTracker;
 	private final HashMap<String, ItemStack> iconStacks = new HashMap<>();
 	private final int pageCurrent, pageMax;
 
-	public GuiNaturalistInventory(ISpeciesRoot speciesRoot, EntityPlayer player, Container container, int page, int maxPages) {
+	public GuiNaturalistInventory(IIndividualRootForestry speciesRoot, EntityPlayer player, Container container, int page, int maxPages) {
 		super(Constants.TEXTURE_PATH_GUI + "/apiaristinventory.png", container);
 
 		this.speciesRoot = speciesRoot;
@@ -54,7 +54,7 @@ public class GuiNaturalistInventory extends GuiForestry<Container> {
 		xSize = 196;
 		ySize = 202;
 
-		for (IIndividual individual : speciesRoot.getIndividualTemplates()) {
+		for (IIndividualForestry individual : speciesRoot.getIndividualTemplates()) {
 			iconStacks.put(individual.getIdent(), speciesRoot.getMemberStack(individual, speciesRoot.getIconType()));
 		}
 
@@ -67,7 +67,7 @@ public class GuiNaturalistInventory extends GuiForestry<Container> {
 		String header = Translator.translateToLocal("for.gui.page") + " " + (pageCurrent + 1) + "/" + pageMax;
 		fontRenderer.drawString(header, guiLeft + 95 + textLayout.getCenteredOffset(header, 98), guiTop + 10, ColourProperties.INSTANCE.get("gui.title"));
 
-		IIndividual individual = getIndividualAtPosition(i, j);
+		IIndividualForestry individual = getIndividualAtPosition(i, j);
 		if (individual == null) {
 			displayBreedingStatistics(10);
 		}
@@ -109,7 +109,7 @@ public class GuiNaturalistInventory extends GuiForestry<Container> {
 	}
 
 	@Nullable
-	private IIndividual getIndividualAtPosition(int x, int y) {
+	private IIndividualForestry getIndividualAtPosition(int x, int y) {
 		Slot slot = getSlotAtPosition(x, y);
 		if (slot == null) {
 			return null;
@@ -153,7 +153,7 @@ public class GuiNaturalistInventory extends GuiForestry<Container> {
 		textLayout.endPage();
 	}
 
-	private void displaySpeciesInformation(boolean analyzed, IAlleleSpecies species, ItemStack iconStack, int x) {
+	private void displaySpeciesInformation(boolean analyzed, IAlleleSpeciesForestry species, ItemStack iconStack, int x) {
 
 		if (!analyzed) {
 			textLayout.drawLine(Translator.translateToLocal("for.gui.unknown"), x);
@@ -191,7 +191,7 @@ public class GuiNaturalistInventory extends GuiForestry<Container> {
 		textLayout.newLine();
 	}
 
-	private void drawMutationIcon(IMutation combination, IAlleleSpecies species, int x) {
+	private void drawMutationIcon(IMutation combination, IAlleleSpeciesForestry species, int x) {
 		GuiUtil.drawItemStack(this, iconStacks.get(combination.getPartner(species).getUID()), guiLeft + x, guiTop + textLayout.getLineY());
 
 		int line = 48;

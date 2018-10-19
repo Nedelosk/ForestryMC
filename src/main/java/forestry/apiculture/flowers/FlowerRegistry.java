@@ -34,16 +34,16 @@ import net.minecraft.world.World;
 
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.FlowerManager;
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeModifier;
+import forestry.api.apiculture.genetics.IBee;
+import forestry.api.apiculture.genetics.IBeeGenome;
 import forestry.api.core.IBlockPosPredicate;
-import forestry.api.genetics.IFlowerAcceptableRule;
-import forestry.api.genetics.IFlowerGrowthHelper;
-import forestry.api.genetics.IFlowerGrowthRule;
-import forestry.api.genetics.IFlowerRegistry;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.flowers.IFlowerAcceptableRule;
+import forestry.api.genetics.flowers.IFlowerGrowthHelper;
+import forestry.api.genetics.flowers.IFlowerGrowthRule;
+import forestry.api.genetics.flowers.IFlowerRegistry;
 import forestry.core.utils.BlockStateSet;
 import forestry.core.utils.VectUtil;
 import forestry.core.utils.WeightedCollection;
@@ -203,7 +203,7 @@ public final class FlowerRegistry implements IFlowerRegistry, IFlowerGrowthHelpe
 
 	@Override
 	@Deprecated
-	public boolean growFlower(String flowerType, World world, IIndividual individual, BlockPos pos) {
+	public boolean growFlower(String flowerType, World world, IIndividualForestry individual, BlockPos pos) {
 		if (!this.growthRules.containsKey(flowerType)) {
 			return false;
 		}
@@ -218,7 +218,7 @@ public final class FlowerRegistry implements IFlowerRegistry, IFlowerGrowthHelpe
 	}
 
 	@Override
-	public boolean growFlower(String flowerType, World world, IIndividual individual, BlockPos pos, Collection<IBlockState> potentialFlowers) {
+	public boolean growFlower(String flowerType, World world, IIndividualForestry individual, BlockPos pos, Collection<IBlockState> potentialFlowers) {
 		if (!this.growthRules.containsKey(flowerType)) {
 			return false;
 		}

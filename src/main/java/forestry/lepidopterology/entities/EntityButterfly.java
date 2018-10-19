@@ -48,10 +48,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.arboriculture.EnumGermlingType;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.core.IToolScoop;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.IIndividualRootForestry;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.EnumFlutterType;
 import forestry.api.lepidopterology.IAlleleButterflySpecies;
@@ -85,7 +85,7 @@ public class EntityButterfly extends EntityCreature implements IEntityButterfly 
 	private int exhaustion;
 	private IButterfly contained = ButterflyManager.butterflyRoot.templateAsIndividual(ButterflyManager.butterflyRoot.getDefaultTemplate());
 	@Nullable
-	private IIndividual pollen;
+	private IIndividualForestry pollen;
 
 	public int cooldownPollination = 0;
 	public int cooldownEgg = 0;
@@ -171,7 +171,7 @@ public class EntityButterfly extends EntityCreature implements IEntityButterfly 
 
 		if (nbttagcompound.hasKey("PLN")) {
 			NBTTagCompound pollenNBT = nbttagcompound.getCompoundTag("PLN");
-			ISpeciesRoot root;
+			IIndividualRootForestry root;
 			if(pollenNBT.hasKey("Root")){
 				root = AlleleManager.alleleRegistry.getSpeciesRoot(pollenNBT.getString("Root"));
 			}else{
@@ -303,12 +303,12 @@ public class EntityButterfly extends EntityCreature implements IEntityButterfly 
 	/* POLLEN */
 	@Override
 	@Nullable
-	public IIndividual getPollen() {
+	public IIndividualForestry getPollen() {
 		return pollen;
 	}
 
 	@Override
-	public void setPollen(@Nullable IIndividual pollen) {
+	public void setPollen(@Nullable IIndividualForestry pollen) {
 		this.pollen = pollen;
 	}
 
@@ -443,9 +443,9 @@ public class EntityButterfly extends EntityCreature implements IEntityButterfly 
 		}
 
 		// Drop pollen if any
-		IIndividual pollen = getPollen();
+		IIndividualForestry pollen = getPollen();
 		if (pollen != null) {
-			ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(pollen);
+			IIndividualRootForestry root = AlleleManager.alleleRegistry.getSpeciesRoot(pollen);
 			ItemStack pollenStack = root.getMemberStack(pollen, EnumGermlingType.POLLEN);
 			ItemStackUtil.dropItemStackAsEntity(pollenStack, world, posX, posY, posZ);
 		}

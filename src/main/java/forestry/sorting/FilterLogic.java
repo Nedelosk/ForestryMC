@@ -14,15 +14,15 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.core.ILocatable;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IFilterData;
-import forestry.api.genetics.IFilterLogic;
-import forestry.api.genetics.IFilterRuleType;
 import forestry.api.genetics.IGenome;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.IIndividualRootForestry;
 import forestry.api.genetics.ISpeciesType;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.filters.IFilterData;
+import forestry.api.genetics.filters.IFilterLogic;
+import forestry.api.genetics.filters.IFilterRuleType;
 import forestry.core.utils.NetworkUtil;
 import forestry.sorting.network.packets.PacketFilterChangeGenome;
 import forestry.sorting.network.packets.PacketFilterChangeRule;
@@ -141,8 +141,8 @@ public class FilterLogic implements IFilterLogic {
 	}
 
 	public Collection<EnumFacing> getValidDirections(ItemStack itemStack, EnumFacing from) {
-		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(itemStack);
-		IIndividual individual = null;
+		IIndividualRootForestry root = AlleleManager.alleleRegistry.getSpeciesRoot(itemStack);
+		IIndividualForestry individual = null;
 		ISpeciesType type = null;
 		if (root != null) {
 			individual = root.getMember(itemStack);
@@ -163,8 +163,8 @@ public class FilterLogic implements IFilterLogic {
 
 	@Override
 	public boolean isValid(ItemStack itemStack, EnumFacing facing) {
-		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(itemStack);
-		IIndividual individual = null;
+		IIndividualRootForestry root = AlleleManager.alleleRegistry.getSpeciesRoot(itemStack);
+		IIndividualForestry individual = null;
 		ISpeciesType type = null;
 		if (root != null) {
 			individual = root.getMember(itemStack);
@@ -187,7 +187,7 @@ public class FilterLogic implements IFilterLogic {
 		}
 		if (rule == DefaultFilterRuleType.ANYTHING || rule.isValid(itemStack, filterData)) {
 			if (filterData.isPresent()) {
-				IIndividual ind = filterData.getIndividual();
+				IIndividualForestry ind = filterData.getIndividual();
 				IGenome genome = ind.getGenome();
 				IAllele active = genome.getPrimary();
 				IAllele inactive = genome.getSecondary();

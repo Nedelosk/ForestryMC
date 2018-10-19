@@ -10,14 +10,14 @@
  ******************************************************************************/
 package forestry.core.genetics.alleles;
 
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IChromosomeType;
+import genetics.api.alleles.IAllele;
+import genetics.api.individual.IChromosomeType;
 
 public interface IAlleleHelper {
 
 	<T extends Enum<T> & IChromosomeType> void set(IAllele[] alleles, T chromosomeType, IAllele allele);
 
-	<T extends Enum<T> & IChromosomeType> void set(IAllele[] alleles, T chromosomeType, IAlleleValue value);
+	<T extends Enum<T> & IChromosomeType> void set(IAllele[] alleles, T chromosomeType, IAlleleEnum value);
 
 	<T extends Enum<T> & IChromosomeType> void set(IAllele[] alleles, T chromosomeType, boolean value);
 

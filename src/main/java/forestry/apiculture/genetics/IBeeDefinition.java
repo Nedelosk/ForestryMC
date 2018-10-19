@@ -10,18 +10,17 @@
  ******************************************************************************/
 package forestry.apiculture.genetics;
 
-import forestry.api.apiculture.EnumBeeType;
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.core.genetics.IGeneticDefinition;
 import net.minecraft.item.ItemStack;
 
+import genetics.api.individual.IGeneticDefinition;
+import genetics.api.organism.IOrganismType;
+
+import forestry.api.apiculture.genetics.IBee;
+
 public interface IBeeDefinition extends IGeneticDefinition {
-	@Override
-	IBeeGenome getGenome();
 
 	@Override
-	IBee getIndividual();
+	IBee createIndividual();
 
-	ItemStack getMemberStack(EnumBeeType beeType);
+	ItemStack getMemberStack(IOrganismType beeType);
 }

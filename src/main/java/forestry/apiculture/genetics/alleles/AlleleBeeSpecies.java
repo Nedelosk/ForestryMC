@@ -13,34 +13,37 @@ package forestry.apiculture.genetics.alleles;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.mojang.authlib.GameProfile;
-import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.apiculture.EnumBeeType;
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.apiculture.IAlleleBeeSpeciesBuilder;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeHousing;
-import forestry.api.apiculture.IBeeModelProvider;
-import forestry.api.apiculture.IBeeRoot;
-import forestry.api.apiculture.IBeeSpriteColourProvider;
-import forestry.api.apiculture.IJubilanceProvider;
-import forestry.api.core.IModelManager;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IClassification;
-import forestry.api.genetics.IIndividual;
-import forestry.apiculture.genetics.DefaultBeeModelProvider;
-import forestry.apiculture.genetics.DefaultBeeSpriteColourProvider;
-import forestry.apiculture.genetics.JubilanceDefault;
-import forestry.core.genetics.alleles.AlleleSpecies;
-import forestry.core.utils.ItemStackUtil;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+
+import com.mojang.authlib.GameProfile;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.IBeeModelProvider;
+import forestry.api.apiculture.IBeeSpriteColourProvider;
+import forestry.api.apiculture.IJubilanceProvider;
+import forestry.api.apiculture.genetics.EnumBeeChromosome;
+import forestry.api.apiculture.genetics.EnumBeeType;
+import forestry.api.apiculture.genetics.IAlleleBeeSpecies;
+import forestry.api.apiculture.genetics.IAlleleBeeSpeciesBuilder;
+import forestry.api.apiculture.genetics.IBeeGenome;
+import forestry.api.apiculture.genetics.IBeeRoot;
+import forestry.api.core.IModelManager;
+import forestry.api.genetics.IClassification;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.apiculture.genetics.DefaultBeeModelProvider;
+import forestry.apiculture.genetics.DefaultBeeSpriteColourProvider;
+import forestry.apiculture.genetics.JubilanceDefault;
+import forestry.core.genetics.alleles.AlleleSpecies;
+import forestry.core.utils.ItemStackUtil;
 
 public class AlleleBeeSpecies extends AlleleSpecies implements IAlleleBeeSpecies, IAlleleBeeSpeciesBuilder {
 	private final Map<ItemStack, Float> productChances = new HashMap<>();
@@ -140,7 +143,7 @@ public class AlleleBeeSpecies extends AlleleSpecies implements IAlleleBeeSpecies
 	}
 
 	@Override
-	public NonNullList<ItemStack> getResearchBounty(World world, GameProfile researcher, IIndividual individual, int bountyLevel) {
+	public NonNullList<ItemStack> getResearchBounty(World world, GameProfile researcher, IIndividualForestry individual, int bountyLevel) {
 		NonNullList<ItemStack> bounty = NonNullList.create();
 		bounty.addAll(super.getResearchBounty(world, researcher, individual, bountyLevel));
 

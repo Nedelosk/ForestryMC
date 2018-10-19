@@ -41,13 +41,13 @@ import forestry.api.arboriculture.ITreekeepingMode;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IEffectData;
 import forestry.api.genetics.IFruitBearer;
 import forestry.api.genetics.IFruitFamily;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
 import forestry.api.genetics.IPollinatable;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.IButterfly;
 import forestry.api.lepidopterology.IButterflyGenome;
@@ -301,7 +301,7 @@ public class TileLeaves extends TileTreeContainer implements IPollinatable, IFru
 	}
 
 	@Override
-	public boolean canMateWith(IIndividual individual) {
+	public boolean canMateWith(IIndividualForestry individual) {
 		if (individual instanceof ITree) {
 			ITree tree = getTree();
 			return tree != null &&
@@ -312,7 +312,7 @@ public class TileLeaves extends TileTreeContainer implements IPollinatable, IFru
 	}
 
 	@Override
-	public void mateWith(IIndividual individual) {
+	public void mateWith(IIndividualForestry individual) {
 		if (individual instanceof ITree) {
 			ITree tree = getTree();
 			if (tree == null || world == null) {
@@ -519,7 +519,7 @@ public class TileLeaves extends TileTreeContainer implements IPollinatable, IFru
 	}
 
 	@Override
-	public IIndividual getNanny() {
+	public IIndividualForestry getNanny() {
 		return getTree();
 	}
 

@@ -6,8 +6,8 @@
 package forestry.api.lepidopterology;
 
 import forestry.api.genetics.EnumTolerance;
-import forestry.api.genetics.IFlowerProvider;
 import forestry.api.genetics.IGenome;
+import forestry.api.genetics.flowers.IFlowerProvider;
 
 public interface IButterflyGenome extends IGenome {
 

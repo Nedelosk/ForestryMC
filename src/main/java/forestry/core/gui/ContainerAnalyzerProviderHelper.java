@@ -8,10 +8,10 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.IIndividualRootForestry;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.core.ModuleCore;
 import forestry.core.gui.slots.SlotAnalyzer;
 import forestry.core.gui.slots.SlotLockable;
@@ -81,14 +81,14 @@ public class ContainerAnalyzerProviderHelper {
 			specimen = convertedSpecimen;
 		}
 
-		ISpeciesRoot speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(specimen);
+		IIndividualRootForestry speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(specimen);
 
 		// No individual, abort
 		if (speciesRoot == null) {
 			return;
 		}
 
-		IIndividual individual = speciesRoot.getMember(specimen);
+		IIndividualForestry individual = speciesRoot.getMember(specimen);
 
 		// Analyze if necessary
 		if (individual != null && !individual.isAnalyzed()) {

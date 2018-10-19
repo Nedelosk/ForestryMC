@@ -10,14 +10,15 @@
  ******************************************************************************/
 package forestry.lepidopterology.blocks;
 
+import com.google.common.base.Optional;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.base.Optional;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.api.lepidopterology.IAlleleButterflyCocoon;
 import forestry.core.blocks.properties.PropertyAllele;
 

@@ -14,11 +14,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
 import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.IApiaristTracker;
+import forestry.api.apiculture.genetics.EnumBeeChromosome;
 import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.IIndividualRootForestry;
 import forestry.apiculture.ModuleApiculture;
 import forestry.core.genetics.BreedingTracker;
 
@@ -58,8 +58,8 @@ public class ApiaristTracker extends BreedingTracker implements IApiaristTracker
 	}
 
 	@Override
-	public void registerPickup(IIndividual individual) {
-		ISpeciesRoot speciesRoot = individual.getGenome().getPrimary().getRoot();
+	public void registerPickup(IIndividualForestry individual) {
+		IIndividualRootForestry speciesRoot = individual.getGenome().getPrimary().getRoot();
 		if (!speciesRoot.getUID().equals(speciesRootUID())) {
 			return;
 		}
@@ -76,7 +76,7 @@ public class ApiaristTracker extends BreedingTracker implements IApiaristTracker
 	}
 
 	@Override
-	public void registerQueen(IIndividual bee) {
+	public void registerQueen(IIndividualForestry bee) {
 		queensTotal++;
 	}
 
@@ -86,7 +86,7 @@ public class ApiaristTracker extends BreedingTracker implements IApiaristTracker
 	}
 
 	@Override
-	public void registerPrincess(IIndividual bee) {
+	public void registerPrincess(IIndividualForestry bee) {
 		princessesTotal++;
 		registerBirth(bee);
 	}
@@ -97,7 +97,7 @@ public class ApiaristTracker extends BreedingTracker implements IApiaristTracker
 	}
 
 	@Override
-	public void registerDrone(IIndividual bee) {
+	public void registerDrone(IIndividualForestry bee) {
 		dronesTotal++;
 		registerBirth(bee);
 	}

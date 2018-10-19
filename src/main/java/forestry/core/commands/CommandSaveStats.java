@@ -22,14 +22,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IBreedingTracker;
-import forestry.core.config.Constants;
-import forestry.core.proxy.Proxies;
-import forestry.core.utils.Log;
-import forestry.core.utils.StringUtil;
-import forestry.core.utils.Translator;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -37,6 +29,15 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import forestry.api.genetics.IBreedingTracker;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
+import forestry.core.config.Constants;
+import forestry.core.proxy.Proxies;
+import forestry.core.utils.Log;
+import forestry.core.utils.StringUtil;
+import forestry.core.utils.Translator;
 
 public final class CommandSaveStats extends SubCommand {
 
@@ -92,7 +93,7 @@ public final class CommandSaveStats extends SubCommand {
 		IBreedingTracker tracker = saveHelper.getBreedingTracker(world, player.getGameProfile());
 		saveHelper.addExtraInfo(statistics, tracker);
 
-		Collection<IAlleleSpecies> species = saveHelper.getSpecies();
+		Collection<IAlleleSpeciesForestry> species = saveHelper.getSpecies();
 
 		String speciesCount = Translator.translateToLocal("for.gui.speciescount");
 		String speciesCountLine = String.format("%s (%s):", speciesCount, species.size());
@@ -110,7 +111,7 @@ public final class CommandSaveStats extends SubCommand {
 		statistics.add(StringUtil.line(header.length()));
 		statistics.add("");
 
-		for (IAlleleSpecies allele : species) {
+		for (IAlleleSpeciesForestry allele : species) {
 			statistics.add(generateSpeciesListEntry(allele, tracker));
 		}
 
@@ -161,7 +162,7 @@ public final class CommandSaveStats extends SubCommand {
 		return speciesListEntry(discoveredSymbol, blacklistedSymbol, notCountedSymbol, "UID", species, authority);
 	}
 
-	private static String generateSpeciesListEntry(IAlleleSpecies species, IBreedingTracker tracker) {
+	private static String generateSpeciesListEntry(IAlleleSpeciesForestry species, IBreedingTracker tracker) {
 		String discovered = "";
 		if (tracker.isDiscovered(species)) {
 			discovered = discoveredSymbol;

@@ -30,37 +30,38 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.apiculture.EnumBeeType;
-import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IApiaristTracker;
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.apiculture.IBeeMutation;
-import forestry.api.apiculture.IBeeRoot;
 import forestry.api.apiculture.IBeekeepingLogic;
 import forestry.api.apiculture.IBeekeepingMode;
-import forestry.api.genetics.AlleleManager;
+import forestry.api.apiculture.genetics.EnumBeeChromosome;
+import forestry.api.apiculture.genetics.EnumBeeType;
+import forestry.api.apiculture.genetics.IAlleleBeeSpecies;
+import forestry.api.apiculture.genetics.IBee;
+import forestry.api.apiculture.genetics.IBeeGenome;
+import forestry.api.apiculture.genetics.IBeeRoot;
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlyzerPlugin;
 import forestry.api.genetics.IChromosome;
 import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IDatabasePlugin;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.ISpeciesType;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.gaget.IAlyzerPlugin;
+import forestry.api.genetics.gaget.IDatabasePlugin;
 import forestry.apiculture.BeeHousingListener;
 import forestry.apiculture.BeeHousingModifier;
 import forestry.apiculture.BeekeepingLogic;
 import forestry.apiculture.ModuleApiculture;
+import forestry.apiculture.genetics_new.BeeDefinition;
 import forestry.apiculture.items.ItemRegistryApiculture;
-import forestry.core.genetics.SpeciesRoot;
+import forestry.core.genetics.IndividualRootForestry;
 import forestry.core.utils.Log;
 
-public class BeeRoot extends SpeciesRoot implements IBeeRoot {
+public class BeeRoot extends IndividualRootForestry implements IBeeRoot {
 
 	private static int beeSpeciesCount = -1;
 	private static final List<IBee> beeTemplates = new ArrayList<>();
@@ -81,7 +82,7 @@ public class BeeRoot extends SpeciesRoot implements IBeeRoot {
 	}
 
 	@Override
-	public Class<? extends IIndividual> getMemberClass() {
+	public Class<? extends IIndividualForestry> getMemberClass() {
 		return IBee.class;
 	}
 
@@ -112,12 +113,12 @@ public class BeeRoot extends SpeciesRoot implements IBeeRoot {
 	}
 
 	@Override
-	public boolean isMember(IIndividual individual) {
+	public boolean isMember(IIndividualForestry individual) {
 		return individual instanceof IBee;
 	}
 
 	@Override
-	public ItemStack getMemberStack(IIndividual individual, ISpeciesType type) {
+	public ItemStack getMemberStack(IIndividualForestry individual, ISpeciesType type) {
 		Preconditions.checkArgument(individual instanceof IBee, "individual is not a bee");
 		Preconditions.checkArgument(type instanceof EnumBeeType, "type is not an EnumBeeType");
 		ItemRegistryApiculture apicultureItems = ModuleApiculture.getItems();

@@ -6,21 +6,22 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
-import forestry.api.arboriculture.EnumForestryWoodType;
-import forestry.api.arboriculture.EnumGermlingType;
-import forestry.api.arboriculture.TreeManager;
-import forestry.api.arboriculture.WoodBlockKind;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IIndividual;
 import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
+
+import forestry.api.arboriculture.EnumForestryWoodType;
+import forestry.api.arboriculture.EnumGermlingType;
+import forestry.api.arboriculture.TreeManager;
+import forestry.api.arboriculture.WoodBlockKind;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 
 public class VillagerArboristTrades {
 
@@ -121,10 +122,10 @@ public class VillagerArboristTrades {
 
 			IChromosomeType treeSpeciesType = TreeManager.treeRoot.getSpeciesChromosomeType();
 			Collection<IAllele> registeredSpecies = AlleleManager.alleleRegistry.getRegisteredAlleles(treeSpeciesType);
-			List<IAlleleSpecies> potentialSpecies = new ArrayList<>();
+			List<IAlleleSpeciesForestry> potentialSpecies = new ArrayList<>();
 			for (IAllele allele : registeredSpecies) {
-				if (allele instanceof IAlleleSpecies) {
-					IAlleleSpecies species = (IAlleleSpecies) allele;
+				if (allele instanceof IAlleleSpeciesForestry) {
+					IAlleleSpeciesForestry species = (IAlleleSpeciesForestry) allele;
 					if (species.getComplexity() <= maxComplexity) {
 						potentialSpecies.add(species);
 					}
@@ -135,9 +136,9 @@ public class VillagerArboristTrades {
 				return;
 			}
 
-			IAlleleSpecies chosenSpecies = potentialSpecies.get(random.nextInt(potentialSpecies.size()));
+			IAlleleSpeciesForestry chosenSpecies = potentialSpecies.get(random.nextInt(potentialSpecies.size()));
 			IAllele[] template = TreeManager.treeRoot.getTemplate(chosenSpecies);
-			IIndividual individual = TreeManager.treeRoot.templateAsIndividual(template);
+			IIndividualForestry individual = TreeManager.treeRoot.templateAsIndividual(template);
 
 			ItemStack sellStack = TreeManager.treeRoot.getMemberStack(individual, type);
 			sellStack.setCount(i);

@@ -10,18 +10,21 @@
  ******************************************************************************/
 package forestry.apiculture.genetics;
 
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import genetics.api.alleles.IAllele;
+
 import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.apiculture.IBeeMutation;
 import forestry.api.apiculture.IBeeMutationBuilder;
-import forestry.api.apiculture.IBeeRoot;
-import forestry.api.genetics.IAllele;
-import forestry.core.genetics.mutations.Mutation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import forestry.api.apiculture.genetics.IAlleleBeeSpecies;
+import forestry.api.apiculture.genetics.IBeeGenome;
+import forestry.api.apiculture.genetics.IBeeRoot;
+import forestry.apiculture.genetics_new.BeeHelper;
+import forestry.core.genetics_new.mutations.Mutation;
 
 public class BeeMutation extends Mutation implements IBeeMutation, IBeeMutationBuilder {
 
@@ -36,7 +39,7 @@ public class BeeMutation extends Mutation implements IBeeMutation, IBeeMutationB
 
 	@Override
 	public IBeeRoot getRoot() {
-		return BeeManager.beeRoot;
+		return BeeHelper.getRoot();
 	}
 
 	@Override

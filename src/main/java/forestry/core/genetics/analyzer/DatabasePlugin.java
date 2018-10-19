@@ -3,12 +3,12 @@ package forestry.core.genetics.analyzer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.genetics.IDatabasePlugin;
-import forestry.api.genetics.IDatabaseTab;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.gaget.IDatabasePlugin;
+import forestry.api.genetics.gaget.IDatabaseTab;
 
 @SideOnly(Side.CLIENT)
-public abstract class DatabasePlugin<I extends IIndividual> implements IDatabasePlugin<I> {
+public abstract class DatabasePlugin<I extends IIndividualForestry> implements IDatabasePlugin<I> {
 	private final IDatabaseTab<I> activeTab;
 	private final IDatabaseTab<I> inactiveTab;
 	private final IDatabaseTab productsTab;

@@ -31,9 +31,9 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IClassification;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 import forestry.api.lepidopterology.EnumFlutterType;
@@ -155,7 +155,7 @@ public class AlleleButterflySpecies extends AlleleSpecies
 	}
 
 	@Override
-	public NonNullList<ItemStack> getResearchBounty(World world, GameProfile researcher, IIndividual individual,
+	public NonNullList<ItemStack> getResearchBounty(World world, GameProfile researcher, IIndividualForestry individual,
 			int bountyLevel) {
 		ItemStack serum = getRoot().getMemberStack(individual.copy(), EnumFlutterType.SERUM);
 		NonNullList<ItemStack> bounty = NonNullList.create();

@@ -5,10 +5,10 @@ import java.util.function.Supplier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
 
-import forestry.api.genetics.IDatabaseTab;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.gaget.IDatabaseTab;
 
-public abstract class DatabaseTab<I extends IIndividual> implements IDatabaseTab<I> {
+public abstract class DatabaseTab<I extends IIndividualForestry> implements IDatabaseTab<I> {
 	private final Supplier<ItemStack> stackSupplier;
 	private final String name;
 
@@ -23,7 +23,7 @@ public abstract class DatabaseTab<I extends IIndividual> implements IDatabaseTab
 	}
 
 	@Override
-	public String getTooltip(IIndividual individual){
+	public String getTooltip(IIndividualForestry individual) {
 		return I18n.translateToLocal("for.gui.database.tab." + name + ".name");
 	}
 }

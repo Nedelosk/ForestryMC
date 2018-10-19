@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividualLiving;
 
-public abstract class IndividualLiving extends Individual implements IIndividualLiving {
+public abstract class IndividualLiving extends IndividualForestry implements IIndividualLiving {
 
 	private int health;
 	private int maxHealth;

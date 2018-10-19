@@ -3,8 +3,8 @@ package forestry.database.inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IIndividualRootForestry;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.core.inventory.InventoryAdapterTile;
 import forestry.core.utils.GeneticsUtil;
 import forestry.database.tiles.TileDatabase;
@@ -17,7 +17,7 @@ public class InventoryDatabase extends InventoryAdapterTile<TileDatabase> {
 	@Override
 	public boolean canSlotAccept(int slotIndex, ItemStack itemStack) {
 		itemStack = GeneticsUtil.convertToGeneticEquivalent(itemStack);
-		ISpeciesRoot speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(itemStack);
+		IIndividualRootForestry speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(itemStack);
 		return speciesRoot != null;
 	}
 

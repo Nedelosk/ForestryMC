@@ -10,16 +10,18 @@
  ******************************************************************************/
 package forestry.apiculture.flowers;
 
-import forestry.api.apiculture.FlowerManager;
-import forestry.api.genetics.ICheckPollinatable;
-import forestry.api.genetics.IFlowerProvider;
-import forestry.api.genetics.IIndividual;
-import forestry.core.utils.Translator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
 import net.minecraftforge.common.EnumPlantType;
+
+import forestry.api.apiculture.FlowerManager;
+import forestry.api.genetics.ICheckPollinatable;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.flowers.IFlowerProvider;
+import forestry.core.utils.Translator;
 
 public class FlowerProvider implements IFlowerProvider {
 
@@ -57,7 +59,7 @@ public class FlowerProvider implements IFlowerProvider {
 	}
 
 	@Override
-	public NonNullList<ItemStack> affectProducts(World world, IIndividual individual, BlockPos pos, NonNullList<ItemStack> products) {
+	public NonNullList<ItemStack> affectProducts(World world, IIndividualForestry individual, BlockPos pos, NonNullList<ItemStack> products) {
 		return products;
 	}
 

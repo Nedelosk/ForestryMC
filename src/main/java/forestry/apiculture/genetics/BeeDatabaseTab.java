@@ -8,18 +8,19 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.apiculture.EnumBeeType;
-import forestry.api.apiculture.IBee;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.DatabaseMode;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IDatabaseTab;
+import forestry.api.apiculture.genetics.EnumBeeChromosome;
+import forestry.api.apiculture.genetics.EnumBeeType;
+import forestry.api.apiculture.genetics.IBee;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
+import forestry.api.genetics.gaget.DatabaseMode;
+import forestry.api.genetics.gaget.IDatabaseTab;
 import forestry.api.gui.GuiElementAlignment;
 import forestry.api.gui.IDatabaseElement;
 import forestry.api.gui.style.ITextStyle;
 import forestry.api.gui.style.TextStyleBuilder;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
+import forestry.apiculture.genetics_new.BeeDefinition;
 import forestry.core.genetics.alleles.AlleleBoolean;
 import forestry.core.gui.elements.GuiElementFactory;
 import forestry.core.render.ColourProperties;
@@ -47,15 +48,15 @@ public class BeeDatabaseTab implements IDatabaseTab<IBee> {
 		if (type == null) {
 			return;
 		}
-		IAlleleSpecies primarySpecies = bee.getGenome().getPrimary();
-		IAlleleSpecies secondarySpecies = bee.getGenome().getSecondary();
+		IAlleleSpeciesForestry primarySpecies = bee.getGenome().getPrimary();
+		IAlleleSpeciesForestry secondarySpecies = bee.getGenome().getSecondary();
 
 		container.label(Translator.translateToLocal("for.gui.database.tab." + (mode == DatabaseMode.ACTIVE ? "active" : "inactive") + "_species.name"), GuiElementAlignment.TOP_CENTER, GuiElementFactory.DATABASE_TITLE);
 
 		container.addLine(Translator.translateToLocal("for.gui.species"), EnumBeeChromosome.SPECIES);
 
 		Function<Boolean, String> toleranceText = a ->{
-			IAlleleSpecies species = a ? primarySpecies : secondarySpecies;
+			IAlleleSpeciesForestry species = a ? primarySpecies : secondarySpecies;
 			return AlleleManager.climateHelper.toDisplay(species.getTemperature());
 		};
 		container.addLine(Translator.translateToLocal("for.gui.climate"), toleranceText, EnumBeeChromosome.TEMPERATURE_TOLERANCE);

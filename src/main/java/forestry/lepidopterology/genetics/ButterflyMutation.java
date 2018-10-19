@@ -10,20 +10,21 @@
  ******************************************************************************/
 package forestry.lepidopterology.genetics;
 
+import net.minecraft.world.World;
+
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IGenome;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IIndividualRootForestry;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.IButterflyMutation;
 import forestry.api.lepidopterology.IButterflyMutationBuilder;
 import forestry.api.lepidopterology.IButterflyNursery;
-import forestry.core.genetics.mutations.Mutation;
-import net.minecraft.world.World;
+import forestry.core.genetics_new.mutations.Mutation;
 
 public class ButterflyMutation extends Mutation implements IButterflyMutation, IButterflyMutationBuilder {
 
-	protected ButterflyMutation(IAlleleSpecies species0, IAlleleSpecies species1, IAllele[] template, int chance) {
+	protected ButterflyMutation(IAlleleSpeciesForestry species0, IAlleleSpeciesForestry species1, IAllele[] template, int chance) {
 		super(species0, species1, template, chance);
 	}
 
@@ -42,7 +43,7 @@ public class ButterflyMutation extends Mutation implements IButterflyMutation, I
 	}
 
 	@Override
-	public ISpeciesRoot getRoot() {
+	public IIndividualRootForestry getRoot() {
 		return ButterflyManager.butterflyRoot;
 	}
 

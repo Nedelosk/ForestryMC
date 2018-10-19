@@ -18,9 +18,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
-import forestry.api.apiculture.IHiveTile;
+import forestry.api.apiculture.genetics.IBeeGenome;
+import forestry.api.apiculture.hives.IHiveTile;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.apiculture.entities.ParticleBeeExplore;

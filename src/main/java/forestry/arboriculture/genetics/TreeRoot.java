@@ -54,17 +54,17 @@ import forestry.api.arboriculture.ITreeMutation;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.arboriculture.ITreekeepingMode;
 import forestry.api.arboriculture.TreeManager;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlyzerPlugin;
 import forestry.api.genetics.ICheckPollinatable;
 import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IDatabasePlugin;
 import forestry.api.genetics.IFruitFamily;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.IPollinatable;
 import forestry.api.genetics.ISpeciesType;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.gaget.IAlyzerPlugin;
+import forestry.api.genetics.gaget.IDatabasePlugin;
 import forestry.arboriculture.ModuleArboriculture;
 import forestry.arboriculture.blocks.BlockFruitPod;
 import forestry.arboriculture.blocks.BlockRegistryArboriculture;
@@ -72,14 +72,14 @@ import forestry.arboriculture.blocks.BlockSapling;
 import forestry.arboriculture.items.ItemRegistryArboriculture;
 import forestry.arboriculture.tiles.TileFruitPod;
 import forestry.arboriculture.tiles.TileSapling;
-import forestry.core.genetics.SpeciesRoot;
+import forestry.core.genetics.IndividualRootForestry;
 import forestry.core.network.packets.PacketFXSignal;
 import forestry.core.tiles.TileUtil;
 import forestry.core.utils.BlockUtil;
 import forestry.core.utils.Log;
 import forestry.core.utils.NetworkUtil;
 
-public class TreeRoot extends SpeciesRoot implements ITreeRoot {
+public class TreeRoot extends IndividualRootForestry implements ITreeRoot {
 	public static final String UID = "rootTrees";
 	private static int treeSpeciesCount = -1;
 	@Nullable
@@ -99,7 +99,7 @@ public class TreeRoot extends SpeciesRoot implements ITreeRoot {
 	}
 
 	@Override
-	public Class<? extends IIndividual> getMemberClass() {
+	public Class<? extends IIndividualForestry> getMemberClass() {
 		return ITree.class;
 	}
 
@@ -130,7 +130,7 @@ public class TreeRoot extends SpeciesRoot implements ITreeRoot {
 	}
 
 	@Override
-	public boolean isMember(IIndividual individual) {
+	public boolean isMember(IIndividualForestry individual) {
 		return individual instanceof ITree;
 	}
 
@@ -189,7 +189,7 @@ public class TreeRoot extends SpeciesRoot implements ITreeRoot {
 	}
 
 	@Override
-	public ItemStack getMemberStack(IIndividual tree, ISpeciesType type) {
+	public ItemStack getMemberStack(IIndividualForestry tree, ISpeciesType type) {
 		Preconditions.checkArgument(tree instanceof ITree, "individual is not a tree");
 		Preconditions.checkArgument(type instanceof EnumGermlingType, "type is not an EnumGermlingType");
 		ItemRegistryArboriculture items = ModuleArboriculture.getItems();
@@ -445,14 +445,14 @@ public class TreeRoot extends SpeciesRoot implements ITreeRoot {
 	}
 
 	@Override
-	public ICheckPollinatable createPollinatable(IIndividual individual) {
+	public ICheckPollinatable createPollinatable(IIndividualForestry individual) {
 		Preconditions.checkArgument(individual instanceof ITree, "individual must be a tree");
 		return new CheckPollinatableTree((ITree) individual);
 	}
 
 	@Override
 	@Nullable
-	public IPollinatable tryConvertToPollinatable(@Nullable GameProfile owner, World world, BlockPos pos, IIndividual individual) {
+	public IPollinatable tryConvertToPollinatable(@Nullable GameProfile owner, World world, BlockPos pos, IIndividualForestry individual) {
 		Preconditions.checkArgument(individual instanceof ITree, "pollen must be an instance of ITree");
 		ITree pollen = (ITree) individual;
 		if (pollen.setLeaves(world, owner, pos)) {

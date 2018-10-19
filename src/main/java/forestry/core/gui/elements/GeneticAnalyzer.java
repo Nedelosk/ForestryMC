@@ -8,13 +8,13 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IDatabasePlugin;
-import forestry.api.genetics.IDatabaseTab;
-import forestry.api.genetics.IGeneticAnalyzer;
-import forestry.api.genetics.IGeneticAnalyzerProvider;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.IIndividualRootForestry;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.gaget.IDatabasePlugin;
+import forestry.api.genetics.gaget.IDatabaseTab;
+import forestry.api.genetics.gaget.IGeneticAnalyzer;
+import forestry.api.genetics.gaget.IGeneticAnalyzerProvider;
 import forestry.api.gui.IGuiElement;
 import forestry.api.gui.IWindowElement;
 import forestry.api.gui.events.GuiEvent;
@@ -126,11 +126,11 @@ public class GeneticAnalyzer extends ElementGroup implements IGeneticAnalyzer, I
 			return;
 		}
 		ItemStack stack = provider.getSpecimen(selectedSlot);
-		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
+		IIndividualRootForestry root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
 		if (root != null) {
 			IDatabasePlugin databasePlugin = root.getSpeciesPlugin();
 			if (databasePlugin != null) {
-				IIndividual individual = root.getMember(stack);
+				IIndividualForestry individual = root.getMember(stack);
 				if (individual != null) {
 					if (individual.isAnalyzed()) {
 						tabs.setPlugin(databasePlugin);

@@ -1,21 +1,23 @@
 package forestry.core.loot;
 
-import java.util.Random;
-
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
-import forestry.api.genetics.ISpeciesType;
+
+import java.util.Random;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.functions.LootFunction;
+
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.IIndividualRootForestry;
+import forestry.api.genetics.ISpeciesType;
+import forestry.api.genetics.alleles.AlleleManager;
 
 public class SetSpeciesNBT extends LootFunction {
 	private final String speciesUid;
@@ -27,13 +29,13 @@ public class SetSpeciesNBT extends LootFunction {
 
 	@Override
 	public ItemStack apply(ItemStack stack, Random rand, LootContext context) {
-		ISpeciesRoot speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
+		IIndividualRootForestry speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
 		if (speciesRoot != null) {
 			ISpeciesType speciesType = speciesRoot.getType(stack);
 			if (speciesType != null) {
 				IAllele[] template = speciesRoot.getTemplate(speciesUid);
 				if (template != null) {
-					IIndividual individual = speciesRoot.templateAsIndividual(template);
+					IIndividualForestry individual = speciesRoot.templateAsIndividual(template);
 					return speciesRoot.getMemberStack(individual, speciesType);
 				}
 			}

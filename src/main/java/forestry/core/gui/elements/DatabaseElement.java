@@ -9,15 +9,15 @@ import java.util.function.Function;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 
-import forestry.api.genetics.DatabaseMode;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleInteger;
 import forestry.api.genetics.IAlleleTolerance;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IGenome;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
 import forestry.api.genetics.IMutation;
+import forestry.api.genetics.gaget.DatabaseMode;
 import forestry.api.gui.GuiElementAlignment;
 import forestry.api.gui.IDatabaseElement;
 import forestry.api.gui.IElementGroup;
@@ -31,7 +31,7 @@ import forestry.core.utils.Translator;
 public class DatabaseElement extends VerticalLayout implements IDatabaseElement {
 	private DatabaseMode mode = DatabaseMode.ACTIVE;
 	@Nullable
-	private IIndividual individual;
+	private IIndividualForestry individual;
 	private int secondColumn = 0;
 	private int thirdColumn = 0;
 
@@ -41,7 +41,7 @@ public class DatabaseElement extends VerticalLayout implements IDatabaseElement 
 	}
 
 	@Override
-	public void init(DatabaseMode mode, IIndividual individual, int secondColumn, int thirdColumn) {
+	public void init(DatabaseMode mode, IIndividualForestry individual, int secondColumn, int thirdColumn) {
 		this.mode = mode;
 		this.individual = individual;
 		this.secondColumn = secondColumn;
@@ -49,7 +49,7 @@ public class DatabaseElement extends VerticalLayout implements IDatabaseElement 
 	}
 
 	@Nullable
-	public IIndividual getIndividual() {
+	public IIndividualForestry getIndividual() {
 		return individual;
 	}
 

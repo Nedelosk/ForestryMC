@@ -17,11 +17,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 import forestry.api.core.INbtWritable;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.IIndividualRootForestry;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 import forestry.core.network.IStreamable;
 import forestry.core.network.PacketBufferForestry;
 import forestry.core.utils.ColourUtil;
@@ -43,7 +43,7 @@ public class EscritoireGameToken implements INbtWritable, IStreamable {
 	private static final String[] OVERLAY_SELECTED = new String[]{"errors/unknown"};
 
 	@Nullable
-	private IIndividual tokenIndividual;
+	private IIndividualForestry tokenIndividual;
 	private ItemStack tokenStack = ItemStack.EMPTY;
 
 	private State state = State.UNREVEALED;
@@ -70,9 +70,9 @@ public class EscritoireGameToken implements INbtWritable, IStreamable {
 
 	private void setTokenSpecies(String speciesUid) {
 		IAllele allele = AlleleManager.alleleRegistry.getAllele(speciesUid);
-		if (allele instanceof IAlleleSpecies) {
-			IAlleleSpecies species = (IAlleleSpecies) allele;
-			ISpeciesRoot root = species.getRoot();
+		if (allele instanceof IAlleleSpeciesForestry) {
+			IAlleleSpeciesForestry species = (IAlleleSpeciesForestry) allele;
+			IIndividualRootForestry root = species.getRoot();
 			IAllele[] template = root.getTemplate(species);
 			this.tokenIndividual = root.templateAsIndividual(template);
 			this.tokenStack = root.getMemberStack(this.tokenIndividual, root.getIconType());

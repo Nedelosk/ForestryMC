@@ -18,14 +18,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.EnumBeeType;
+import forestry.api.apiculture.genetics.EnumBeeType;
 import forestry.api.arboriculture.EnumGermlingType;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.core.Tabs;
 import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.EnumFlutterType;
 import forestry.apiculture.genetics.Bee;
-import forestry.apiculture.genetics.BeeDefinition;
+import forestry.apiculture.genetics_new.BeeDefinition;
 import forestry.arboriculture.genetics.Tree;
 import forestry.arboriculture.genetics.TreeDefinition;
 import forestry.core.config.Constants;

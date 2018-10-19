@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.oredict.OreDictionary;
 
-import forestry.api.apiculture.EnumBeeType;
+import forestry.api.apiculture.genetics.EnumBeeType;
 import forestry.api.core.Tabs;
 import forestry.core.items.ItemForestry;
 import forestry.core.items.ItemOverlay;

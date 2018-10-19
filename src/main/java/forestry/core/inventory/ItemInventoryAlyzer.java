@@ -19,10 +19,10 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import forestry.api.core.IErrorSource;
 import forestry.api.core.IErrorState;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.IIndividualRootForestry;
+import forestry.api.genetics.alleles.AlleleManager;
 import forestry.apiculture.ModuleApiculture;
 import forestry.apiculture.items.ItemRegistryApiculture;
 import forestry.core.errors.EnumErrorCode;
@@ -70,7 +70,7 @@ public class ItemInventoryAlyzer extends ItemInventory implements IErrorSource {
 		}
 
 		itemStack = GeneticsUtil.convertToGeneticEquivalent(itemStack);
-		ISpeciesRoot speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(itemStack);
+		IIndividualRootForestry speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(itemStack);
 		if (speciesRoot == null) {
 			return false;
 		}
@@ -79,7 +79,7 @@ public class ItemInventoryAlyzer extends ItemInventory implements IErrorSource {
 			return true;
 		}
 
-		IIndividual individual = speciesRoot.getMember(itemStack);
+		IIndividualForestry individual = speciesRoot.getMember(itemStack);
 		return individual != null && individual.isAnalyzed();
 	}
 
@@ -102,14 +102,14 @@ public class ItemInventoryAlyzer extends ItemInventory implements IErrorSource {
 			specimen = convertedSpecimen;
 		}
 
-		ISpeciesRoot speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(specimen);
+		IIndividualRootForestry speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(specimen);
 
 		// No individual, abort
 		if (speciesRoot == null) {
 			return;
 		}
 
-		IIndividual individual = speciesRoot.getMember(specimen);
+		IIndividualForestry individual = speciesRoot.getMember(specimen);
 
 		// Analyze if necessary
 		if (individual != null && !individual.isAnalyzed()) {
@@ -148,7 +148,7 @@ public class ItemInventoryAlyzer extends ItemInventory implements IErrorSource {
 		if (!hasSpecimen()) {
 			errorStates.add(EnumErrorCode.NO_SPECIMEN);
 		} else {
-			ISpeciesRoot speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(getSpecimen());
+			IIndividualRootForestry speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(getSpecimen());
 			if (speciesRoot != null && !isAlyzingFuel(getStackInSlot(SLOT_ENERGY))) {
 				errorStates.add(EnumErrorCode.NO_HONEY);
 			}

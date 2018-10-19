@@ -39,10 +39,10 @@ import forestry.api.core.IModelManager;
 import forestry.api.core.ISpriteRegister;
 import forestry.api.core.ITextureManager;
 import forestry.api.core.Tabs;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 import forestry.api.lepidopterology.EnumFlutterType;
@@ -83,7 +83,7 @@ public class ItemButterflyGE extends ItemGE implements ISpriteRegister, IColored
 	}
 
 	@Override
-	protected IAlleleSpecies getSpecies(ItemStack itemStack) {
+	protected IAlleleSpeciesForestry getSpecies(ItemStack itemStack) {
 		return ButterflyGenome.getSpecies(itemStack);
 	}
 
@@ -97,7 +97,7 @@ public class ItemButterflyGE extends ItemGE implements ISpriteRegister, IColored
 	public void addCreativeItems(NonNullList<ItemStack> subItems, boolean hideSecrets) {
 		if (type == EnumFlutterType.COCOON) {
 			for (int age = 0; age < 3; age++) {
-				for (IIndividual individual : ButterflyManager.butterflyRoot.getIndividualTemplates()) {
+				for (IIndividualForestry individual : ButterflyManager.butterflyRoot.getIndividualTemplates()) {
 					// Don't show secret butterflies unless ordered to.
 					if (hideSecrets && individual.isSecret() && !Config.isDebug) {
 						continue;
@@ -111,7 +111,7 @@ public class ItemButterflyGE extends ItemGE implements ISpriteRegister, IColored
 				}
 			}
 		} else {
-			for (IIndividual individual : ButterflyManager.butterflyRoot.getIndividualTemplates()) {
+			for (IIndividualForestry individual : ButterflyManager.butterflyRoot.getIndividualTemplates()) {
 				// Don't show secret butterflies unless ordered to.
 				if (hideSecrets && individual.isSecret() && !Config.isDebug) {
 					continue;
@@ -199,7 +199,7 @@ public class ItemButterflyGE extends ItemGE implements ISpriteRegister, IColored
 					tagCompound.setInteger(NBT_AGE, 0);
 				}
 				age = tagCompound.getInteger(NBT_AGE);
-				IIndividual individual = AlleleManager.alleleRegistry.getIndividual(itemstack);
+				IIndividualForestry individual = AlleleManager.alleleRegistry.getIndividual(itemstack);
 				Preconditions.checkNotNull(individual);
 				genome = (IButterflyGenome) individual.getGenome();
 			}
@@ -319,9 +319,9 @@ public class ItemButterflyGE extends ItemGE implements ISpriteRegister, IColored
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
 		if (stack.getTagCompound() != null) {
-			IIndividual individual = AlleleManager.alleleRegistry.getIndividual(stack);
+			IIndividualForestry individual = AlleleManager.alleleRegistry.getIndividual(stack);
 			if (individual != null) {
-				IAlleleSpecies species = individual.getGenome().getPrimary();
+				IAlleleSpeciesForestry species = individual.getGenome().getPrimary();
 				return species.getSpriteColour(tintIndex);
 			}
 		}

@@ -17,5 +17,5 @@ public interface IPollinatable extends ICheckPollinatable {
 	 *
 	 * @param pollen IIndividual representing the pollen.
 	 */
-	void mateWith(IIndividual pollen);
+	void mateWith(IIndividualForestry pollen);
 }

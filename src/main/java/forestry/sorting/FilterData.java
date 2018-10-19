@@ -3,27 +3,27 @@ package forestry.sorting;
 import javax.annotation.Nullable;
 import java.util.NoSuchElementException;
 
-import forestry.api.genetics.IFilterData;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.IIndividualRootForestry;
 import forestry.api.genetics.ISpeciesType;
+import forestry.api.genetics.filters.IFilterData;
 
 public class FilterData implements IFilterData {
 	@Nullable
-	private ISpeciesRoot root;
+	private IIndividualRootForestry root;
 	@Nullable
-	private IIndividual individual;
+	private IIndividualForestry individual;
 	@Nullable
 	private ISpeciesType type;
 
-	public FilterData(@Nullable ISpeciesRoot root, @Nullable IIndividual individual, @Nullable ISpeciesType type) {
+	public FilterData(@Nullable IIndividualRootForestry root, @Nullable IIndividualForestry individual, @Nullable ISpeciesType type) {
 		this.root = root;
 		this.individual = individual;
 		this.type = type;
 	}
 
 	@Override
-	public ISpeciesRoot getRoot() {
+	public IIndividualRootForestry getRoot() {
 		if (root == null) {
 			throw new NoSuchElementException("No root present");
 		}
@@ -31,7 +31,7 @@ public class FilterData implements IFilterData {
 	}
 
 	@Override
-	public IIndividual getIndividual() {
+	public IIndividualForestry getIndividual() {
 		if (individual == null) {
 			throw new NoSuchElementException("No individual present");
 		}

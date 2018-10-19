@@ -36,31 +36,32 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.FlowerManager;
-import forestry.api.apiculture.IAlleleBeeEffect;
-import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IApiaristTracker;
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.apiculture.IBeeMutation;
 import forestry.api.apiculture.IBeekeepingMode;
+import forestry.api.apiculture.genetics.EnumBeeChromosome;
+import forestry.api.apiculture.genetics.IAlleleBeeEffect;
+import forestry.api.apiculture.genetics.IAlleleBeeSpecies;
+import forestry.api.apiculture.genetics.IBee;
+import forestry.api.apiculture.genetics.IBeeGenome;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.IErrorState;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleTolerance;
 import forestry.api.genetics.ICheckPollinatable;
 import forestry.api.genetics.IChromosome;
 import forestry.api.genetics.IEffectData;
-import forestry.api.genetics.IFlowerProvider;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.IPollinatable;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.flowers.IFlowerProvider;
+import forestry.apiculture.genetics_new.BeeDefinition;
 import forestry.core.config.Config;
 import forestry.core.config.Constants;
 import forestry.core.errors.EnumErrorCode;
@@ -151,7 +152,7 @@ public class Bee extends IndividualLiving implements IBee {
 	}
 
 	@Override
-	public void mate(IIndividual individual) {
+	public void mate(IIndividualForestry individual) {
 		if (!(individual instanceof IBee)) {
 			return;
 		}
@@ -640,7 +641,7 @@ public class Bee extends IndividualLiving implements IBee {
 	/* FLOWERS */
 	@Override
 	@Nullable
-	public IIndividual retrievePollen(IBeeHousing housing) {
+	public IIndividualForestry retrievePollen(IBeeHousing housing) {
 
 		IBeeModifier beeModifier = BeeManager.beeRoot.createBeeHousingModifier(housing);
 
@@ -658,7 +659,7 @@ public class Bee extends IndividualLiving implements IBee {
 		Vec3i offset = new Vec3i(-area.getX() / 2, -area.getY() / 4, -area.getZ() / 2);
 		BlockPos housingPos = housing.getCoordinates();
 
-		IIndividual pollen = null;
+		IIndividualForestry pollen = null;
 
 		for (int i = 0; i < 20; i++) {
 			BlockPos randomPos = VectUtil.getRandomPositionInArea(random, area);
@@ -681,7 +682,7 @@ public class Bee extends IndividualLiving implements IBee {
 	}
 
 	@Override
-	public boolean pollinateRandom(IBeeHousing housing, IIndividual pollen) {
+	public boolean pollinateRandom(IBeeHousing housing, IIndividualForestry pollen) {
 
 		IBeeModifier beeModifier = BeeManager.beeRoot.createBeeHousingModifier(housing);
 

@@ -7,7 +7,7 @@ package forestry.api.genetics;
 
 import javax.annotation.Nullable;
 
-public interface IIndividualTranslator<I extends IIndividual, O> {
+public interface IIndividualTranslator<I extends IIndividualForestry, O> {
 	@Nullable
 	I getIndividualFromObject(O objectToTranslator);
 }

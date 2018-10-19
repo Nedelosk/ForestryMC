@@ -10,14 +10,15 @@
  ******************************************************************************/
 package forestry.core.commands;
 
-import forestry.api.genetics.IAlleleSpecies;
 import net.minecraft.command.CommandException;
+
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 
 public class TemplateNotFoundException extends CommandException {
 
 	private static final long serialVersionUID = 1L;
 
-	public TemplateNotFoundException(IAlleleSpecies species) {
+	public TemplateNotFoundException(IAlleleSpeciesForestry species) {
 		super("Could not find template for species %s with UID %s", species.getAlleleName(), species.getUID());
 	}
 

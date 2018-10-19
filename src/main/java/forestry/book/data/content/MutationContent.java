@@ -6,11 +6,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.book.BookContent;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IIndividualRootForestry;
 import forestry.api.genetics.IMutation;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 import forestry.api.gui.IElementGroup;
 import forestry.api.gui.IGuiElement;
 import forestry.api.gui.IGuiElementFactory;
@@ -32,11 +32,11 @@ public class MutationContent extends BookContent {
 	@Override
 	public boolean addElements(IElementGroup page, IGuiElementFactory factory, @Nullable BookContent previous, @Nullable IGuiElement previousElement, int pageHeight) {
 		IAllele allele = AlleleManager.alleleRegistry.getAllele(species);
-		if (!(allele instanceof IAlleleSpecies)) {
+		if (!(allele instanceof IAlleleSpeciesForestry)) {
 			return false;
 		}
-		IAlleleSpecies s = (IAlleleSpecies) allele;
-		ISpeciesRoot root = s.getRoot();
+		IAlleleSpeciesForestry s = (IAlleleSpeciesForestry) allele;
+		IIndividualRootForestry root = s.getRoot();
 		page.add(new MutationElement(0, 0, root.getResultantMutations(s).toArray(new IMutation[0])));
 		return true;
 	}

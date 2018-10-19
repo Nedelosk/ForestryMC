@@ -24,13 +24,13 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.GeneticCapabilities;
-import forestry.api.genetics.IFilterData;
-import forestry.api.genetics.IFilterLogic;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.IIndividualForestry;
+import forestry.api.genetics.IIndividualRootForestry;
 import forestry.api.genetics.ISpeciesType;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.filters.IFilterData;
+import forestry.api.genetics.filters.IFilterLogic;
 import forestry.core.inventory.AdjacentInventoryCache;
 import forestry.core.network.IStreamableGui;
 import forestry.core.network.PacketBufferForestry;
@@ -140,8 +140,8 @@ public class TileGeneticFilter extends TileForestry implements IStreamableGui, I
 	}
 
 	public Collection<EnumFacing> getValidDirections(ItemStack itemStack, EnumFacing from) {
-		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(itemStack);
-		IIndividual individual = null;
+		IIndividualRootForestry root = AlleleManager.alleleRegistry.getSpeciesRoot(itemStack);
+		IIndividualForestry individual = null;
 		ISpeciesType type = null;
 		if (root != null) {
 			individual = root.getMember(itemStack);

@@ -24,13 +24,13 @@ import com.mojang.authlib.GameProfile;
 
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IAlleleSpeciesBuilder;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IClassification;
-import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IIndividualForestry;
 import forestry.api.genetics.IMutation;
+import forestry.api.genetics.alleles.AlleleManager;
+import forestry.api.genetics.alleles.IAlleleSpeciesBuilder;
+import forestry.api.genetics.alleles.IAlleleSpeciesForestry;
 import forestry.apiculture.ModuleApiculture;
 import forestry.apiculture.items.ItemRegistryApiculture;
 import forestry.core.utils.GeneticsUtil;
@@ -39,7 +39,7 @@ import forestry.core.utils.Translator;
 import forestry.modules.ForestryModuleUids;
 import forestry.modules.ModuleHelper;
 
-public abstract class AlleleSpecies extends Allele implements IAlleleSpeciesBuilder, IAlleleSpecies {
+public abstract class AlleleSpecies extends Allele implements IAlleleSpeciesBuilder, IAlleleSpeciesForestry {
 	private final String binomial;
 	private final String authority;
 	private final String description;
@@ -119,7 +119,7 @@ public abstract class AlleleSpecies extends Allele implements IAlleleSpeciesBuil
 	}
 
 	@Override
-	public NonNullList<ItemStack> getResearchBounty(World world, GameProfile researcher, IIndividual individual, int bountyLevel) {
+	public NonNullList<ItemStack> getResearchBounty(World world, GameProfile researcher, IIndividualForestry individual, int bountyLevel) {
 		if (world.rand.nextFloat() < bountyLevel / 16.0f) {
 			List<? extends IMutation> allMutations = getRoot().getCombinations(this);
 			if (!allMutations.isEmpty()) {
