@@ -10,8 +10,6 @@
  ******************************************************************************/
 package forestry.core.climate;
 
-import java.io.IOException;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;

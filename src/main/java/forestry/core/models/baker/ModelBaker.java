@@ -34,11 +34,11 @@ import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import org.lwjgl.util.vector.Vector3f;
+
 import forestry.api.core.IModelBaker;
 import forestry.api.core.IModelBakerModel;
 import forestry.core.models.ModelManager;
-
-import org.lwjgl.util.vector.Vector3f;
 
 /**
  * A model baker to make custom block models with more than one texture layer.

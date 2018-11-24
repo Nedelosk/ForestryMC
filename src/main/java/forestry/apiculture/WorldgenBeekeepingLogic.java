@@ -10,7 +10,6 @@
  ******************************************************************************/
 package forestry.apiculture;
 
-import java.io.IOException;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;

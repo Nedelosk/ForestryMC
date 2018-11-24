@@ -16,6 +16,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import org.lwjgl.opengl.GL11;
+
 import forestry.api.gui.GuiElementAlignment;
 import forestry.api.gui.IGuiElement;
 import forestry.api.gui.ITooltipSupplier;
@@ -23,8 +25,6 @@ import forestry.api.gui.IWindowElement;
 import forestry.api.gui.events.ElementEvent;
 import forestry.api.gui.events.GuiElementEvent;
 import forestry.api.gui.events.GuiEventDestination;
-
-import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class GuiElement extends Gui implements IGuiElement {

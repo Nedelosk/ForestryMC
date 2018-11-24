@@ -5,6 +5,6 @@ package forestry.lepidopterology.commands;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import mcp.MethodsReturnNonnullByDefault;
-
 import forestry.core.utils.FieldsAreNonnullByDefault;
+
+import mcp.MethodsReturnNonnullByDefault;

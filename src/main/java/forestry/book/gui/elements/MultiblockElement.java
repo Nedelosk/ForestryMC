@@ -30,15 +30,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
+
 import forestry.api.gui.events.GuiEvent;
 import forestry.book.data.structure.BlockData;
 import forestry.book.data.structure.StructureBlockAccess;
 import forestry.book.data.structure.StructureInfo;
 import forestry.book.gui.GuiForesterBook;
 import forestry.core.gui.elements.GuiElement;
-
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class MultiblockElement extends GuiElement {

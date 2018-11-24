@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 import java.awt.Color;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
 
@@ -211,24 +211,24 @@ public class BlockCandle extends BlockTorch implements IItemModelRegister, ITile
 	}
 
 	private static boolean tryDye(ItemStack held, boolean isLit, TileCandle tileCandle) {
-		// Check for dye-able.
-		for (Map.Entry<String, Integer> colour : colours.entrySet()) {
-			String colourName = colour.getKey();
-			for (ItemStack stack : OreDictionary.getOres(colourName)) {
-				if (OreDictionary.itemMatches(stack, held, true)) {
-					if (isLit) {
-						tileCandle.setColour(colour.getValue());
-					} else {
-						tileCandle.addColour(colour.getValue());
-					}
-					return true;
-				}
+		Optional<String> colour = colours.keySet().stream().filter(name ->
+			OreDictionary.getOres(name).stream()
+					.anyMatch(s -> OreDictionary.itemMatches(s, held, true))
+		).findAny();
+
+		if(colour.isPresent()) {
+			int colValue = colours.get(colour.get());
+			if (isLit) {
+				tileCandle.setColour(colValue);
+			} else {
+				tileCandle.addColour(colValue);
 			}
+			return true;
 		}
 		return false;
 	}
 
-	/* DROP HANDLING */
+		/* DROP HANDLING */
 	// Hack: 	When harvesting we need to get the drops in onBlockHarvested,
 	// 			because Mojang destroys the block and tile before calling getDrops.
 	private final ThreadLocal<ItemStack> drop = new ThreadLocal<>();

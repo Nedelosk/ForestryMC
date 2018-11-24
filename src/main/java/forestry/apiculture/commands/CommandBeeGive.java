@@ -11,10 +11,11 @@
 package forestry.apiculture.commands;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -44,12 +45,11 @@ public class CommandBeeGive extends SubCommand {
 		super("give");
 		setPermLevel(PermLevel.ADMIN);
 
-		List<String> beeTypeStrings = new ArrayList<>();
-		for (EnumBeeType type : EnumBeeType.values()) {
-			beeTypeStrings.add(type.getName());
-		}
+		List<String> beeTypeStrings = Arrays.stream(EnumBeeType.values())
+				.map(Enum::name)
+				.collect(Collectors.toList());
 
-		beeTypeArr = beeTypeStrings.toArray(new String[beeTypeStrings.size()]);
+		beeTypeArr = beeTypeStrings.toArray(new String[0]);
 
 		StringBuilder beeTypeHelp = new StringBuilder();
 		String separator = ", ";
@@ -98,28 +98,19 @@ public class CommandBeeGive extends SubCommand {
 	}
 
 	private static IBeeGenome getBeeGenome(String speciesName) throws SpeciesNotFoundException {
-		IAlleleBeeSpecies species = null;
 
-		for (String uid : AlleleManager.alleleRegistry.getRegisteredAlleles().keySet()) {
+		IAlleleBeeSpecies species = AlleleManager.alleleRegistry.getRegisteredAlleles().keySet().stream()
+				.filter(u -> u.equals(speciesName))
+				.map(u -> AlleleManager.alleleRegistry.getAllele(u))
+				.filter(a -> a instanceof IAlleleBeeSpecies)
+				.map(a -> (IAlleleBeeSpecies) a)
+				.findAny().orElse(null);
 
-			if (!uid.equals(speciesName)) {
-				continue;
-			}
-
-			IAllele allele = AlleleManager.alleleRegistry.getAllele(uid);
-			if (allele instanceof IAlleleBeeSpecies) {
-				species = (IAlleleBeeSpecies) allele;
-				break;
-			}
-		}
-
-		if (species == null) {
-			for (IAllele allele : AlleleManager.alleleRegistry.getRegisteredAlleles().values()) {
-				if (allele instanceof IAlleleBeeSpecies && allele.getAlleleName().equals(speciesName)) {
-					species = (IAlleleBeeSpecies) allele;
-					break;
-				}
-			}
+		if(species == null) {
+			species =  AlleleManager.alleleRegistry.getRegisteredAlleles().values().stream()
+					.filter(a -> a instanceof IAlleleBeeSpecies && a.getAlleleName().equals(speciesName))
+					.map(a -> (IAlleleBeeSpecies) a)
+					.findAny().orElse(null);
 		}
 
 		if (species == null) {
@@ -146,25 +137,17 @@ public class CommandBeeGive extends SubCommand {
 	}
 
 	private static String[] getSpecies() {
-		List<String> species = new ArrayList<>();
-
-		for (IAllele allele : AlleleManager.alleleRegistry.getRegisteredAlleles().values()) {
-			if (allele instanceof IAlleleBeeSpecies) {
-				species.add(allele.getAlleleName());
-			}
-		}
-
-		return species.toArray(new String[species.size()]);
+		return AlleleManager.alleleRegistry.getRegisteredAlleles().values().stream()
+				.filter(a -> a instanceof IAlleleBeeSpecies)
+				.map(IAllele::getAlleleName)
+				.toArray(String[]::new);
 	}
 
 	@Nullable
 	private static EnumBeeType getBeeType(String beeTypeName) {
-		for (EnumBeeType beeType : EnumBeeType.values()) {
-			if (beeType.getName().equalsIgnoreCase(beeTypeName)) {
-				return beeType;
-			}
-		}
-		return null;
+		return Arrays.stream(EnumBeeType.values())
+				.filter(b -> b.getName().equalsIgnoreCase(beeTypeName))
+				.findFirst().orElse(null);
 	}
 
 	@Override

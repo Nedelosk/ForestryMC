@@ -19,6 +19,8 @@ import net.minecraftforge.fml.client.config.GuiUtils;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import org.lwjgl.input.Mouse;
+
 import forestry.api.gui.IElementGroup;
 import forestry.api.gui.IGuiElement;
 import forestry.api.gui.IWindowElement;
@@ -27,8 +29,6 @@ import forestry.api.gui.events.GuiEvent;
 import forestry.api.gui.events.GuiEventDestination;
 import forestry.core.gui.IGuiSizable;
 import forestry.core.gui.elements.layouts.ElementGroup;
-
-import org.lwjgl.input.Mouse;
 
 /**
  * This element is the top parent.

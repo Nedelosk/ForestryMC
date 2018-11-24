@@ -126,22 +126,17 @@ public class BlockBeeHives extends BlockContainer implements IItemModelRegister,
 		}
 
 		// Grab drones
-		for (IHiveDrop drop : hiveDrops) {
-			if (random.nextDouble() < drop.getChance(world, pos, fortune)) {
-				IBee bee = drop.getBeeType(world, pos);
-				ItemStack drone = BeeManager.beeRoot.getMemberStack(bee, EnumBeeType.DRONE);
-				drops.add(drone);
-				break;
-			}
-		}
+		hiveDrops.stream()
+				.filter(d -> random.nextDouble() < d.getChance(world, pos, fortune))
+				.map(d-> d.getBeeType(world, pos))
+				.map(b -> BeeManager.beeRoot.getMemberStack(b, EnumBeeType.DRONE))
+				.findAny().ifPresent(drops::add);
 
 		// Grab anything else on offer
-		for (IHiveDrop drop : hiveDrops) {
-			if (random.nextDouble() < drop.getChance(world, pos, fortune)) {
-				drops.addAll(drop.getExtraItems(world, pos, fortune));
-				break;
-			}
-		}
+		hiveDrops.stream()
+				.filter(d -> random.nextDouble() < d.getChance(world, pos, fortune))
+				.findAny()
+				.ifPresent(d -> drops.addAll(d.getExtraItems(world, pos, fortune)));
 	}
 
 	// / CREATIVE INVENTORY
@@ -172,12 +167,10 @@ public class BlockBeeHives extends BlockContainer implements IItemModelRegister,
 
 	@Override
 	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
-		for (IBlockState blockState : getBlockState().getValidStates()) {
-			if (getHiveType(blockState) != HiveType.SWARM) {
-				int meta = getMetaFromState(blockState);
-				list.add(new ItemStack(this, 1, meta));
-			}
-		}
+		getBlockState().getValidStates().stream()
+				.filter(b -> getHiveType(b) != HiveType.SWARM)
+				.findAny()
+				.ifPresent(b -> list.add(new ItemStack(this, 1, getMetaFromState(b))));
 	}
 
 	/* ITEM MODELS */

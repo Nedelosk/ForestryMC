@@ -19,6 +19,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
+import org.lwjgl.input.Keyboard;
+
 import forestry.api.mail.EnumAddressee;
 import forestry.api.mail.ITradeStationInfo;
 import forestry.core.config.SessionVars;
@@ -29,8 +31,6 @@ import forestry.core.network.packets.PacketGuiSelectRequest;
 import forestry.core.render.ColourProperties;
 import forestry.core.utils.NetworkUtil;
 import forestry.core.utils.Translator;
-
-import org.lwjgl.input.Keyboard;
 
 public class GuiCatalogue extends GuiForestry<ContainerCatalogue> {
 

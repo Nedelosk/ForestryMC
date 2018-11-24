@@ -1,7 +1,5 @@
 package forestry.sorting.network.packets;
 
-import java.io.IOException;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 

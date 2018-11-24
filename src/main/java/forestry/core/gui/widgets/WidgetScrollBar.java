@@ -5,9 +5,9 @@ import javax.annotation.Nullable;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.MathHelper;
 
-import forestry.core.gui.Drawable;
-
 import org.lwjgl.input.Mouse;
+
+import forestry.core.gui.Drawable;
 
 public class WidgetScrollBar extends Widget {
 	@Nullable

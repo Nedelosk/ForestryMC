@@ -7,12 +7,12 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 
+import org.lwjgl.input.Mouse;
+
 import forestry.api.gui.IGuiElement;
 import forestry.api.gui.events.GuiEvent;
 import forestry.api.gui.events.GuiEventDestination;
 import forestry.core.gui.elements.Window;
-
-import org.lwjgl.input.Mouse;
 
 /**
  * GuiScreen implementation of a gui that contains {@link forestry.api.gui.IGuiElement}s.

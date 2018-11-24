@@ -10,9 +10,7 @@
  ******************************************************************************/
 package forestry.apiculture.commands;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import net.minecraft.world.World;
 
@@ -24,14 +22,10 @@ public class BeeModeHelper implements ICommandModeHelper {
 
 	@Override
 	public String[] getModeNames() {
-		List<IBeekeepingMode> beekeepingModes = BeeManager.beeRoot.getBeekeepingModes();
-		int modeStringCount = beekeepingModes.size();
-		List<String> modeStrings = new ArrayList<>(modeStringCount);
-		for (IBeekeepingMode mode : beekeepingModes) {
-			modeStrings.add(mode.getName());
-		}
-
-		return modeStrings.toArray(new String[modeStringCount]);
+		return BeeManager.beeRoot.getBeekeepingModes()
+				.stream()
+				.map(IBeekeepingMode::getName)
+				.toArray(String[]::new);
 	}
 
 	@Override

@@ -10,6 +10,6 @@ package forestry.api.circuits;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import mcp.MethodsReturnNonnullByDefault;
-
 import net.minecraftforge.fml.common.API;
+
+import mcp.MethodsReturnNonnullByDefault;

@@ -5,12 +5,12 @@ import javax.annotation.Nullable;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.MathHelper;
 
+import org.lwjgl.input.Mouse;
+
 import forestry.api.gui.IWindowElement;
 import forestry.core.gui.Drawable;
 import forestry.core.gui.elements.layouts.ElementGroup;
 import forestry.core.gui.widgets.IScrollable;
-
-import org.lwjgl.input.Mouse;
 
 public class ScrollBarElement extends ElementGroup {
 	/* Attributes - Final */

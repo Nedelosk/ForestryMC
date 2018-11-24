@@ -10,8 +10,8 @@
  ******************************************************************************/
 package forestry.apiculture.commands;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import net.minecraft.world.World;
 
@@ -21,7 +21,6 @@ import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IApiaristTracker;
 import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.core.commands.IStatsSaveHelper;
@@ -53,13 +52,10 @@ public class BeeStatsSaveHelper implements IStatsSaveHelper {
 
 	@Override
 	public Collection<IAlleleSpecies> getSpecies() {
-		Collection<IAlleleSpecies> species = new ArrayList<>();
-		for (IAllele allele : AlleleManager.alleleRegistry.getRegisteredAlleles().values()) {
-			if (allele instanceof IAlleleBeeSpecies) {
-				species.add((IAlleleBeeSpecies) allele);
-			}
-		}
-		return species;
+		return AlleleManager.alleleRegistry.getRegisteredAlleles().values().stream()
+				.filter(a -> a instanceof IAlleleBeeSpecies)
+				.map(a -> (IAlleleBeeSpecies) a)
+				.collect(Collectors.toList());
 	}
 
 	@Override
