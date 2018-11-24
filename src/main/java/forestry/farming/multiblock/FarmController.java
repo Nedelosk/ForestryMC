@@ -564,7 +564,7 @@ public class FarmController extends RectangularMultiblockControllerBase implemen
 		IErrorLogic errorLogic = getErrorLogic();
 
 		// Check fertilizer
-		Boolean hasFertilizer = fertilizerManager.hasFertilizer(inventory, fertilizerConsumption);
+		boolean hasFertilizer = fertilizerManager.hasFertilizer(inventory, fertilizerConsumption);
 		if (errorLogic.setCondition(!hasFertilizer, EnumErrorCode.NO_FERTILIZER)) {
 			return false;
 		}

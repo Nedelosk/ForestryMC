@@ -37,11 +37,11 @@ public class ModelFarmBlock extends ModelBlockCached<BlockFarm, ModelFarmBlock.K
 
 		@Override
 		public boolean equals(Object other) {
-			if (other == null || !(other instanceof Key)) {
-				return false;
-			} else {
+			if (other instanceof Key) {
 				Key otherKey = (Key) other;
 				return otherKey.texture == texture && otherKey.type == type;
+			} else {
+				return false;
 			}
 		}
 

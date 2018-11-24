@@ -223,13 +223,12 @@ public class WorldGenHelper {
 	public static void generateSupportStems(ITreeBlockType wood, World world, Random rand, BlockPos startPos, int height, int girth, float chance, float maxHeight) {
 
 		final int min = -1;
-		final int max = girth;
 
-		for (int x = min; x <= max; x++) {
-			for (int z = min; z <= max; z++) {
+		for (int x = min; x <= girth; x++) {
+			for (int z = min; z <= girth; z++) {
 
 				// skip the corners, support stems should touch the body of the trunk
-				if ((x == min && z == min) || (x == max && z == max) || (x == min && z == max) || (x == max && z == min)) {
+				if ((x == min && z == min) || (x == girth && z == girth) || (x == min && z == girth) || (x == girth && z == min)) {
 					continue;
 				}
 

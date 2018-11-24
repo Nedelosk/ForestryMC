@@ -65,8 +65,7 @@ public class BlockRegistryApiculture extends BlockRegistry {
 	}
 
 	public BlockAlveary getAlvearyBlock(BlockAlvearyType type) {
-		BlockAlveary alvearyBlock = alvearyBlockMap.get(type);
-		return alvearyBlock;
+		return alvearyBlockMap.get(type);
 	}
 
 	public ItemStack getAlvearyBlockStack(BlockAlvearyType type) {

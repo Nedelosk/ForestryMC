@@ -22,7 +22,7 @@ public class LabelElement extends GuiElement implements ILabelElement {
 	protected ITextStyle style;
 	protected String text;
 	protected String rawText;
-	protected boolean textLength = false;
+	protected boolean textLength;
 
 	public LabelElement(String text, GuiElementAlignment align, ITextStyle style) {
 		this(0, 0, -1, FONT_RENDERER.FONT_HEIGHT, text, align, style);

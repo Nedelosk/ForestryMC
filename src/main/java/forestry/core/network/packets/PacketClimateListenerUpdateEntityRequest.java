@@ -33,7 +33,7 @@ public class PacketClimateListenerUpdateEntityRequest extends ForestryPacket imp
 	public static class Handler implements IForestryPacketHandlerServer {
 
 		@Override
-		public void onPacketData(PacketBufferForestry data, EntityPlayerMP player) throws IOException {
+		public void onPacketData(PacketBufferForestry data, EntityPlayerMP player) {
 			Entity entity = data.readEntityById(player.world);
 			if (entity != null && entity.hasCapability(ClimateCapabilities.CLIMATE_LISTENER, null)) {
 				IClimateListener listener = entity.getCapability(ClimateCapabilities.CLIMATE_LISTENER, null);

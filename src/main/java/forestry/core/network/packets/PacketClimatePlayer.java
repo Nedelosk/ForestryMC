@@ -32,7 +32,7 @@ public class PacketClimatePlayer extends ForestryPacket implements IForestryPack
 
 	public static class Handler implements IForestryPacketHandlerClient {
 		@Override
-		public void onPacketData(PacketBufferForestry data, EntityPlayer player) throws IOException {
+		public void onPacketData(PacketBufferForestry data, EntityPlayer player) {
 			ClimateHandlerClient.setCurrentState(data.readClimateState());
 		}
 	}

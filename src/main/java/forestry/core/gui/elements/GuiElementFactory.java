@@ -96,7 +96,7 @@ public class GuiElementFactory implements IGuiElementFactory {
 	}
 
 	public IGuiElement createFertilityInfo(IAlleleInteger fertilityAllele, int texOffset) {
-		String fertilityString = Integer.toString(fertilityAllele.getValue()) + " x";
+		String fertilityString = fertilityAllele.getValue() + " x";
 
 		AbstractElementLayout layout = createHorizontal(0, 0, 0).setDistance(2);
 		layout.label(fertilityString, getStateStyle(fertilityAllele.isDominant()));

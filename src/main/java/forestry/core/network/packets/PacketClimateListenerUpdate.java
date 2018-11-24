@@ -40,7 +40,7 @@ public class PacketClimateListenerUpdate extends ForestryPacket implements IFore
 	@SideOnly(Side.CLIENT)
 	public static class Handler implements IForestryPacketHandlerClient {
 		@Override
-		public void onPacketData(PacketBufferForestry data, EntityPlayer player) throws IOException {
+		public void onPacketData(PacketBufferForestry data, EntityPlayer player) {
 			BlockPos pos = data.readBlockPos();
 			IClimateState state = data.readClimateState();
 			IClimateListener listener = ClimateRoot.getInstance().getListener(player.world, pos);

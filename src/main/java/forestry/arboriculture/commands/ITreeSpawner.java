@@ -18,6 +18,6 @@ import forestry.core.commands.TemplateNotFoundException;
 
 public interface ITreeSpawner {
 
-	boolean spawn(ICommandSender sender, String treeName, EntityPlayer player) throws SpeciesNotFoundException, TemplateNotFoundException;
+	boolean spawn(ICommandSender sender, String treeName, EntityPlayer player) throws SpeciesNotFoundException;
 
 }

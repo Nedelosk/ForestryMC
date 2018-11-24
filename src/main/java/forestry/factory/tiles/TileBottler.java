@@ -314,7 +314,7 @@ public class TileBottler extends TilePowered implements ISidedInventory, ILiquid
 		} else {
 			emptyStatus = null;
 		}
-		if (emptyStatus == null || emptyStatus != FillStatus.SUCCESS) {
+		if (emptyStatus != FillStatus.SUCCESS) {
 			checkFillRecipe();
 			if (currentRecipe == null) {
 				return false;

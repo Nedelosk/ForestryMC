@@ -115,6 +115,5 @@ public class ContainerAnalyzerProviderHelper {
 			}
 			specimenSlot.putStack(specimen);
 		}
-		return;
 	}
 }

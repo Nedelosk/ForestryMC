@@ -40,7 +40,7 @@ public class PacketClimateListenerUpdateEntity extends ForestryPacket implements
 	@SideOnly(Side.CLIENT)
 	public static class Handler implements IForestryPacketHandlerClient {
 		@Override
-		public void onPacketData(PacketBufferForestry data, EntityPlayer player) throws IOException {
+		public void onPacketData(PacketBufferForestry data, EntityPlayer player) {
 			Entity entity = data.readEntityById(player.world);
 			IClimateState state = data.readClimateState();
 			if (entity != null && entity.hasCapability(ClimateCapabilities.CLIMATE_LISTENER, null)) {

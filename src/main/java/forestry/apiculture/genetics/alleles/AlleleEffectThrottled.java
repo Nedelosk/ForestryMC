@@ -17,9 +17,9 @@ import forestry.core.genetics.EffectData;
 
 public abstract class AlleleEffectThrottled extends AlleleEffect {
 
-	private boolean isCombinable = false;
+	private boolean isCombinable;
 	private final int throttle;
-	private boolean requiresWorkingQueen = false;
+	private boolean requiresWorkingQueen;
 
 	protected AlleleEffectThrottled(String name, boolean isDominant, int throttle, boolean requiresWorking, boolean isCombinable) {
 		super(name, isDominant);

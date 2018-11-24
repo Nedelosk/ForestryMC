@@ -58,11 +58,11 @@ public class ModelLeaves extends ModelBlockCached<BlockForestryLeaves, ModelLeav
 
 		@Override
 		public boolean equals(Object other) {
-			if (other == null || !(other instanceof Key)) {
-				return false;
-			} else {
+			if (other instanceof Key) {
 				Key otherKey = (Key) other;
 				return otherKey.leafSprite == leafSprite && otherKey.fruitSprite == fruitSprite && otherKey.fancy == fancy;
+			} else {
+				return false;
 			}
 		}
 

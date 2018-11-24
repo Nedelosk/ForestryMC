@@ -69,7 +69,7 @@ public class WorldgenBeekeepingLogic implements IBeekeepingLogic {
 	}
 
 	@Override
-	public void readData(PacketBuffer data) throws IOException {
+	public void readData(PacketBuffer data) {
 		boolean active = data.readBoolean();
 		setActive(active);
 		if (active) {

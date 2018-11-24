@@ -33,7 +33,7 @@ public class GuiBetterButton extends GuiButton implements IToolTipProvider {
 	protected IButtonTextureSet texture;
 	@Nullable
 	private ToolTip toolTip;
-	private boolean useTexWidth = false;
+	private boolean useTexWidth;
 
 	public GuiBetterButton(int id, int x, int y, IButtonTextureSet texture) {
 		super(id, x, y, texture.getWidth(), texture.getHeight(), "");

@@ -96,7 +96,7 @@ public abstract class SpeciesRoot implements ISpeciesRoot {
 
 	/* TRANSLATORS */
 	@Override
-	public <O extends Object, I extends IIndividual> void registerTranslator(Object translatorKey, IIndividualTranslator<I, O> translator) {
+	public <O, I extends IIndividual> void registerTranslator(Object translatorKey, IIndividualTranslator<I, O> translator) {
 		if (!translators.containsKey(translatorKey)) {
 			translators.put(translatorKey, (IIndividualTranslator<IIndividual, Object>) translator);
 		}
@@ -104,7 +104,7 @@ public abstract class SpeciesRoot implements ISpeciesRoot {
 
 	@Nullable
 	@Override
-	public <O extends Object, I extends IIndividual> IIndividualTranslator<I, O> getTranslator(Object translatorKey) {
+	public <O, I extends IIndividual> IIndividualTranslator<I, O> getTranslator(Object translatorKey) {
 		return (IIndividualTranslator<I, O>) translators.get(translatorKey);
 	}
 

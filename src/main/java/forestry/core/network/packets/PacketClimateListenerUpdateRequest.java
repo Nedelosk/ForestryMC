@@ -34,7 +34,7 @@ public class PacketClimateListenerUpdateRequest extends ForestryPacket implement
 	public static class Handler implements IForestryPacketHandlerServer {
 
 		@Override
-		public void onPacketData(PacketBufferForestry data, EntityPlayerMP player) throws IOException {
+		public void onPacketData(PacketBufferForestry data, EntityPlayerMP player) {
 			BlockPos pos = data.readBlockPos();
 			TileEntity tileEntity = player.world.getTileEntity(pos);
 			if (tileEntity != null && tileEntity.hasCapability(ClimateCapabilities.CLIMATE_LISTENER, null)) {

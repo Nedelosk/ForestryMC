@@ -20,7 +20,7 @@ import forestry.core.utils.Log;
 
 public class GameMode implements IGameMode {
 	private static final String GAMEMODE_KEY = "gamemode";
-	private String identifier = "EASY";
+	private String identifier;
 
 	private final Map<String, Boolean> booleanSettings = new HashMap<>();
 	private final Map<String, Integer> integerSettings = new HashMap<>();

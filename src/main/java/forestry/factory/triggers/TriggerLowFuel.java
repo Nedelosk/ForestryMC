@@ -22,7 +22,7 @@ import buildcraft.api.statements.IStatementParameter;
 
 public class TriggerLowFuel extends Trigger {
 
-	private float threshold = 0.25F;
+	private float threshold;
 
 	public TriggerLowFuel(String uid, float threshold) {
 		super(uid, "lowFuel", "low_fuel");

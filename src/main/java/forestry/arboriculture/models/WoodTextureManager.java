@@ -136,7 +136,7 @@ public class WoodTextureManager {
 		WoodTexture kindTexture = getKindTexture(blockKind);
 		WoodTexture tex = getTexture(woodType);
 		Map<String, String> locations = new HashMap<>();
-		if (kindTexture != null && kindTexture instanceof SimpleTexture) {
+		if (kindTexture instanceof SimpleTexture) {
 			SimpleTexture texture = (SimpleTexture) kindTexture;
 			locations.putAll(texture.getLocations(kindName));
 		}

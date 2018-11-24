@@ -136,7 +136,7 @@ public class ClimateTransformer implements IClimateTransformer, IStreamable, INb
 	}
 
 	@Override
-	public void readData(PacketBufferForestry data) throws IOException {
+	public void readData(PacketBufferForestry data) {
 		currentState = data.readClimateState();
 		targetedState = data.readClimateState();
 		defaultState = data.readClimateState();

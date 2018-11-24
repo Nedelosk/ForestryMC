@@ -463,7 +463,7 @@ public class GuiAlyzer extends GuiForestry<ContainerAlyzer> {
 		// Enable correct lighting.
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-		String fertilityString = Integer.toString(fertility) + " x";
+		String fertilityString = fertility + " x";
 
 		int stringWidth = fontRenderer.getStringWidth(fertilityString);
 

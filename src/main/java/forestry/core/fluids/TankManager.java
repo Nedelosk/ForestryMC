@@ -125,7 +125,7 @@ public class TankManager implements ITankManager, ITankUpdateHandler, IStreamabl
 	}
 
 	@Override
-	public void readData(PacketBufferForestry data) throws IOException {
+	public void readData(PacketBufferForestry data) {
 		for (StandardTank tank : tanks) {
 			tank.readData(data);
 		}

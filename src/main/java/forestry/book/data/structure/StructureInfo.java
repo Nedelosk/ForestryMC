@@ -26,14 +26,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class StructureInfo {
 	public IBlockState[][][] data;
-	public int blockCount = 0;
-	public int[] countPerLevel;
-	public int structureHeight = 0;
-	public int structureLength = 0;
-	public int structureWidth = 0;
+	public int structureHeight;
+	public int structureLength;
+	public int structureWidth;
 	public int showLayer = -1;
 
-	private int blockIndex = 0;
+	private int blockIndex;
 	private int maxBlockIndex;
 
 	public StructureInfo(int length, int height, int width, BlockData[] blockData) {

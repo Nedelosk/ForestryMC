@@ -47,7 +47,7 @@ public class TankWidget extends Widget {
 
 	private int overlayTexX = 176;
 	private int overlayTexY = 0;
-	private int slot = 0;
+	private int slot;
 	protected boolean drawOverlay = true;
 
 	public TankWidget(WidgetManager manager, int xPos, int yPos, int slot) {
