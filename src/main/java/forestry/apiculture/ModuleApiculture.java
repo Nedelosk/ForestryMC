@@ -977,11 +977,7 @@ public class ModuleApiculture extends BlankForestryModule {
 	public boolean processIMCMessage(IMCMessage message) {
 		if (message.key.equals("add-candle-lighting-id")) {
 			ItemStack value = message.getItemStackValue();
-			if (value != null) {
-				BlockCandle.addItemToLightingList(value.getItem());
-			} else {
-				IMCUtil.logInvalidIMCMessage(message);
-			}
+			BlockCandle.addItemToLightingList(value.getItem());
 			return true;
 		} else if (message.key.equals("add-alveary-slab") && message.isStringMessage()) {
 			String messageString = String.format("Received a '%s' request from mod '%s'. This IMC message has been replaced with the oreDictionary for 'slabWood'. Please contact the author and report this issue.", message.key, message.getSender());
