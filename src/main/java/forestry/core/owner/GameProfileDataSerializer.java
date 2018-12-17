@@ -21,7 +21,6 @@ public class GameProfileDataSerializer implements DataSerializer<Optional<GamePr
 
 	}
 
-	@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 	@Override
 	public void write(PacketBuffer buf, Optional<GameProfile> value) {
 		if (!value.isPresent()) {

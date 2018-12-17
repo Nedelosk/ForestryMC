@@ -58,7 +58,7 @@ public class ModelLeaves extends ModelBlockCached<BlockForestryLeaves, ModelLeav
 
 		@Override
 		public boolean equals(Object other) {
-			if (other == null || !(other instanceof Key)) {
+			if (!(other instanceof Key)) {
 				return false;
 			} else {
 				Key otherKey = (Key) other;

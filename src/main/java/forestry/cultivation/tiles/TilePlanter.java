@@ -264,7 +264,7 @@ public abstract class TilePlanter extends TilePowered implements IFarmHousing, I
 		IErrorLogic errorLogic = getErrorLogic();
 
 		// Check fertilizer
-		Boolean hasFertilizer = fertilizerManager.hasFertilizer(inventory, fertilizerConsumption);
+		boolean hasFertilizer = fertilizerManager.hasFertilizer(inventory, fertilizerConsumption);
 		if (errorLogic.setCondition(!hasFertilizer, EnumErrorCode.NO_FERTILIZER)) {
 			return false;
 		}

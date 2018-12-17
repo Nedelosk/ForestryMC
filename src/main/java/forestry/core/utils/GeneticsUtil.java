@@ -127,7 +127,7 @@ public class GeneticsUtil {
 
 	public static boolean canCreateNursery(World world, BlockPos pos) {
 		IIndividual pollen = GeneticsUtil.getPollen(world, pos);
-		return pollen != null && pollen instanceof ITree;
+		return pollen instanceof ITree;
 	}
 
 	@Nullable

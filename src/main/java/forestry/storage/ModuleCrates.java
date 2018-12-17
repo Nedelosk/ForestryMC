@@ -148,29 +148,25 @@ public class ModuleCrates extends BlankForestryModule {
 
 	@Override
 	public boolean processIMCMessage(FMLInterModComms.IMCMessage message) {
-		if (message.key.equals("add-crate-items")) {
-			ItemStack value = message.getItemStackValue();
-			if (value != null) {
+		switch (message.key) {
+			case "add-crate-items": {
+				ItemStack value = message.getItemStackValue();
 				StorageManager.crateRegistry.registerCrate(value);
-			} else {
-				IMCUtil.logInvalidIMCMessage(message);
+				return true;
 			}
-			return true;
-		} else if (message.key.equals("add-crate-oredict")) {
-			String value = message.getStringValue();
-			StorageManager.crateRegistry.registerCrate(value);
-			return true;
-		} else if (message.key.equals("blacklist-crate-item")) {
-			ItemStack value = message.getItemStackValue();
-			if (value != null) {
+			case "add-crate-oredict": {
+				String value = message.getStringValue();
+				StorageManager.crateRegistry.registerCrate(value);
+				return true;
+			}
+			case "blacklist-crate-item": {
+				ItemStack value = message.getItemStackValue();
 				cratesRejectedItem.put(value.getItem(), value);
-			} else {
-				IMCUtil.logInvalidIMCMessage(message);
+				return true;
 			}
-			return true;
-		} else if (message.key.equals("blacklist-crate-oredict")) {
-			cratesRejectedOreDict.add(message.getStringValue());
-			return true;
+			case "blacklist-crate-oredict":
+				cratesRejectedOreDict.add(message.getStringValue());
+				return true;
 		}
 		return false;
 	}

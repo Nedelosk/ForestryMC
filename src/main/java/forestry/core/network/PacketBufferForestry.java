@@ -118,7 +118,7 @@ public class PacketBufferForestry extends PacketBuffer {
 	}
 
 	public void writeStreamable(@Nullable Object object) {
-		if (object != null && object instanceof IStreamable) {
+		if (object instanceof IStreamable) {
 			IStreamable streamable = (IStreamable) object;
 			writeBoolean(true);
 			streamable.writeData(this);

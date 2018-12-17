@@ -22,7 +22,6 @@ import buildcraft.api.mj.MjAPI;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
-@SuppressWarnings("ConstantConditions")
 public class MjHelper {
 	@Nullable
 	@CapabilityInject(IMjConnector.class)

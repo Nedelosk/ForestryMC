@@ -37,7 +37,7 @@ public class ShapedRecipeCustom extends ShapedOreRecipe implements IDescriptiveR
 		super(null, result, recipe);
 		ItemStack output = result.copy();
 
-		String shape = "";
+		StringBuilder shape = new StringBuilder();
 		int idx = 0;
 
 		if (recipe[idx] instanceof Boolean) {
@@ -54,26 +54,26 @@ public class ShapedRecipeCustom extends ShapedOreRecipe implements IDescriptiveR
 
 			for (String s : parts) {
 				width = s.length();
-				shape += s;
+				shape.append(s);
 			}
 
 			height = parts.length;
 		} else {
 			while (recipe[idx] instanceof String) {
 				String s = (String) recipe[idx++];
-				shape += s;
+				shape.append(s);
 				width = s.length();
 				height++;
 			}
 		}
 
 		if (width * height != shape.length()) {
-			String ret = "Invalid shaped ore recipe: ";
+			StringBuilder ret = new StringBuilder("Invalid shaped ore recipe: ");
 			for (Object tmp : recipe) {
-				ret += tmp + ", ";
+				ret.append(tmp).append(", ");
 			}
-			ret += output;
-			throw new RuntimeException(ret);
+			ret.append(output);
+			throw new RuntimeException(ret.toString());
 		}
 
 		HashMap<Character, NonNullList<ItemStack>> itemMap = new HashMap<>();
@@ -102,19 +102,19 @@ public class ShapedRecipeCustom extends ShapedOreRecipe implements IDescriptiveR
 				itemMap.put(chr, OreDictionary.getOres((String) in));
 				oreMap.put(chr, (String) in);
 			} else {
-				String ret = "Invalid shaped ore recipe: ";
+				StringBuilder ret = new StringBuilder("Invalid shaped ore recipe: ");
 				for (Object tmp : recipe) {
-					ret += tmp + ", ";
+					ret.append(tmp).append(", ");
 				}
-				ret += output;
-				throw new RuntimeException(ret);
+				ret.append(output);
+				throw new RuntimeException(ret.toString());
 			}
 		}
 
 		input = NonNullList.withSize(shape.length(), NonNullList.create());
 		oreDicts = NonNullList.withSize(shape.length(), "");
 		int x = 0;
-		for (char chr : shape.toCharArray()) {
+		for (char chr : shape.toString().toCharArray()) {
 			NonNullList<ItemStack> stacks = itemMap.get(chr);
 			if (stacks != null) {
 				input.set(x, stacks);

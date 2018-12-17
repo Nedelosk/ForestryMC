@@ -29,9 +29,8 @@ public class WorldGenMahoe extends WorldGenTree {
 
 	@Override
 	public Set<BlockPos> generateTrunk(World world, Random rand, TreeBlockTypeLog wood, BlockPos startPos) {
-		Set<BlockPos> branchCoords = new HashSet<>();
 
-		branchCoords.addAll(WorldGenHelper.generateTreeTrunk(world, rand, wood, startPos, height, girth, 0, 0, null, 0));
+		Set<BlockPos> branchCoords = new HashSet<>(WorldGenHelper.generateTreeTrunk(world, rand, wood, startPos, height, girth, 0, 0, null, 0));
 
 		for (int yBranch = 2; yBranch < height - 1; yBranch++) {
 			branchCoords.addAll(WorldGenHelper.generateBranches(world, rand, wood, startPos.add(0, yBranch, 0), girth, 0.15f, 0.25f, Math.round((height - yBranch) * 0.75f), 1, 0.25f));

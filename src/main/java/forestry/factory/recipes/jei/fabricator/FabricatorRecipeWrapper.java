@@ -27,8 +27,7 @@ public class FabricatorRecipeWrapper extends ForestryRecipeWrapper<IFabricatorRe
 		NonNullList<NonNullList<ItemStack>> itemInputs = recipe.getIngredients();
 		List<List<ItemStack>> inputStacks = new ArrayList<>();
 		for (List<ItemStack> stacks : itemInputs) {
-			List<ItemStack> copy = new ArrayList<>();
-			copy.addAll(stacks);
+			List<ItemStack> copy = new ArrayList<>(stacks);
 			inputStacks.add(copy);
 		}
 

@@ -32,12 +32,8 @@ public class TextEditElement extends GuiElement implements IValueElement<String>
 			IWindowElement windowElement = getWindow();
 			this.field.mouseClicked(windowElement.getRelativeMouseX(this), windowElement.getRelativeMouseY(this), event.getButton());
 		});
-		this.addSelfEventHandler(ElementEvent.GainFocus.class, event -> {
-			this.field.setFocused(true);
-		});
-		this.addSelfEventHandler(ElementEvent.LoseFocus.class, event -> {
-			this.field.setFocused(false);
-		});
+		this.addSelfEventHandler(ElementEvent.GainFocus.class, event -> this.field.setFocused(true));
+		this.addSelfEventHandler(ElementEvent.LoseFocus.class, event -> this.field.setFocused(false));
 	}
 
 	public TextEditElement setMaxLength(int maxLength) {

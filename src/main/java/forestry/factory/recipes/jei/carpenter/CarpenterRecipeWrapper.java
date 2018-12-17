@@ -26,8 +26,7 @@ public class CarpenterRecipeWrapper extends ForestryRecipeWrapper<ICarpenterReci
 
 		this.inputStacks = new ArrayList<>();
 		for (List<ItemStack> stacks : inputs) {
-			List<ItemStack> copy = new ArrayList<>();
-			copy.addAll(stacks);
+			List<ItemStack> copy = new ArrayList<>(stacks);
 			this.inputStacks.add(copy);
 		}
 	}
