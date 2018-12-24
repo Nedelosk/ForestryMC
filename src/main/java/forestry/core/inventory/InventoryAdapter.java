@@ -36,8 +36,6 @@ public class InventoryAdapter implements IInventoryAdapter, IStreamable {
 	@Nullable
 	private int[] slotMap;
 
-	//private boolean debug = false;
-
 	public InventoryAdapter(int size, String name) {
 		this(size, name, 64);
 	}
