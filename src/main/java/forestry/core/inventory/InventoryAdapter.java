@@ -56,11 +56,6 @@ public class InventoryAdapter implements IInventoryAdapter, IStreamable {
 		return this;
 	}
 
-	//	public InventoryAdapter enableDebug() {
-	//		this.debug = true;
-	//		return this;
-	//	}
-
 	/**
 	 * @return Copy of this inventory. Stacks are copies.
 	 */

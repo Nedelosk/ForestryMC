@@ -23,6 +23,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
+import net.minecraftforge.common.crafting.IShapedRecipe;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
@@ -52,6 +53,7 @@ public abstract class RecipeUtil {
 
 		RecipeManagers.fermenterManager.addRecipe(resource, fermentationValue, 1.0f, outputStack, new FluidStack(FluidRegistry.WATER, 1));
 
+		//TODO - fluid disabled bugs here
 		if (FluidRegistry.isFluidRegistered(Fluids.JUICE.getFluid())) {
 			RecipeManagers.fermenterManager.addRecipe(resource, fermentationValue, 1.5f, outputStack, Fluids.JUICE.getFluid(1));
 		}
@@ -170,15 +172,6 @@ public abstract class RecipeUtil {
 
 	public static void addSmelting(ItemStack res, ItemStack prod, float xp) {
 		GameRegistry.addSmelting(res, prod, xp);
-	}
-
-	@Nullable
-	public static String[][] matches(IDescriptiveRecipe recipe, IInventory inventoryCrafting) {
-		NonNullList<NonNullList<ItemStack>> recipeIngredients = recipe.getRawIngredients();
-		NonNullList<String> oreDicts = recipe.getOreDicts();
-		int width = recipe.getWidth();
-		int height = recipe.getHeight();
-		return matches(recipeIngredients, oreDicts, width, height, inventoryCrafting);
 	}
 
 	@Nullable

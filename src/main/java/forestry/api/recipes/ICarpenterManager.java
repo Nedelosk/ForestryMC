@@ -10,6 +10,7 @@ import javax.annotation.Nullable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;
 
+import net.minecraftforge.common.crafting.IShapedRecipe;
 import net.minecraftforge.fluids.FluidStack;
 
 /**
@@ -54,4 +55,6 @@ public interface ICarpenterManager extends ICraftingProvider<ICarpenterRecipe> {
 	 * @param materials     Materials needed in the crafting matrix. This gets passed directly to {@link ShapedRecipes}. Notation is the same.
 	 */
 	void addRecipe(int packagingTime, @Nullable FluidStack liquid, ItemStack box, ItemStack product, Object... materials);
+
+	void addRecipe(int packagingTime, @Nullable FluidStack liquid, ItemStack box, IShapedRecipe shapedRecipe);
 }
