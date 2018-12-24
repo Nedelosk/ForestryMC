@@ -20,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
+import net.minecraftforge.common.crafting.IShapedRecipe;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
@@ -208,9 +209,5 @@ public class ShapedRecipeCustom extends ShapedOreRecipe implements IDescriptiveR
 		}
 
 		return true;
-	}
-
-	public static ShapedRecipeCustom createShapedRecipe(ItemStack product, Object... materials) {
-		return new ShapedRecipeCustom(product, materials);
 	}
 }

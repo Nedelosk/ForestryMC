@@ -20,12 +20,14 @@ import java.util.stream.Collectors;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
+import net.minecraftforge.common.crafting.IShapedRecipe;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
 import forestry.api.recipes.ICarpenterManager;
 import forestry.api.recipes.ICarpenterRecipe;
 import forestry.api.recipes.IDescriptiveRecipe;
+import forestry.core.recipes.DescriptiveRecipe;
 import forestry.core.recipes.RecipePair;
 import forestry.core.recipes.RecipeUtil;
 import forestry.core.recipes.ShapedRecipeCustom;
@@ -48,21 +50,25 @@ public class CarpenterRecipeManager implements ICarpenterManager {
 
 	@Override
 	public void addRecipe(int packagingTime, @Nullable FluidStack liquid, ItemStack box, ItemStack product, Object materials[]) {
-		ICarpenterRecipe recipe = new CarpenterRecipe(packagingTime, liquid, box, ShapedRecipeCustom.createShapedRecipe(product, materials));
-		addRecipe(recipe);
+		addRecipe(new CarpenterRecipe(packagingTime, liquid, box, new ShapedRecipeCustom(product, materials)));
 	}
 
-	@Nullable
+	@Override
+	public void addRecipe(int packagingTime, @Nullable FluidStack liquid, ItemStack box, IShapedRecipe shapedRecipe) {
+		addRecipe(new CarpenterRecipe(packagingTime, liquid, box, new DescriptiveRecipe(shapedRecipe)));
+	}
+
 	public static RecipePair<ICarpenterRecipe> findMatchingRecipe(@Nullable FluidStack liquid, ItemStack item, IInventory inventorycrafting) {
 		for (ICarpenterRecipe recipe : recipes) {
 			String[][] resourceDicts = matches(recipe, liquid, item, inventorycrafting);
 			if (resourceDicts != null) {
-				return new RecipePair(recipe, resourceDicts);
+				return new RecipePair<>(recipe, resourceDicts);
 			}
 		}
 		return RecipePair.EMPTY;
 	}
 
+	@Nullable
 	public static String[][] matches(@Nullable ICarpenterRecipe recipe, @Nullable FluidStack resource, ItemStack item, IInventory inventoryCrafting) {
 		if (recipe == null) {
 			return null;

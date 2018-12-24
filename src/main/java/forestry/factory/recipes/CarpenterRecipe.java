@@ -16,6 +16,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.item.ItemStack;
 
+import net.minecraftforge.common.crafting.IShapedRecipe;
 import net.minecraftforge.fluids.FluidStack;
 
 import forestry.api.recipes.ICarpenterRecipe;
@@ -37,6 +38,15 @@ public class CarpenterRecipe implements ICarpenterRecipe {
 		this.liquid = liquid;
 		this.box = box;
 		this.internal = internal;
+	}
+
+	public CarpenterRecipe(int packagingTime, @Nullable FluidStack liquid, ItemStack box, IShapedRecipe recipe) {
+		Preconditions.checkNotNull(box);
+		Preconditions.checkNotNull(recipe);
+		this.packagingTime = packagingTime;
+		this.liquid = liquid;
+		this.box = box;
+		this.internal = new ShapedRecipeCustom(recipe);
 	}
 
 	@Override
